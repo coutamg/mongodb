@@ -1053,11 +1053,11 @@ QuerySolutionNode* QueryPlannerAccess::buildIndexedAnd(const CanonicalQuery& que
 			2021-02-10T09:54:03.666+0800 D QUERY    [conn-4] About to build solntree(QuerySolution tree) from tagged tree:
 			$and
 			    age == 99.0  || Selected Index #1 pos 0 combine 1
-			    name == "yangyazhou2"  || Selected Index #2 pos 0 combine 1
+			    name == "coutamg"  || Selected Index #2 pos 0 combine 1
 			2021-02-10T09:54:03.666+0800 D QUERY    [conn-4] About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:
 			$and
 			    age == 99.0  || Selected Index #1 pos 0 combine 1
-			    name == "yangyazhou2"  || Selected Index #2 pos 0 combine 1
+			    name == "coutamg"  || Selected Index #2 pos 0 combine 1
 			2021-02-10T09:54:03.666+0800 D QUERY    [conn-4] Can't build index intersection solution: AND_SORTED is not possible and AND_HASH is disabled.
 			*/
             LOG(5) << "Can't build index intersection solution: "

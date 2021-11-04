@@ -74,7 +74,7 @@ public:
     /*
     2021-02-08T18:29:37.354+0800 D QUERY    [conn-1] About to build solntree(QuerySolution tree) from tagged tree:
     $and
-        name == "yangyazhou2"
+        name == "coutamg"
         age $gt 99.0  || Selected Index #1 pos 0 combine   类似这样  
     */
     virtual void debugString(StringBuilder* builder) const { 
@@ -128,7 +128,7 @@ public:
     2021-02-08T14:59:07.635+0800 D QUERY    [conn-1] Rated tree:
     $and
         age == 99.0  || First: 1 notFirst: full path: age               //First: 1 ,这里的1代表前面index 1对应索引
-        name == "yangyazhou2"  || First: 0 2 notFirst: full path: name  //First: 0 2 ,这里的0 2代表前面index 0和index 2两个对应索引
+        name == "coutamg"  || First: 0 2 notFirst: full path: name  //First: 0 2 ,这里的0 2代表前面index 0和index 2两个对应索引
     */
     std::vector<size_t> first;
     std::vector<size_t> notFirst;
@@ -138,12 +138,12 @@ public:
     // TODO: Do a FieldRef / StringData pass.
     // TODO: We might want this inside of the MatchExpression.
     /*
-     db.test.find({"$and": [{"name" : "yangyazhou2"}, {"age":1}]})
+     db.test.find({"$and": [{"name" : "coutamg"}, {"age":1}]})
      这个对应的path如下:
      2021-02-04T15:57:23.657+0800 D QUERY    [conn-1] Rated tree:
      $and
         age == 1.0  || First: 1 notFirst: full path: age
-        name == "yangyazhou2"  || First: 0 2 notFirst: full path: name
+        name == "coutamg"  || First: 0 2 notFirst: full path: name
     */
     std::string path;
 
@@ -173,7 +173,7 @@ public:
     2021-02-08T14:59:07.635+0800 D QUERY    [conn-1] Rated tree:
     $and
         age == 99.0  || First: 1 notFirst: full path: age               //First: 1 ,这里的1代表前面index 1对应索引
-        name == "yangyazhou2"  || First: 0 2 notFirst: full path: name  //First: 0 2 ,这里的0 2代表前面index 0和index 2两个对应索引
+        name == "coutamg"  || First: 0 2 notFirst: full path: name  //First: 0 2 ,这里的0 2代表前面index 0和index 2两个对应索引
     */
     virtual void debugString(StringBuilder* builder) const {
         *builder << " || First: ";

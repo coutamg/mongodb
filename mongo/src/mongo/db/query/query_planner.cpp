@@ -648,12 +648,12 @@ name:0.99	age:99
 Status QueryPlanner::plan(const CanonicalQuery& query,
                           const QueryPlannerParams& params,
                           std::vector<QuerySolution*>* out) {
-	/* db.test.find({"name":"yangyazhou", "age":22}).sort({"name":1})对应输出
+	/* db.test.find({"name":"coutamg", "age":22}).sort({"name":1})对应输出
 	Options = INDEX_INTERSECTION SPLIT_LIMITED_SORT CANNOT_TRIM_IXISECT 
 	Canonical query:
-	ns=testxx.testTree: $and  //-------> and是因为查询条件是"name":"yangyazhou" 同时(and) "age":22
+	ns=testxx.testTree: $and  //-------> and是因为查询条件是"coutamggyazhou" 同时(and) "age":22
 		age == 22.0
-		name == "yangyazhou"
+		name == "coutamg"
 	Sort: { name: 1.0 }
 	Proj: {}
 	=============================
@@ -664,7 +664,7 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
            << "Canonical query:" << endl
            << redact(query.toString()) << "============================="; //CanonicalQuery::toString
 
-	//打印出所有索引信息  db.test.find({"name":"yangyazhou"}).sort({"name":1})
+	//打印出所有索引信息  db.coutamgame":"yangyazhou"}).sort({"name":1})
 	//2019-01-03T17:24:40.440+0800 D QUERY    [conn1] Index 0 is kp: { _id: 1 } unique name: '_id_' io: { v: 2, key: { _id: 1 }, name: "_id_", ns: "testxx.test" }
 	//2019-01-03T17:24:40.440+0800 D QUERY    [conn1] Index 1 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "testxx.test" }
 	//2019-01-03T17:24:40.440+0800 D QUERY    [conn1] Index 2 is kp: { age: 1.0 } name: 'age_1' io: { v: 2, key: { age: 1.0 }, name: "age_1", ns: "testxx.test" }
@@ -733,11 +733,11 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
 	//获取所有的查询条件，填充到fields数组 
     QueryPlannerIXSelect::getFields(query.root(), "", &fields);
 
-	/* 如果是db.test.find({"name":"yangyazhou", "age":22}).sort({"name":1})
+	/* 如果是db.test.find({"coutamggyazhou", "age":22}).sort({"name":1})
 	2019-01-03T16:58:51.444+0800 D QUERY	[conn1] Predicate over field 'name'
 	2019-01-03T16:58:51.444+0800 D QUERY	[conn1] Predicate over field 'age'
 
-	如果是db.test.find({"name":"yangyazhou"}).sort({"name":1})
+	如果是db.test.find({"coutamggyazhou"}).sort({"name":1})
 	2019-01-03T17:24:40.440+0800 D QUERY    [conn1] Predicate over field 'name'
 	//这里把查询条件中得字段一个一个打印出来
 	*/
@@ -798,7 +798,7 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
 
     if (hintIndex.isEmpty()) { //如果没有强制指定索引
     /*
-	db.test.find({"name":"yangyazhou", "age":1, "male":1})
+	db.test.find({"name":"coutamg", "age":1, "male":1})
 
 	外层选举出的out索引打印如下:
 	2021-01-12T17:57:31.001+0800 D QUERY    [conn1] Relevant index 0 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "test.test", background: true }
@@ -948,12 +948,12 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
 
 	//打印出选择出的索引
     for (size_t i = 0; i < relevantIndices.size(); ++i) {
-	/* db.test.find({"name":"yangyazhou", "age":22}).sort({"name":1})
+	/* db.test.find({"name":"coutamg", "age":22}).sort({"name":1})
 	2019-01-03T17:57:20.793+0800 D QUERY	[conn1] Relevant index 0 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "testxx.test" }
 	2019-01-03T17:57:20.793+0800 D QUERY	[conn1] Relevant index 1 is kp: { age: 1.0 } name: 'age_1' io: { v: 2, key: { age: 1.0 }, name: "age_1", ns: "testxx.test" }
 	2019-01-03T17:57:20.793+0800 D QUERY	[conn1] Relevant index 2 is kp: { name: 1.0, age: 1.0 } name: 'name_1_age_1' io: { v: 2, key: { name: 1.0, age: 1.0 }, name: "name_1_age_1", ns: "testxx.test" }
 
-    db.test.find({"name":"yangyazhou"}).sort({"name":1})
+    db.test.find({"name":"coutamg"}).sort({"name":1})
 	2019-01-03T17:24:40.440+0800 D QUERY	[conn1] Relevant index 0 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "testxx.test" }
 	2019-01-03T17:24:40.440+0800 D QUERY	[conn1] Relevant index 1 is kp: { name: 1.0, age: 1.0 } name: 'name_1_age_1' io: { v: 2, key: { name: 1.0, age: 1.0 }, name: "name_1_age_1", ns: "testxx.test" }
 	*/
@@ -981,13 +981,13 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
 
     // query.root() is now annotated with RelevantTag(s).
     /* 
-    db.test.find({"name":"yangyazhou"}).sort({"name":1}):
-		name == "yangyazhou"  || First: 0 1 notFirst: full path: name
+    db.test.find({"name":"coutamg"}).sort({"name":1}):
+		name == "coutamg"  || First: 0 1 notFirst: full path: name
 
-	db.test.find({"name":"yangyazhou", "age":22}).sort({"name":1}):
+	db.test.find({"name":"coutamg", "age":22}).sort({"name":1}):
 		$and
 	    age == 22.0  || First: 1 notFirst: 2 full path: age            //First: 1 这里的1代表第1个候选索引
-	    name == "yangyazhou"  || First: 0 2 notFirst: full path: name  //First: 0 2 这里的0 2代表第0和第2个候选索引
+	    name == "coutamg"  || First: 0 2 notFirst: full path: name  //First: 0 2 这里的0 2代表第0和第2个候选索引
 	*/
     LOG(2) << "Rated tree:" << endl << redact(query.root()->toString()); 
 
@@ -1062,13 +1062,13 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
 		//PlanEnumerator::getNext    这里的理解配合querysolution.txt阅读,枚举每个查询对应的索引信息，最终生成solution
         while ((rawTree = isp.getNext()) && (out->size() < params.maxIndexedSolutions)) {
 		/* 
-	    db.test.find({"name":"yangyazhou"}).sort({"name":1}):
-			name == "yangyazhou"  || Selected Index #1 pos 0 combine 1
+	    db.test.find({"name":"coutamg"}).sort({"name":1}):
+			name == "coutamg"  || Selected Index #1 pos 0 combine 1
 
-		db.test.find({"name":"yangyazhou", "age":22}).sort({"name":1}):
+		db.test.find({"name":"coutamg", "age":22}).sort({"name":1}):
 			$and
 				age == 22.0  || Selected Index #2 pos 1 combine 1
-				name == "yangyazhou"  || Selected Index #2 pos 0 combine 1
+				name == "coutamg"  || Selected Index #2 pos 0 combine 1
 		*/
             LOG(2) << "About to build solntree(QuerySolution tree) from tagged tree:" << endl
                    << redact(rawTree.get()->toString()); //tag 由前面的PlanEnumeratorParams中添加

@@ -138,7 +138,7 @@ static bool boundsGeneratingNodeContainsComparisonToType(MatchExpression* node, 
     return false;
 }
 
-/* db.test.find({"name":"yangyazhou", "age":22}).sort({"name":1})
+/* db.test.find({"name":"coutamg", "age":22}).sort({"name":1})
 2019-01-03T16:58:51.444+0800 D QUERY	[conn1] Predicate over field 'name'
 2019-01-03T16:58:51.444+0800 D QUERY	[conn1] Predicate over field 'age'
 */
@@ -178,7 +178,7 @@ void QueryPlannerIXSelect::getFields(const MatchExpression* node,
 }
 
 /*
-db.test.find({"name":"yangyazhou", "age":1, "male":1})
+db.test.find({"name":"coutamg", "age":1, "male":1})
 
 外层选举出的out索引打印如下:
 2021-01-12T17:57:31.001+0800 D QUERY    [conn1] Relevant index 0 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "test.test", background: true }
@@ -414,7 +414,7 @@ bool QueryPlannerIXSelect::compatible(const BSONElement& elt,
 2021-02-08T14:59:07.635+0800 D QUERY	[conn-1] Rated tree:
 $and
 	age == 99.0  || First: 1 notFirst: full path: age				//First: 1 ,这里的1代表前面index 1对应索引
-	name == "yangyazhou2"  || First: 0 2 notFirst: full path: name	//First: 0 2 ,这里的0 2代表前面index 0和index 2两个对应索引
+	name == "coutamg"  || First: 0 2 notFirst: full path: name	//First: 0 2 ,这里的0 2代表前面index 0和index 2两个对应索引
 */
 
 /*

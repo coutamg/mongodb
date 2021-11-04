@@ -104,7 +104,7 @@ user空集合加索引：db.user.ensureIndex({name:1, "aihao.aa":1, "aihao.bb":-1, "aih
 
 
 
-插入一条数据：db.user.insert({ "_id" : ObjectId("6051d0eadc66165aba0feb51"), "name" : "yangyazhou", "aihao" : [ { "aa" : "aaa", "bb" : "bbb" }, { "aa" : "aaa2", "bb" : "bbb2" }, { "aa" : "aaa3", "bb" : "bbb3" } ] })
+插入一条数据：db.user.insert({ "_id" : ObjectId("6051d0eadc66165aba0fcoutamg" : "yangyazhou", "aihao" : [ { "aa" : "aaa", "bb" : "bbb" }, { "aa" : "aaa2", "bb" : "bbb2" }, { "aa" : "aaa3", "bb" : "bbb3" } ] })
 {
 	md: {
 		ns: "test.user",
@@ -163,7 +163,7 @@ user空集合加索引：db.user.ensureIndex({name:1, "aihao.aa":1, "aihao.bb":-1, "aih
 }
 
 
-插入第二条数据：db.user.insert({ "_id" : ObjectId("6052cf588a685826f0daf714"), "name" : "yangyazhou", "aihao" : [ { "aa" : [ { "cc" : "ccc1" }, { "cc" : "ccc2" } ], "bb" : "bbb3" } ] })
+插入第二条数据：db.user.insert({ "_id" : ObjectId("6052cf588a685826f0dcoutamge" : "yangyazhou", "aihao" : [ { "aa" : [ { "cc" : "ccc1" }, { "cc" : "ccc2" } ], "bb" : "bbb3" } ] })
 {
 	md: {
 		ns: "test.user",
@@ -257,15 +257,15 @@ user空集合加索引：db.user.ensureIndex({name:1, "aihao.aa":1, "aihao.bb":-1, "aih
 ]
 > 
 > db.user.find()
-{ "_id" : ObjectId("6051d0eadc66165aba0feb51"), "name" : "yangyazhou", "aihao" : [ { "aa" : "aaa", "bb" : "bbb" }, { "aa" : "aaa2", "bb" : "bbb2" }, { "aa" : "aaa3", "bb" : "bbb3" } ] }
-{ "_id" : ObjectId("6052cf588a685826f0daf714"), "name" : "yangyazhou", "aihao" : [ { "aa" : [ { "cc" : "ccc1" }, { "cc" : "ccc2" } ], "bb" : "bbb3" } ] }
+{ "_id" : ObjectId("6051d0eadc66165aba0feb51"), "name" : "coutamg", "aihao" : [ { "aa" : "aaa", "bb" : "bbb" }, { "aa" : "aaa2", "bb" : "bbb2" }, { "aa" : "aaa3", "bb" : "bbb3" } ] }
+{ "_id" : ObjectId("6052cf588a685826f0daf714"), "name" : "coutamg", "aihao" : [ { "aa" : [ { "cc" : "ccc1" }, { "cc" : "ccc2" } ], "bb" : "bbb3" } ] }
 > 
 > 
-> db.user.find({"name" : "yangyazhou", "aihao.aa":"aaa"})
-{ "_id" : ObjectId("6051d0eadc66165aba0feb51"), "name" : "yangyazhou", "aihao" : [ { "aa" : "aaa", "bb" : "bbb" }, { "aa" : "aaa2", "bb" : "bbb2" }, { "aa" : "aaa3", "bb" : "bbb3" } ] }
+> db.user.find({"name" : "coutamg", "aihao.aa":"aaa"})
+{ "_id" : ObjectId("6051d0eadc66165aba0feb51"), "name" : "coutamg", "aihao" : [ { "aa" : "aaa", "bb" : "bbb" }, { "aa" : "aaa2", "bb" : "bbb2" }, { "aa" : "aaa3", "bb" : "bbb3" } ] }
 > 
 > 参考appendMultikeyPaths
-db.user.find({"name" : "yangyazhou", "aihao.aa":"aaa"})对应.explain("allPlansExecution")输出如下:
+db.user.find({"name" : "coutamg", "aihao.aa":"aaa"})对应.explain("allPlansExecution")输出如下:
 
  
                                  "keyPattern" : {

@@ -538,8 +538,8 @@ std::string CanonicalQuery::toString() const {
     return ss;
 }
 
-//例如db.test.find( {$or : [{ $and : [ { name : "yangyazhou2" }, { "age" : 99 } ] },{ $or : [ {  name : "yangyazhou" }, { "xx" : 3} ] } ]} ).sort({"name":-1}).limit(7)
-//对应输出为:Running query as sub-queries: query: { $or: [ { $and: [ { name: "yangyazhou2" }, { age: 99.0 } ] }, { $or: [ { name: "yangyazhou" }, { xx: 3.0 } ] } ] } sort: { name: -1.0 } projection: {} limit: 7
+//例如db.test.find( {$or : [{ $and : [ { name : "coutamg" }, { "age" : 99 } ] },{ $or : [ {  name : "coutamg" }, { "xx" : 3} ] } ]} ).sort({"name":-1}).limit(7)
+//对应输出为:Running query as sub-queries: query: { $or: [ { $and: [ { name: "coutamg" }, { age: 99.0 } ] }, { $or: [ { name: "coutamg" }, { xx: 3.0 } ] } ] } sort: { name: -1.0 } projection: {} limit: 7
 //CanonicalQuery序列化输出
 std::string CanonicalQuery::toStringShort() const {
     str::stream ss;

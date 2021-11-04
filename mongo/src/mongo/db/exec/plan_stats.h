@@ -107,7 +107,7 @@ Stats:
         "indexVersion" : 2,
         "direction" : "forward",
         "indexBounds" : { "name" : [ 
-            "[\"yangyazhou2\", \"yangyazhou2\"]" ],
+            "[\"coutamg\", \"coutamg\"]" ],
           "age" : [ 
             "[MinKey, MaxKey]" ] },
         "keysExamined" : 3,

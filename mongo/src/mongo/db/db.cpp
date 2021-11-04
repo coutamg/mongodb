@@ -1532,7 +1532,7 @@ int mongoDbMain(int argc, char* argv[], char** envp) {
 
 	DEV log(LogComponent::kControl) << "mongodb start" << endl;
 
-	int ret = system("echo yang-test-start-mongodb >> /yangyazhou/reading-and-annotate-mongodb-3.6.1/mongo/test-mongodb");
+	int ret = system("echo yang-test-start-mongodb >> /coutamg/reading-and-annotate-mongodb-3.6.1/mongo/test-mongodb");
 	ret = 0;
 
     StartupTest::runTests();

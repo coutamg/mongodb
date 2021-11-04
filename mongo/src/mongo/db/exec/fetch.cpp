@@ -57,7 +57,7 @@ FETCH  -------------这里对应FetchStage
 ---------indexName = name_1_age_1
 keyPattern = { name: 1.0, age: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou", "yangyazhou"], field #1['age']: [MinKey, MaxKey]
+---------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['age']: [MinKey, MaxKey]
 ---------fetched = 0
 ---------sortedByDiskLoc = 0
 ---------getSort = [{ age: 1 }, { name: 1 }, { name: 1, age: 1 }, ]

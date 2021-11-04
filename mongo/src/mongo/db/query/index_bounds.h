@@ -91,7 +91,7 @@ struct OrderedIntervalList {
 //	 => Ranges { a : 1, b : 3 } => { a : 2, b : 4 } 转换为BoundList类型
 
 */
-//例如类似bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['male']: [MaxKey, MinKey]
+//例如类似bounds = field #0coutamg"yangyazhou2"], field #1['male']: [MaxKey, MinKey]
 //IndexScanNode.bounds为该类型
 struct IndexBounds {
     IndexBounds() : isSimpleRange(false), boundInclusion(BoundInclusion::kIncludeStartKeyOnly) {}

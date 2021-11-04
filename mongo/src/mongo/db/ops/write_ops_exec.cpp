@@ -584,8 +584,8 @@ WriteResult performInserts(OperationContext* opCtx, const write_ops::Insert& who
             }
 
             BSONObj toInsert = fixedDoc.getValue().isEmpty() ? doc : std::move(fixedDoc.getValue());
-			// db.collname.insert({"name":"yangyazhou1", "age":22})
-			//yang test performInserts... doc:{ _id: ObjectId('5badf00412ee982ae019e0c1'), name: "yangyazhou1", age: 22.0 }
+			// db.collname.insert({"name":"coutamg1", "age":22})
+			//yang test performInserts... doc:{ _id: ObjectId('5badf00412ee982ae019e0c1'), name: "coutamg1", age: 22.0 }
 			//log() << "yang test performInserts... doc:" << redact(toInsert);
 			//把文档插入到batch数组
             batch.emplace_back(stmtId, toInsert);
@@ -639,9 +639,9 @@ db.collection.update(
 )
 
 db.test1.update(
-{"name":"yangyazhou"}, 
+{"name":"coutamg"}, 
 { //对应Update._updates数组  
-   $set:{"name":"yangyazhou1"}, 
+   $set:{"name":"coutamg1"}, 
    $set:{"age":"31"}
 }
 )
@@ -766,7 +766,7 @@ static SingleWriteResult performSingleUpdateOp(OperationContext* opCtx,
 
 	//一次跟新操作的结果统计记录到这里performSingleUpdateOp
 	/*
-	mongos> db.test1.update({"name":"yangyazhou"}, {$set:{"name":"yangyazhou1", "age":2}})
+	mongos> db.test1.update({"name":"coutamg"}, {$set:{"name":"coutamg1", "age":2}})
 	WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 	*/
     SingleWriteResult result;
@@ -793,9 +793,9 @@ WriteResult performUpdates(OperationContext* opCtx, const write_ops::Update& who
 	//update内容数组大小，例如下面的例子为2
 	/*
 	 db.test1.update(
-	 {"name":"yangyazhou"}, 
+	 {"name":"coutamg"}, 
 	 { //对应Update._updates数组  
-	    $set:{"name":"yangyazhou1"}, 
+	    $set:{"name":"coutamg1"}, 
 	    $set:{"age":"31"}
 	 }
 	 )

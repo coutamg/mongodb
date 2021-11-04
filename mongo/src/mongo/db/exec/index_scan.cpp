@@ -133,7 +133,7 @@ boost::optional<IndexKeyEntry> IndexScan::initIndexScan() {
     // We always seek once to establish the cursor position.
     ++_specificStats.seeks;
 
-	//也就是db.test.find({"name": "yangyazhou"}).explain("allPlansExecution")返回中的indexBounds内容，指定key范围
+	//也就是db.test.find({"nacoutamgyazhou"}).explain("allPlansExecution")返回中的indexBounds内容，指定key范围
     if (_params.bounds.isSimpleRange) {
         // Start at one key, end at another.
         _startKey = _params.bounds.startKey;

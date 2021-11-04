@@ -2,7 +2,7 @@
 /root/wiredtiger-3.0.0
 -bash-4.2# 
 -bash-4.2# 
--bash-4.2# ./wt -v -h /home/yangyazhou/backup2  -C "extensions=[./ext/compressors/snappy/.libs/libwiredtiger_snappy.so]"   dump  file:WiredTigerLAS.wt
+-bash-4.2# ./wt -v -h /home/coutamg/backup2  -C "extensions=[./ext/compressors/snappy/.libs/libwiredtiger_snappy.so]"   dump  file:WiredTigerLAS.wt
 WiredTiger Dump (WiredTiger Version 3.0.0)
 Format=print
 Header
@@ -11,7 +11,7 @@ access_pattern_hint=none,allocation_size=4KB,app_metadata=,assert=(commit_timest
 Data
 -bash-4.2# 
 -bash-4.2# 
--bash-4.2# ./wt -v -h /home/yangyazhou/backup2  -C "extensions=[./ext/compressors/snappy/.libs/libwiredtiger_snappy.so]"   dump  file:WiredTigerLAS.wt
+-bash-4.2# ./wt -v -h /home/coutamg/backup2  -C "extensions=[./ext/compressors/snappy/.libs/libwiredtiger_snappy.so]"   dump  file:WiredTigerLAS.wt
 WiredTiger Dump (WiredTiger Version 3.0.0)
 Format=print
 Header
@@ -19,7 +19,7 @@ file:WiredTigerLAS.wt
 access_pattern_hint=none,allocation_size=4KB,app_metadata=,assert=(commit_timestamp=none,read_timestamp=none),block_allocation=best,block_compressor=none,cache_resident=false,checksum=uncompressed,colgroups=,collator=,columns=,dictionary=0,encryption=(keyid=,name=),exclusive=false,extractor=,format=btree,huffman_key=,huffman_value=,ignore_in_memory_cache_size=false,immutable=false,internal_item_max=0,internal_key_max=0,internal_key_truncate=true,internal_page_max=4KB,key_format=QIQu,key_gap=10,leaf_item_max=0,leaf_key_max=0,leaf_page_max=32KB,leaf_value_max=64MB,log=(enabled=true),lsm=(auto_throttle=true,bloom=true,bloom_bit_count=16,bloom_config=,bloom_hash_count=8,bloom_oldest=false,chunk_count_limit=0,chunk_max=5GB,chunk_size=10MB,merge_max=15,merge_min=0),memory_page_max=5MB,os_cache_dirty_max=0,os_cache_max=0,prefix_compression=false,prefix_compression_min=4,source=,split_deepen_min_child=0,split_deepen_per_child=0,split_pct=90,type=file,value_format=QuBu
 Data
 -bash-4.2# 
--bash-4.2# ./wt -v -h /home/yangyazhou/backup2  -C "extensions=[./ext/compressors/snappy/.libs/libwiredtiger_snappy.so]"   dump  file:WiredTiger.wt
+-bash-4.2# ./wt -v -h /home/coutamg/backup2  -C "extensions=[./ext/compressors/snappy/.libs/libwiredtiger_snappy.so]"   dump  file:WiredTiger.wt
 WiredTiger Dump (WiredTiger Version 3.0.0)
 Format=print
 Header
@@ -588,7 +588,7 @@ table:yyztest/index/5-5463452279079700935\00
 app_metadata=(formatVersion=8,infoObj={ "v" : 2, "unique" : true, "key" : { "serverAccounts.roles.game" : 1, "serverAccounts.roles.plat" : 1, "serverAccounts.roles.roleId" : 1, "game" : 1 }, "name" : "uq_game_plat_roleId_game", "ns" : "yyztest.account", "background" : true }),colgroups=,collator=,columns=,key_format=u,value_format=u\00
 -bash-4.2# 
 -bash-4.2# cd -
-/home/yangyazhou/backup2
+/home/coutamg/backup2
 -bash-4.2# 
 -bash-4.2# 
 -bash-4.2# ./wt -C "extensions=[/usr/local/lib/libwiredtiger_snappy.so]" -h . dump table:sizeStorer

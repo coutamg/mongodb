@@ -500,7 +500,7 @@ FETCH
 ---------indexName = name_1
 keyPattern = { name: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou", "yangyazhou"]
+---------bounds = field #0['name']: ["coutamg", "coutamg"]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = [{ name: 1 }, ]
@@ -615,9 +615,9 @@ bool IndexScanNode::sortedByDiskLoc() const {
         return 0 == bounds.startKey.woCompare(bounds.endKey, index.keyPattern);
     }
 
-	//例如bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['male']: [MinKey, MaxKey]
-	//则返回true，因为["yangyazhou2", "yangyazhou2"]两个相对，
-	//例如["yangyazhou2", "yangyazhou2222"]是个范围，不相等则返回false
+	//例如bounds = field #0['namecoutamgazhocoutamgazhou2"], field #1['male']: [MinKey, MaxKey]
+	//则返回true，因为coutamgu2",coutamgu2"]两个相对，
+	//例如coutamgcoutamgyazhou2222"]是个范围，不相等则返回false
 	//????? 不是很确定是否这个意思
     // If it's a more complex bounds query, we make sure that each field is a point.
     for (size_t i = 0; i < bounds.fields.size(); ++i) {

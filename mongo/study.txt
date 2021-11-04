@@ -121,7 +121,7 @@ db.createUser( { user: "admin", pwd: "xxxxxxx", roles: [{role: "userAdminAnyData
 
 sh.addShard("xxxc/xx.x.x.29:28018,xx.xx.240.x:28028,xx.23.x.29:28038")
 
-db.runCommand( { removeshard: "yangyazhou_mongotest1_2" } )  多执行几次，sh.status()就不会看到这个shard了
+db.runCommand( { removeshard: "coutamg_mongotest1_2" } )  多执行几次，sh.status()就不会看到这个shard了
 
 setParameter    https://docs.mongodb.com/v3.0/reference/command/setParameter/#dbcmd.setParameter
 db.runCommand( { getParameter: 1})  https://docs.mongodb.com/v3.0/reference/command/getParameter/
@@ -381,7 +381,7 @@ db.currentOp({"secs_running":{"$gt":5}})
 db.currentOp({"microsecs_running":{"$gt":200}, "op":"query"})
 看查询超过5ms的sql
 db.currentOp({"microsecs_running":{"$gt":5}})
-db.killOp("yangyazhou_mongotest1_2:22548939")
+db.killOp("coutamg_mongotest1_2:22548939")
 kill查询时间超过5s的sql
 db.currentOp().inprog.forEach(function(item){if(item.secs_running > 5 )db.killOp(item.opid)})
  db.killOp("shard0001:163415563")  注意，分片集群需要带上分片名，否则报错
@@ -753,7 +753,7 @@ heartbeatFrequency=10000 心跳频率
 模糊查询： db.sbtest1.find({'name':/adfa/}).count()  查询"name"字段包含"adfa"字符串的内容,name后面的值必须为字符串，如果是数字则不满足
 
 
-db.sbtest1.update({}, {$set:{"name":"yangyazhou"}}, false, true)  所有文档都添加name字段，只需要把第四个参数设置为true
+db.sbtest1.update({}, {$set:{"name":"coutamg"}}, false, true)  所有文档都添加name字段，只需要把第四个参数设置为true
 
 
 最终解决办法:
@@ -1972,7 +1972,7 @@ db.createUser( { user: "admin", pwd: "xxxxxxx", roles: [{role: "userAdminAnyData
 
 sh.addShard("xxxc/xx.x.x.29:28018,xx.xx.240.x:28028,xx.23.x.29:28038")
 
-db.runCommand( { removeshard: "yangyazhou_mongotest1_2" } )  多执行几次，sh.status()就不会看到这个shard了
+db.runCommand( { removeshard: "coutamg_mongotest1_2" } )  多执行几次，sh.status()就不会看到这个shard了
 
 setParameter    https://docs.mongodb.com/v3.0/reference/command/setParameter/#dbcmd.setParameter
 db.runCommand( { getParameter: 1})  https://docs.mongodb.com/v3.0/reference/command/getParameter/
@@ -2230,7 +2230,7 @@ db.currentOp({"secs_running":{"$gt":5}, "op":"getMore"})
 db.currentOp({"secs_running":{"$gt":5}})
 看查询超过5ms的sql
 db.currentOp({"microsecs_running":{"$gt":5}})
-db.killOp("yangyazhou_mongotest1_2:22548939")
+db.killOp("coutamg_mongotest1_2:22548939")
 kill查询时间超过5s的sql
 db.currentOp().inprog.forEach(function(item){if(item.secs_running > 5 )db.killOp(item.opid)})
  db.killOp("shard0001:163415563")  注意，分片集群需要带上分片名，否则报错
@@ -2568,7 +2568,7 @@ heartbeatFrequency=10000 心跳频率
 模糊查询： db.sbtest1.find({'name':/adfa/}).count()  查询"name"字段包含"adfa"字符串的内容,name后面的值必须为字符串，如果是数字则不满足
 
 
-db.sbtest1.update({}, {$set:{"name":"yangyazhou"}}, false, true)  所有文档都添加name字段，只需要把第四个参数设置为true
+db.sbtest1.update({}, {$set:{"name":"coutamg"}}, false, true)  所有文档都添加name字段，只需要把第四个参数设置为true
 
 
 最终解决办法:
@@ -3755,7 +3755,7 @@ db.createUser( { user: "admin", pwd: "xxxxxxx", roles: [{role: "userAdminAnyData
 
 sh.addShard("xxxc/xx.x.x.29:28018,xx.xx.240.x:28028,xx.23.x.29:28038")
 
-db.runCommand( { removeshard: "yangyazhou_mongotest1_2" } )  多执行几次，sh.status()就不会看到这个shard了
+db.runCommand( { removeshard: "coutamg_mongotest1_2" } )  多执行几次，sh.status()就不会看到这个shard了
 
 setParameter    https://docs.mongodb.com/v3.0/reference/command/setParameter/#dbcmd.setParameter
 db.runCommand( { getParameter: 1})  https://docs.mongodb.com/v3.0/reference/command/getParameter/

@@ -305,7 +305,7 @@ void OpObserverImpl::onCreateIndex(OperationContext* opCtx,
 
 /* db.test21.insert({})
 featdoc_1:PRIMARY> db.oplog.rs.find().sort({"ts":-1}).limit(1)
-{ "ts" : Timestamp(1565678085, 1), "t" : NumberLong(3), "h" : NumberLong("2408236785374215015"), "v" : 2, "op" : "i", "ns" : "test21.test21", "wall" : ISODate("2019-08-13T06:34:45.084Z"), "o" : { "_id" : ObjectId("5d525a0513cc7f11ab8672ed"), "name" : "yangyazhou" } }
+{ "ts" : Timestamp(1565678085, 1), "t" : NumberLong(3), "h" : NumberLong("2408236785374215015"), "v" : 2, "op" : "i", "ns" : "test21.test21", "wall" : ISODate("2019-08-13T06:34:45.084Z"), "o" : { "_id" : ObjectId("5d525a0513cc7f11ab8672ed"), "name" : "coutamg" } }
 */
 //CollectionImpl::insertDocumentsÖÐµ÷ÓÃÐ´oplog
 void OpObserverImpl::onInserts(OperationContext* opCtx,

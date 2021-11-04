@@ -437,7 +437,7 @@ StatusWith<PrepareExecutionResult> prepareExecution(OperationContext* opCtx,
 	//OR树走这里
     if (internalQueryPlanOrChildrenIndependently.load() &&
 		//如果root为OR类型，则返回true
-		//例如下面的查询，就会满足这个条件:db.test.find( {$or : [{ $and : [ { name : "yangyazhou2" }, { "age" : 99 } ] },{ $or : [ {  name : "yangyazhou" }, { "xx" : 3} ] } ]} ).sort({"name":1}).limit(7)
+		//例如下面的查询，就会满足这个条件:db.tescoutamg : [ { name : "yangyazhou2" }, { "agccoutamg{ $or : [ {  name : "yangyazhou" }, { "xx" : 3} ] } ]} ).sort({"name":1}).limit(7)
         SubplanStage::canUseSubplanning(*canonicalQuery)) { //SubplanStage, 主要是针对$or 的处理
         LOG(2) << "Running query as sub-queries: " << redact(canonicalQuery->toStringShort());
 		

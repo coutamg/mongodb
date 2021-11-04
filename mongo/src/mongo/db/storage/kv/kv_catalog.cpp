@@ -669,7 +669,7 @@ Status KVCatalog::newCollection(OperationContext* opCtx,
     StatusWith<RecordId> res = 
     	//WiredTigerRecordStore::_insertRecords  记录collection元数据到_mdb_catalog.wt，数据内容如下:
     	/*
-        yang test ...WiredTigerRecordStore::_insertRecords . _uri:table:_mdb_catalog key:RecordId(5) value:{ ns: "test.yangyazhou", ident: "test/collection/7--3550907941469880053", md: { ns: "test.yangyazhou", options: { uuid: UUID("13867264-68f8-422d-a13c-2d92a0d43e8e") }, indexes: [], prefix: -1 } }
+        yang test ...WiredTigerRecordStore::_insertRecords . _uri:table:_mdb_catalog key:RecordId(5) value:{ ns: "test.coutamg", ident: "test/collection/7--3550907941469880053", md: { ns: "test.coutamg", options: { uuid: UUID("13867264-68f8-422d-a13c-2d92a0d43e8e") }, indexes: [], prefix: -1 } }
     	
 		stored meta data for test.coll @ RecordId(4) 
 		obj:{ ns: "test.coll", ident: "test/collection/4-7637131936287447509", md: { ns: "test.coll", options: { uuid: UUID("440d1a2b-5122-40e9-b0c0-7ec58f072055") }, indexes: [], prefix: -1 } }
@@ -750,8 +750,8 @@ BSONObj KVCatalog::_findEntry(OperationContext* opCtx, StringData ns, RecordId* 
 const BSONCollectionCatalogEntry::MetaData KVCatalog::getMetaData(OperationContext* opCtx,
                                                                   StringData ns) {
     BSONObj obj = _findEntry(opCtx, ns);
-//[conn1] returning metadata: md: { ns: "test.yangyazhou", options: { uuid: UUID("38145b44-6a9d-4a50-8b03-a0dfedc7597f") }, 
-//indexes: [ { spec: { v: 2, key: { _id: 1 }, name: "_id_", ns: "test.yangyazhou" }, ready: true, multikey: false, multikeyPaths: { _id: BinData(0, 00) }, head: 0, prefix: -1 } ], prefix: -1 }
+//[conn1] returning metadata: md: { ns: "test.coutamg", options: { uuid: UUID("38145b44-6a9d-4a50-8b03-a0dfedc7597f") }, 
+//indexes: [ { spec: { v: 2, key: { _id: 1 }, name: "_id_", ns: "test.coutamg" }, ready: true, multikey: false, multikeyPaths: { _id: BinData(0, 00) }, head: 0, prefix: -1 } ], prefix: -1 }
     LOG(3) << " fetched CCE metadata: " << obj;
     BSONCollectionCatalogEntry::MetaData md;
     const BSONElement mdElement = obj["md"];

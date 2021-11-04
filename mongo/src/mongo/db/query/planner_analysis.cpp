@@ -483,7 +483,7 @@ FETCH
 ---------indexName = name_1_male_1  ------------------可以看到IXSCAN用的是原始索引name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ---------direction = 1  ------------注意是正序
----------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['male']: [MinKey, MaxKey]
+---------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [MinKey, MaxKey]
 ---------fetched = 0
 ---------sortedByDiskLoc = 0
 ---------getSort = []       -------------------可以看到没有sort信息
@@ -498,7 +498,7 @@ keyPattern = { name: 1.0, male: 1.0 }
 ---------indexName = name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ---------direction = -1          ------------------注意这里转变为反序，原因我们是sort -1,但是还是可以利用之前的索引
----------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['male']: [MaxKey, MinKey]
+---------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [MaxKey, MinKey]
 ---------fetched = 0
 ---------sortedByDiskLoc = 0
 ---------getSort = [{ male: -1 }, { name: -1 }, { name: -1, male: -1 }, ] -----------增加了sort信息

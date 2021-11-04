@@ -1298,8 +1298,8 @@ Status WiredTigerIndexUnique::_insert(WT_CURSOR* c,
 
 	/*
 	假设有如下两条数据，有{{name:1}, {unique:true}}这个唯一索引：
-	{"name":"yangyazhou", "interests":"mongodb"}  对应数据表中KV={Data_RecordId(1): {"name":"yangyazhou", "interests":"mongodb"}}
-	{"name":"yangyazhou", "interests":"mysql"}    对应数据表中KV={Data_RecordId(2): {"name":"yangyazhou", "interests":"mysql"}}
+	{"name":"coutamg", "interests":"mongodb"}  对应数据表中KV={Data_RecordIcoutamg:"yangyazhou", "interests":"mongodb"}}
+	{"name":"coutamg", "interests":"mysql"}    对应数据表中KV={Data_RecordIcoutamg:"yangyazhou", "interests":"mysql"}}
 
 	则索引表的KV只会有一条，而不是两条：KV={RecordId(1): Data_RecordId(1),RecData_RecordIdordId(2)}，一个K对应两条data数据
 	*/

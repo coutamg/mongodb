@@ -11,18 +11,18 @@ test2
 > 
 > db.test.find()
 { "_id" : ObjectId("5fb382233eb7182b2756cfad") }
-{ "_id" : ObjectId("5ffd6df45ca3bde0fbfe1403"), "name" : "yangyazhou", "age" : 11, "male" : 1 }
-{ "_id" : ObjectId("5ffd6dfe5ca3bde0fbfe1404"), "name" : "yangyazhou", "age" : 11, "male" : 1, "xx" : 1 }
-{ "_id" : ObjectId("60000d033a76b04597281513"), "name" : "yangyazhou", "age" : 113, "male" : 1, "xx" : 1 }
+{ "_id" : ObjectId("5ffd6df45ca3bde0fbfe1403"), "name" : "coutamg", "age" : 11, "male" : 1 }
+{ "_id" : ObjectId("5ffd6dfe5ca3bde0fbfe1404"), "name" : "coutamg", "age" : 11, "male" : 1, "xx" : 1 }
+{ "_id" : ObjectId("60000d033a76b04597281513"), "name" : "coutamg", "age" : 113, "male" : 1, "xx" : 1 }
 { "_id" : ObjectId("600160020c16be9d31e9c02f"), "xx" : 2 }
 { "_id" : ObjectId("6005367bf6e12f1036c4d74d"), "xx" : 3 }
 { "_id" : ObjectId("600536bbf6e12f1036c4d74e"), "xx" : 34 }
 { "_id" : ObjectId("600536c0f6e12f1036c4d74f"), "ss" : 34 }
-{ "_id" : ObjectId("600536ecf6e12f1036c4d750"), "name" : "yangyazhou2", "age" : 113, "male" : 1, "xx" : 1 }
-{ "_id" : ObjectId("600795217e830577d1f018b6"), "name" : "yangyazhou2", "age" : 1133, "male" : 0, "xx" : 21 }
-{ "_id" : ObjectId("600795247e830577d1f018b7"), "name" : "yangyazhou2", "age" : 1133, "male" : 0, "xx" : 21 }
-{ "_id" : ObjectId("600795357e830577d1f018b8"), "name" : "yangyazhou2", "age" : 113, "male" : 1, "xx" : 1 }
-{ "_id" : ObjectId("600796697e830577d1f018b9"), "name" : "yangyazhou2", "age" : 113, "male" : 1, "xx" : 1, "xx2" : 1 }
+{ "_id" : ObjectId("600536ecf6e12f1036c4d750"), "name" : "coutamg", "age" : 113, "male" : 1, "xx" : 1 }
+{ "_id" : ObjectId("600795217e830577d1f018b6"), "name" : "coutamg", "age" : 1133, "male" : 0, "xx" : 21 }
+{ "_id" : ObjectId("600795247e830577d1f018b7"), "name" : "coutamg", "age" : 1133, "male" : 0, "xx" : 21 }
+{ "_id" : ObjectId("600795357e830577d1f018b8"), "name" : "coutamg", "age" : 113, "male" : 1, "xx" : 1 }
+{ "_id" : ObjectId("600796697e830577d1f018b9"), "name" : "coutamg", "age" : 113, "male" : 1, "xx" : 1, "xx2" : 1 }
 > 
 > 
 > db.test.getIndexes()
@@ -98,13 +98,13 @@ test2
 
 
 
-db.test.find( {$or : [{ $and : [ { name : "yangyazhou2" }, { "age" : 99 } ] },{ $or : [ {  name : "yangyazhou" }, { "xx" : 3} ] } ]} ).sort({"name":1}).limit(7) 查询对应query日志打印如下:
+db.test.find( {$or : [{ $and : [ { name : "coutamg" }, { "age" : 99 } ] },{ $or : [ {  name : "coutamg" }, { "xx" : 3} ] } ]} ).sort({"name":1}).limit(7) 查询对应query日志打印如下:
 
 
 2021-02-05T09:59:27.802+0800 I COMMAND  [conn-2] yang test ................ServiceEntryPointMongod::handleRequest op:2013
-2021-02-05T09:59:27.803+0800 D COMMAND  [conn-2] run command test.$cmd { find: "test", filter: { $or: [ { $and: [ { name: "yangyazhou2" }, { age: 99.0 } ] }, { $or: [ { name: "yangyazhou" }, { xx: 3.0 } ] } ] }, limit: 7.0, singleBatch: false, sort: { name: 1.0 }, lsid: { id: UUID("3713a047-3dc6-474f-b2e9-2717b16afc4d") }, $db: "test" } find
+2021-02-05T09:59:27.803+0800 D COMMAND  [conn-2] run command test.$cmd { find: "test", filter: { $or: [ { $and: [ { name: "coutamg" }, { age: 99.0 } ] }, { $or: [ { name: "coutamg" }, { xx: 3.0 } ] } ] }, limit: 7.0, singleBatch: false, sort: { name: 1.0 }, lsid: { id: UUID("3713a047-3dc6-474f-b2e9-2717b16afc4d") }, $db: "test" } find
 2021-02-05T09:59:27.803+0800 D STORAGE  [conn-2] NamespaceUUIDCache: registered namespace test.test with UUID 520904ec-0432-4c00-a15d-788e2f5d707b
-2021-02-05T09:59:27.803+0800 D QUERY    [conn-2] Running query as sub-queries: query: { $or: [ { $and: [ { name: "yangyazhou2" }, { age: 99.0 } ] }, { $or: [ { name: "yangyazhou" }, { xx: 3.0 } ] } ] } sort: { name: 1.0 } projection: {} limit: 7
+2021-02-05T09:59:27.803+0800 D QUERY    [conn-2] Running query as sub-queries: query: { $or: [ { $and: [ { name: "coutamg" }, { age: 99.0 } ] }, { $or: [ { name: "coutamg" }, { xx: 3.0 } ] } ] } sort: { name: 1.0 } projection: {} limit: 7
 2021-02-05T09:59:27.804+0800 D QUERY    [conn-2] Subplanner: index 0 is kp: { _id: 1 } unique name: '_id_' io: { v: 2, key: { _id: 1 }, name: "_id_", ns: "test.test" }
 2021-02-05T09:59:27.804+0800 D QUERY    [conn-2] Subplanner: index 1 is kp: { yangtest1: 1.0 } name: 'yangtest1_1' io: { v: 2, key: { yangtest1: 1.0 }, name: "yangtest1_1", ns: "test.test", background: true }
 2021-02-05T09:59:27.804+0800 D QUERY    [conn-2] Subplanner: index 2 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "test.test", background: true }
@@ -119,7 +119,7 @@ Options = INDEX_INTERSECTION SPLIT_LIMITED_SORT CANNOT_TRIM_IXISECT
 Canonical query:
 ns=test.testTree: $and
     age == 99.0
-    name == "yangyazhou2"
+    name == "coutamg"
 Sort: { name: 1.0 }
 Proj: {}
 =============================
@@ -138,13 +138,13 @@ Proj: {}
 2021-02-05T09:59:27.805+0800 D QUERY    [conn-2] Rated tree:
 $and
     age == 99.0  || First: 1 notFirst: full path: age
-    name == "yangyazhou2"  || First: 0 2 notFirst: full path: name
+    name == "coutamg"  || First: 0 2 notFirst: full path: name
 2021-02-05T09:59:27.805+0800 D QUERY    [conn-2] Tagging memoID 1
 2021-02-05T09:59:27.805+0800 D QUERY    [conn-2] Enumerator: memo just before moving:
 2021-02-05T09:59:27.805+0800 D QUERY    [conn-2] About to build solntree(QuerySolution tree) from tagged tree:
 $and
     age == 99.0
-    name == "yangyazhou2"  || Selected Index #2 pos 0 combine 1
+    name == "coutamg"  || Selected Index #2 pos 0 combine 1
 2021-02-05T09:59:27.805+0800 D QUERY    [conn-2] Planner: adding solution:
 FETCH
 ---filter:
@@ -157,7 +157,7 @@ FETCH
 ---------indexName = name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['male']: [MinKey, MaxKey]
+---------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [MinKey, MaxKey]
 ---------fetched = 0
 ---------sortedByDiskLoc = 0
 ---------getSort = [{ male: 1 }, { name: 1 }, { name: 1, male: 1 }, ]
@@ -166,7 +166,7 @@ keyPattern = { name: 1.0, male: 1.0 }
 2021-02-05T09:59:27.805+0800 D QUERY    [conn-2] About to build solntree(QuerySolution tree) from tagged tree:
 $and
     age == 99.0
-    name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+    name == "coutamg"  || Selected Index #0 pos 0 combine 1
 2021-02-05T09:59:27.806+0800 D QUERY    [conn-2] Planner: adding solution:
 FETCH
 ---filter:
@@ -179,7 +179,7 @@ FETCH
 ---------indexName = name_1
 keyPattern = { name: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+---------bounds = field #0['name']: ["coutamg", "coutamg"]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = [{ name: 1 }, ]
@@ -188,7 +188,7 @@ keyPattern = { name: 1.0 }
 2021-02-05T09:59:27.806+0800 D QUERY    [conn-2] About to build solntree(QuerySolution tree) from tagged tree:
 $and
     age == 99.0  || Selected Index #1 pos 0 combine 1
-    name == "yangyazhou2"
+    name == "coutamg"
 2021-02-05T09:59:27.806+0800 D QUERY    [conn-2] Planner: adding solution:
 SORT
 ---pattern = { name: 1.0 }
@@ -205,7 +205,7 @@ SORT
 ---------Child:
 ------------FETCH
 ---------------filter:
-                        name == "yangyazhou2"
+                        name == "coutamg"
 ---------------fetched = 1
 ---------------sortedByDiskLoc = 1
 ---------------getSort = [{ age: 1 }, ]
@@ -223,14 +223,14 @@ keyPattern = { age: 1.0 }
 2021-02-05T09:59:27.806+0800 D QUERY    [conn-2] About to build solntree(QuerySolution tree) from tagged tree:
 $and
     age == 99.0  || Selected Index #1 pos 0 combine 1
-    name == "yangyazhou2"  || Selected Index #2 pos 0 combine 1
+    name == "coutamg"  || Selected Index #2 pos 0 combine 1
 2021-02-05T09:59:27.806+0800 D QUERY    [conn-2] Can't build index intersection solution: AND_SORTED is not possible and AND_HASH is disabled.
 2021-02-05T09:59:27.806+0800 D QUERY    [conn-2] Tagging memoID 1
 2021-02-05T09:59:27.806+0800 D QUERY    [conn-2] Enumerator: memo just before moving:
 2021-02-05T09:59:27.806+0800 D QUERY    [conn-2] About to build solntree(QuerySolution tree) from tagged tree:
 $and
     age == 99.0  || Selected Index #1 pos 0 combine 1
-    name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+    name == "coutamg"  || Selected Index #0 pos 0 combine 1
 2021-02-05T09:59:27.806+0800 D QUERY    [conn-2] Planner: adding solution:
 SORT
 ---pattern = { name: 1.0 }
@@ -248,7 +248,7 @@ SORT
 ------------FETCH
 ---------------filter:
                         $and
-                            name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+                            name == "coutamg"  || Selected Index #0 pos 0 combine 1
                             age == 99.0  || Selected Index #1 pos 0 combine 1
 ---------------fetched = 1
 ---------------sortedByDiskLoc = 1
@@ -263,7 +263,7 @@ SORT
 ------------------------indexName = name_1
 keyPattern = { name: 1.0 }
 ------------------------direction = 1
-------------------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+------------------------bounds = field #0['name']: ["coutamg", "coutamg"]
 ------------------------fetched = 0
 ------------------------sortedByDiskLoc = 1
 ------------------------getSort = [{ name: 1 }, ]
@@ -283,7 +283,7 @@ keyPattern = { age: 1.0 }
 =============================
 Options = INDEX_INTERSECTION SPLIT_LIMITED_SORT CANNOT_TRIM_IXISECT 
 Canonical query:
-ns=test.testTree: name == "yangyazhou"
+ns=test.testTree: name == "coutamg"
 Sort: { name: 1.0 }
 Proj: {}
 =============================
@@ -298,11 +298,11 @@ Proj: {}
 2021-02-05T09:59:27.807+0800 D QUERY    [conn-2] Relevant index 0 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "test.test", background: true }
 2021-02-05T09:59:27.807+0800 D QUERY    [conn-2] Relevant index 1 is kp: { name: 1.0, male: 1.0 } name: 'name_1_male_1' io: { v: 2, key: { name: 1.0, male: 1.0 }, name: "name_1_male_1", ns: "test.test", background: true }
 2021-02-05T09:59:27.807+0800 D QUERY    [conn-2] Rated tree:
-name == "yangyazhou"  || First: 0 1 notFirst: full path: name
+name == "coutamg"  || First: 0 1 notFirst: full path: name
 2021-02-05T09:59:27.807+0800 D QUERY    [conn-2] Tagging memoID 1
 2021-02-05T09:59:27.807+0800 D QUERY    [conn-2] Enumerator: memo just before moving:
 2021-02-05T09:59:27.807+0800 D QUERY    [conn-2] About to build solntree(QuerySolution tree) from tagged tree:
-name == "yangyazhou"  || Selected Index #1 pos 0 combine 1
+name == "coutamg"  || Selected Index #1 pos 0 combine 1
 2021-02-05T09:59:27.807+0800 D QUERY    [conn-2] Planner: adding solution:
 FETCH
 ---fetched = 1
@@ -313,14 +313,14 @@ FETCH
 ---------indexName = name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou", "yangyazhou"], field #1['male']: [MinKey, MaxKey]
+---------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [MinKey, MaxKey]
 ---------fetched = 0
 ---------sortedByDiskLoc = 0
 ---------getSort = [{ male: 1 }, { name: 1 }, { name: 1, male: 1 }, ]
 2021-02-05T09:59:27.807+0800 D QUERY    [conn-2] Tagging memoID 1
 2021-02-05T09:59:27.807+0800 D QUERY    [conn-2] Enumerator: memo just before moving:
 2021-02-05T09:59:27.807+0800 D QUERY    [conn-2] About to build solntree(QuerySolution tree) from tagged tree:
-name == "yangyazhou"  || Selected Index #0 pos 0 combine 1
+name == "coutamg"  || Selected Index #0 pos 0 combine 1
 2021-02-05T09:59:27.807+0800 D QUERY    [conn-2] Planner: adding solution:
 FETCH
 ---fetched = 1
@@ -331,7 +331,7 @@ FETCH
 ---------indexName = name_1
 keyPattern = { name: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou", "yangyazhou"]
+---------bounds = field #0['name']: ["coutamg", "coutamg"]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = [{ name: 1 }, ]
@@ -375,13 +375,13 @@ keyPattern = { name: 1.0 }
 ---------sortedByDiskLoc = 0
 ---------getSort = [{ name: 1 }, ]
 2021-02-05T09:59:27.807+0800 D QUERY    [conn-2] Subplanner: got 1 solutions
-2021-02-05T09:59:27.808+0800 I STORAGE  [conn-2] WT index (0x55e650d93b80) setEndPosition inclusive: 1 { : "yangyazhou2", : MaxKey }
+2021-02-05T09:59:27.808+0800 I STORAGE  [conn-2] WT index (0x55e650d93b80) setEndPosition inclusive: 1 { : "coutamg", : MaxKey }
 2021-02-05T09:59:27.808+0800 I STORAGE  [conn-2] WT index (0x55e650d93b80)       cmp: -1
-2021-02-05T09:59:27.808+0800 I STORAGE  [conn-2] WT index (0x55e650d93880) setEndPosition inclusive: 1 { : "yangyazhou2" }
+2021-02-05T09:59:27.808+0800 I STORAGE  [conn-2] WT index (0x55e650d93880) setEndPosition inclusive: 1 { : "coutamg" }
 2021-02-05T09:59:27.808+0800 I STORAGE  [conn-2] WT index (0x55e650d93880)       cmp: -1
 2021-02-05T09:59:27.808+0800 I STORAGE  [conn-2] WT index (0x55e650d93900) setEndPosition inclusive: 1 { : 99.0 }
 2021-02-05T09:59:27.808+0800 I STORAGE  [conn-2] WT index (0x55e650d93900)       cmp: -1
-2021-02-05T09:59:27.808+0800 I STORAGE  [conn-2] WT index (0x55e650d93880) setEndPosition inclusive: 1 { : "yangyazhou2" }
+2021-02-05T09:59:27.808+0800 I STORAGE  [conn-2] WT index (0x55e650d93880) setEndPosition inclusive: 1 { : "coutamg" }
 2021-02-05T09:59:27.808+0800 I STORAGE  [conn-2] WT index (0x55e650d93880)       cmp: -1
 2021-02-05T09:59:27.808+0800 I STORAGE  [conn-2] WT index (0x55e650d93900) setEndPosition inclusive: 1 { : 99.0 }
 2021-02-05T09:59:27.808+0800 I STORAGE  [conn-2] WT index (0x55e650d93900)       cmp: -1
@@ -397,7 +397,7 @@ FETCH
 ---------indexName = name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['male']: [MinKey, MaxKey]
+---------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [MinKey, MaxKey]
 ---------fetched = 0
 ---------sortedByDiskLoc = 0
 ---------getSort = [{ male: 1 }, { name: 1 }, { name: 1, male: 1 }, ]
@@ -439,7 +439,7 @@ Stats:
     "indexVersion" : 2,
     "direction" : "forward",
     "indexBounds" : { "name" : [ 
-        "[\"yangyazhou2\", \"yangyazhou2\"]" ],
+        "[\"coutamg\", \"coutamg\"]" ],
       "male" : [ 
         "[MinKey, MaxKey]" ] },
     "keysExamined" : 3,
@@ -462,7 +462,7 @@ FETCH
 ---------indexName = name_1
 keyPattern = { name: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+---------bounds = field #0['name']: ["coutamg", "coutamg"]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = [{ name: 1 }, ]
@@ -502,7 +502,7 @@ Stats:
     "indexVersion" : 2,
     "direction" : "forward",
     "indexBounds" : { "name" : [ 
-        "[\"yangyazhou2\", \"yangyazhou2\"]" ] },
+        "[\"coutamg\", \"coutamg\"]" ] },
     "keysExamined" : 3,
     "seeks" : 1,
     "dupsTested" : 0,
@@ -527,7 +527,7 @@ SORT
 ---------Child:
 ------------FETCH
 ---------------filter:
-                        name == "yangyazhou2"
+                        name == "coutamg"
 ---------------fetched = 1
 ---------------sortedByDiskLoc = 1
 ---------------getSort = [{ age: 1 }, ]
@@ -567,7 +567,7 @@ Stats:
     "isEOF" : 1,
     "invalidates" : 0,
     "inputStage" : { "stage" : "FETCH",
-      "filter" : { "name" : { "$eq" : "yangyazhou2" } },
+      "filter" : { "name" : { "$eq" : "coutamg" } },
       "nReturned" : 0,
       "executionTimeMillisEstimate" : 0,
       "works" : 1,
@@ -628,7 +628,7 @@ SORT
 ------------FETCH
 ---------------filter:
                         $and
-                            name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+                            name == "coutamg"  || Selected Index #0 pos 0 combine 1
                             age == 99.0  || Selected Index #1 pos 0 combine 1
 ---------------fetched = 1
 ---------------sortedByDiskLoc = 1
@@ -643,7 +643,7 @@ SORT
 ------------------------indexName = name_1
 keyPattern = { name: 1.0 }
 ------------------------direction = 1
-------------------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+------------------------bounds = field #0['name']: ["coutamg", "coutamg"]
 ------------------------fetched = 0
 ------------------------sortedByDiskLoc = 1
 ------------------------getSort = [{ name: 1 }, ]
@@ -684,7 +684,7 @@ Stats:
     "invalidates" : 0,
     "inputStage" : { "stage" : "FETCH",
       "filter" : { "$and" : [ 
-          { "name" : { "$eq" : "yangyazhou2" } }, 
+          { "name" : { "$eq" : "coutamg" } }, 
           { "age" : { "$eq" : 99 } } ] },
       "nReturned" : 0,
       "executionTimeMillisEstimate" : 0,
@@ -734,7 +734,7 @@ Stats:
             "indexVersion" : 2,
             "direction" : "forward",
             "indexBounds" : { "name" : [ 
-                "[\"yangyazhou2\", \"yangyazhou2\"]" ] },
+                "[\"coutamg\", \"coutamg\"]" ] },
             "keysExamined" : 1,
             "seeks" : 1,
             "dupsTested" : 0,
@@ -787,7 +787,7 @@ SORT
 ---------Child:
 ------------FETCH
 ---------------filter:
-                        name == "yangyazhou2"
+                        name == "coutamg"
 ---------------fetched = 1
 ---------------sortedByDiskLoc = 1
 ---------------getSort = [{ age: 1 }, ]
@@ -803,10 +803,10 @@ keyPattern = { age: 1.0 }
 2021-02-05T09:59:27.810+0800 D QUERY    [conn-2] Winning plan: IXSCAN { age: 1 }
 2021-02-05T09:59:27.810+0800 D QUERY    [conn-2] Winner has blocking stage, looking for backup plan...
 2021-02-05T09:59:27.810+0800 D QUERY    [conn-2] Candidate 0 is backup child
-2021-02-05T09:59:27.810+0800 D QUERY    [conn-2] Winning plan had zero results. Not caching. ns: test.test query: { $or: [ { $and: [ { name: "yangyazhou2" }, { age: 99.0 } ] }, { $or: [ { name: "yangyazhou" }, { xx: 3.0 } ] } ] } sort: { name: 1.0 } projection: {} winner score: 1.0002 winner summary: IXSCAN { age: 1 }
-2021-02-05T09:59:27.810+0800 I STORAGE  [conn-2] WT index (0x55e650d93b80) setEndPosition inclusive: 1 { : "yangyazhou", : MaxKey }
+2021-02-05T09:59:27.810+0800 D QUERY    [conn-2] Winning plan had zero results. Not caching. ns: test.test query: { $or: [ { $and: [ { name: "coutamg" }, { age: 99.0 } ] }, { $or: [ { name: "coutamg" }, { xx: 3.0 } ] } ] } sort: { name: 1.0 } projection: {} winner score: 1.0002 winner summary: IXSCAN { age: 1 }
+2021-02-05T09:59:27.810+0800 I STORAGE  [conn-2] WT index (0x55e650d93b80) setEndPosition inclusive: 1 { : "coutamg", : MaxKey }
 2021-02-05T09:59:27.810+0800 I STORAGE  [conn-2] WT index (0x55e650d93b80)       cmp: -1
-2021-02-05T09:59:27.810+0800 I STORAGE  [conn-2] WT index (0x55e650d93880) setEndPosition inclusive: 1 { : "yangyazhou" }
+2021-02-05T09:59:27.810+0800 I STORAGE  [conn-2] WT index (0x55e650d93880) setEndPosition inclusive: 1 { : "coutamg" }
 2021-02-05T09:59:27.810+0800 I STORAGE  [conn-2] WT index (0x55e650d93880)       cmp: -1
 2021-02-05T09:59:27.811+0800 D QUERY    [conn-2] Scoring plan 0:
 FETCH
@@ -818,7 +818,7 @@ FETCH
 ---------indexName = name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou", "yangyazhou"], field #1['male']: [MinKey, MaxKey]
+---------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [MinKey, MaxKey]
 ---------fetched = 0
 ---------sortedByDiskLoc = 0
 ---------getSort = [{ male: 1 }, { name: 1 }, { name: 1, male: 1 }, ]
@@ -859,7 +859,7 @@ Stats:
     "indexVersion" : 2,
     "direction" : "forward",
     "indexBounds" : { "name" : [ 
-        "[\"yangyazhou\", \"yangyazhou\"]" ],
+        "[\"coutamg\", \"coutamg\"]" ],
       "male" : [ 
         "[MinKey, MaxKey]" ] },
     "keysExamined" : 3,
@@ -881,7 +881,7 @@ FETCH
 ---------indexName = name_1
 keyPattern = { name: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou", "yangyazhou"]
+---------bounds = field #0['name']: ["coutamg", "coutamg"]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = [{ name: 1 }, ]
@@ -920,7 +920,7 @@ Stats:
     "indexVersion" : 2,
     "direction" : "forward",
     "indexBounds" : { "name" : [ 
-        "[\"yangyazhou\", \"yangyazhou\"]" ] },
+        "[\"coutamg\", \"coutamg\"]" ] },
     "keysExamined" : 3,
     "seeks" : 1,
     "dupsTested" : 0,
@@ -940,12 +940,12 @@ FETCH
 ---------indexName = name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou", "yangyazhou"], field #1['male']: [MinKey, MaxKey]
+---------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [MinKey, MaxKey]
 ---------fetched = 0
 ---------sortedByDiskLoc = 0
 ---------getSort = [{ male: 1 }, { name: 1 }, { name: 1, male: 1 }, ]
 2021-02-05T09:59:27.812+0800 D QUERY    [conn-2] Winning plan: IXSCAN { name: 1, male: 1 }
-2021-02-05T09:59:27.812+0800 D QUERY    [conn-2] Winning plan tied with runner-up. Not caching. ns: test.test query: { $or: [ { $and: [ { name: "yangyazhou2" }, { age: 99.0 } ] }, { $or: [ { name: "yangyazhou" }, { xx: 3.0 } ] } ] } sort: { name: 1.0 } projection: {} winner score: 1.7503 winner summary: IXSCAN { name: 1, male: 1 } runner-up score: 1.7503 runner-up summary: IXSCAN { name: 1 }
+2021-02-05T09:59:27.812+0800 D QUERY    [conn-2] Winning plan tied with runner-up. Not caching. ns: test.test query: { $or: [ { $and: [ { name: "coutamg" }, { age: 99.0 } ] }, { $or: [ { name: "coutamg" }, { xx: 3.0 } ] } ] } sort: { name: 1.0 } projection: {} winner score: 1.7503 winner summary: IXSCAN { name: 1, male: 1 } runner-up score: 1.7503 runner-up summary: IXSCAN { name: 1 }
 2021-02-05T09:59:27.812+0800 D QUERY    [conn-2] Beginning planning...
 =============================
 Options = INDEX_INTERSECTION SPLIT_LIMITED_SORT CANNOT_TRIM_IXISECT 
@@ -953,8 +953,8 @@ Canonical query:
 ns=test.test limit=7Tree: $or
     $and
         age == 99.0
-        name == "yangyazhou2"
-    name == "yangyazhou"
+        name == "coutamg"
+    name == "coutamg"
     xx == 3.0
 Sort: { name: 1.0 }
 Proj: {}
@@ -976,8 +976,8 @@ Proj: {}
 $or
     $and
         age == 99.0  || First: 1 notFirst: full path: age
-        name == "yangyazhou2"  || First: 0 2 notFirst: full path: name
-    name == "yangyazhou"  || First: 0 2 notFirst: full path: name
+        name == "coutamg"  || First: 0 2 notFirst: full path: name
+    name == "coutamg"  || First: 0 2 notFirst: full path: name
     xx == 3.0  || First: notFirst: full path: xx
 2021-02-05T09:59:27.813+0800 D QUERY    [conn-2] Planner: outputted 0 indexed solutions.
 2021-02-05T09:59:27.813+0800 D QUERY    [conn-2] Planner: outputting soln that uses index to provide sort.
@@ -993,8 +993,8 @@ LIMIT
                 $or
                     $and
                         age == 99.0
-                        name == "yangyazhou2"
-                    name == "yangyazhou"
+                        name == "coutamg"
+                    name == "coutamg"
                     xx == 3.0
 ---------fetched = 1
 ---------sortedByDiskLoc = 0
@@ -1011,10 +1011,10 @@ keyPattern = { name: 1.0 }
 2021-02-05T09:59:27.813+0800 I STORAGE  [conn-2] WT index (0x55e650d93880) setEndPosition inclusive: 1 { : MaxKey }
 2021-02-05T09:59:27.813+0800 I STORAGE  [conn-2] WT index (0x55e650d93880)       cmp: 1
 2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] yang test....FindCmd::run,OBJ:{ _id: ObjectId('6005367bf6e12f1036c4d74d'), xx: 3.0 }
-2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] yang test....FindCmd::run,OBJ:{ _id: ObjectId('5ffd6df45ca3bde0fbfe1403'), name: "yangyazhou", age: 11.0, male: 1.0 }
-2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] yang test....FindCmd::run,OBJ:{ _id: ObjectId('5ffd6dfe5ca3bde0fbfe1404'), name: "yangyazhou", age: 11.0, male: 1.0, xx: 1.0 }
-2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] yang test....FindCmd::run,OBJ:{ _id: ObjectId('60000d033a76b04597281513'), name: "yangyazhou", age: 113.0, male: 1.0, xx: 1.0 }
-2021-02-05T09:59:27.814+0800 I COMMAND  [conn-2] command test.test appName: "MongoDB Shell" command: find { find: "test", filter: { $or: [ { $and: [ { name: "yangyazhou2" }, { age: 99.0 } ] }, { $or: [ { name: "yangyazhou" }, { xx: 3.0 } ] } ] }, limit: 7.0, singleBatch: false, sort: { name: 1.0 }, lsid: { id: UUID("3713a047-3dc6-474f-b2e9-2717b16afc4d") }, $db: "test" } planSummary: IXSCAN { name: 1 } keysExamined:13 docsExamined:13 cursorExhausted:1 numYields:0 nreturned:4 reslen:362 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 10ms
+2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] yang test....FindCmd::run,OBJ:{ _id: ObjectId('5ffd6df45ca3bde0fbfe1403'), name: "coutamg", age: 11.0, male: 1.0 }
+2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] yang test....FindCmd::run,OBJ:{ _id: ObjectId('5ffd6dfe5ca3bde0fbfe1404'), name: "coutamg", age: 11.0, male: 1.0, xx: 1.0 }
+2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] yang test....FindCmd::run,OBJ:{ _id: ObjectId('60000d033a76b04597281513'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0 }
+2021-02-05T09:59:27.814+0800 I COMMAND  [conn-2] command test.test appName: "MongoDB Shell" command: find { find: "test", filter: { $or: [ { $and: [ { name: "coutamg" }, { age: 99.0 } ] }, { $or: [ { name: "coutamg" }, { xx: 3.0 } ] } ] }, limit: 7.0, singleBatch: false, sort: { name: 1.0 }, lsid: { id: UUID("3713a047-3dc6-474f-b2e9-2717b16afc4d") }, $db: "test" } planSummary: IXSCAN { name: 1 } keysExamined:13 docsExamined:13 cursorExhausted:1 numYields:0 nreturned:4 reslen:362 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 10ms
 2021-02-05T09:59:27.819+0800 I COMMAND  [conn-2] yang test ................ServiceEntryPointMongod::handleRequest op:2013
 2021-02-05T09:59:27.819+0800 D COMMAND  [conn-2] run command test.$cmd { isMaster: 1.0, forShell: 1.0, lsid: { id: UUID("3713a047-3dc6-474f-b2e9-2717b16afc4d") }, $db: "test" } isMaster
 2021-02-05T09:59:27.819+0800 D COMMAND  [conn-2] yang test .......... command counters:isMaster
@@ -1039,15 +1039,15 @@ keyPattern = { name: 1.0 }
 
 
 > db.test2.find()
-{ "_id" : ObjectId("60092fd21e227e5cd1191fa8"), "name" : "yangyazhou", "age" : 33 }
-{ "_id" : ObjectId("60092fd71e227e5cd1191fa9"), "name" : "yangyazhou2", "age" : 332 }
-{ "_id" : ObjectId("600bee7c3a3461be717745b8"), "name" : "yangyazhou2", "age" : 3321 }
-{ "_id" : ObjectId("600bee803a3461be717745b9"), "name" : "yangyazhou2", "age" : 3331 }
-{ "_id" : ObjectId("600bee823a3461be717745ba"), "name" : "yangyazhou2", "age" : 11 }
-{ "_id" : ObjectId("600bee843a3461be717745bb"), "name" : "yangyazhou2", "age" : 112 }
-{ "_id" : ObjectId("600bee863a3461be717745bc"), "name" : "yangyazhou2", "age" : 1124 }
-{ "_id" : ObjectId("600bee873a3461be717745bd"), "name" : "yangyazhou2", "age" : 11246 }
-{ "_id" : ObjectId("600bee8a3a3461be717745be"), "name" : "yangyazhou2", "age" : 112446 }
+{ "_id" : ObjectId("60092fd21e227e5cd1191fa8"), "name" : "coutamg", "age" : 33 }
+{ "_id" : ObjectId("60092fd71e227e5cd1191fa9"), "name" : "coutamg", "age" : 332 }
+{ "_id" : ObjectId("600bee7c3a3461be717745b8"), "name" : "coutamg", "age" : 3321 }
+{ "_id" : ObjectId("600bee803a3461be717745b9"), "name" : "coutamg", "age" : 3331 }
+{ "_id" : ObjectId("600bee823a3461be717745ba"), "name" : "coutamg", "age" : 11 }
+{ "_id" : ObjectId("600bee843a3461be717745bb"), "name" : "coutamg", "age" : 112 }
+{ "_id" : ObjectId("600bee863a3461be717745bc"), "name" : "coutamg", "age" : 1124 }
+{ "_id" : ObjectId("600bee873a3461be717745bd"), "name" : "coutamg", "age" : 11246 }
+{ "_id" : ObjectId("600bee8a3a3461be717745be"), "name" : "coutamg", "age" : 112446 }
 > db.test2.getIndexes()
 [
         {
@@ -1082,7 +1082,7 @@ keyPattern = { name: 1.0 }
 
 
 下面查询对应的soltion和计分过程日志如下：
-> db.test2.find({"name" : "yangyazhou2"}, {"age":1}).sort({"age":1}).limit(3)
+> db.test2.find({"name" : "coutamg"}, {"age":1}).sort({"age":1}).limit(3)
 { "_id" : ObjectId("600bee823a3461be717745ba"), "age" : 11 }
 { "_id" : ObjectId("600bee843a3461be717745bb"), "age" : 112 }
 { "_id" : ObjectId("60092fd71e227e5cd1191fa9"), "age" : 332 }
@@ -1102,13 +1102,13 @@ keyPattern = { name: 1.0 }
 2021-01-24T22:27:44.615+0800 D STORAGE  [clientcursormon] NamespaceUUIDCache: registered namespace config.system.sessions with UUID 509fde18-9764-4f45-9262-e9be5712711f
 2021-01-24T22:27:45.603+0800 D -        [PeriodicTaskRunner] cleaning up unused lock buckets of the global lock manager
 2021-01-24T22:27:47.154+0800 I COMMAND  [conn-1] yang test ................ServiceEntryPointMongod::handleRequest op:2013
-2021-01-24T22:27:47.154+0800 D COMMAND  [conn-1] run command test.$cmd { find: "test2", filter: { name: "yangyazhou2" }, limit: 3.0, singleBatch: false, sort: { age: 1.0 }, projection: { age: 1.0 }, lsid: { id: UUID("b1982310-f0a8-4589-abae-b485fe49eff2") }, $db: "test" } find
+2021-01-24T22:27:47.154+0800 D COMMAND  [conn-1] run command test.$cmd { find: "test2", filter: { name: "coutamg" }, limit: 3.0, singleBatch: false, sort: { age: 1.0 }, projection: { age: 1.0 }, lsid: { id: UUID("b1982310-f0a8-4589-abae-b485fe49eff2") }, $db: "test" } find
 2021-01-24T22:27:47.154+0800 D STORAGE  [conn-1] NamespaceUUIDCache: registered namespace test.test2 with UUID f266c460-dafe-4d6b-a7fa-dc351c25c6cb
 2021-01-24T22:27:47.154+0800 D QUERY    [conn-1] Beginning planning...
 =============================
 Options = INDEX_INTERSECTION SPLIT_LIMITED_SORT CANNOT_TRIM_IXISECT 
 Canonical query:
-ns=test.test2 limit=3Tree: name == "yangyazhou2"
+ns=test.test2 limit=3Tree: name == "coutamg"
 Sort: { age: 1.0 }
 Proj: { age: 1.0 }
 =============================
@@ -1119,17 +1119,17 @@ Proj: { age: 1.0 }
 2021-01-24T22:27:47.154+0800 D QUERY    [conn-1] Relevant index 0 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "test.test2", background: true }
 2021-01-24T22:27:47.154+0800 D QUERY    [conn-1] Relevant index 1 is kp: { name: 1.0, age: 1.0 } name: 'name_1_age_1' io: { v: 2, key: { name: 1.0, age: 1.0 }, name: "name_1_age_1", ns: "test.test2", background: true }
 2021-01-24T22:27:47.154+0800 D QUERY    [conn-1] Rated tree:
-name == "yangyazhou2"  || First: 0 1 notFirst: full path: name
+name == "coutamg"  || First: 0 1 notFirst: full path: name
 2021-01-24T22:27:47.155+0800 D QUERY    [conn-1] Tagging memoID 1
 2021-01-24T22:27:47.155+0800 D QUERY    [conn-1] Enumerator: memo just before moving:
 2021-01-24T22:27:47.155+0800 D QUERY    [conn-1] About to build solntree(QuerySolution tree) from tagged tree:
-name == "yangyazhou2"  || Selected Index #1 pos 0 combine 1
+name == "coutamg"  || Selected Index #1 pos 0 combine 1
 2021-01-24T22:27:47.155+0800 D QUERY    [conn-1] PROJECTION: Current plan is:
 IXSCAN
 ---indexName = name_1_age_1
 keyPattern = { name: 1.0, age: 1.0 }
 ---direction = 1
----bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['age']: [MinKey, MaxKey]
+---bounds = field #0['name']: ["coutamg", "coutamg"], field #1['age']: [MinKey, MaxKey]
 ---fetched = 0
 ---sortedByDiskLoc = 0
 ---getSort = [{ age: 1 }, { name: 1 }, { name: 1, age: 1 }, ]
@@ -1156,14 +1156,14 @@ LIMIT
 ---------------------indexName = name_1_age_1
 keyPattern = { name: 1.0, age: 1.0 }
 ---------------------direction = 1
----------------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['age']: [MinKey, MaxKey]
+---------------------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['age']: [MinKey, MaxKey]
 ---------------------fetched = 0
 ---------------------sortedByDiskLoc = 0
 ---------------------getSort = [{ age: 1 }, { name: 1 }, { name: 1, age: 1 }, ]
 2021-01-24T22:27:47.155+0800 D QUERY    [conn-1] Tagging memoID 1
 2021-01-24T22:27:47.155+0800 D QUERY    [conn-1] Enumerator: memo just before moving:
 2021-01-24T22:27:47.155+0800 D QUERY    [conn-1] About to build solntree(QuerySolution tree) from tagged tree:
-name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+name == "coutamg"  || Selected Index #0 pos 0 combine 1
 2021-01-24T22:27:47.155+0800 D QUERY    [conn-1] PROJECTION: Current plan is:
 SORT
 ---pattern = { age: 1.0 }
@@ -1187,7 +1187,7 @@ SORT
 ---------------------indexName = name_1
 keyPattern = { name: 1.0 }
 ---------------------direction = 1
----------------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+---------------------bounds = field #0['name']: ["coutamg", "coutamg"]
 ---------------------fetched = 0
 ---------------------sortedByDiskLoc = 1
 ---------------------getSort = [{ name: 1 }, ]
@@ -1221,14 +1221,14 @@ PROJ
 ---------------------------indexName = name_1
 keyPattern = { name: 1.0 }
 ---------------------------direction = 1
----------------------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+---------------------------bounds = field #0['name']: ["coutamg", "coutamg"]
 ---------------------------fetched = 0
 ---------------------------sortedByDiskLoc = 1
 ---------------------------getSort = [{ name: 1 }, ]
 2021-01-24T22:27:47.155+0800 D QUERY    [conn-1] Planner: outputted 2 indexed solutions.
-2021-01-24T22:27:47.156+0800 I STORAGE  [conn-1] WT index (0x561769f55d80) setEndPosition inclusive: 1 { : "yangyazhou2", : MaxKey }
+2021-01-24T22:27:47.156+0800 I STORAGE  [conn-1] WT index (0x561769f55d80) setEndPosition inclusive: 1 { : "coutamg", : MaxKey }
 2021-01-24T22:27:47.156+0800 I STORAGE  [conn-1] WT index (0x561769f55d80)       cmp: -1
-2021-01-24T22:27:47.157+0800 I STORAGE  [conn-1] WT index (0x561769f55b00) setEndPosition inclusive: 1 { : "yangyazhou2" }
+2021-01-24T22:27:47.157+0800 I STORAGE  [conn-1] WT index (0x561769f55b00) setEndPosition inclusive: 1 { : "coutamg" }
 2021-01-24T22:27:47.157+0800 I STORAGE  [conn-1] WT index (0x561769f55b00)       cmp: -1
 2021-01-24T22:27:47.157+0800 D QUERY    [conn-1] Scoring plan 0:
 LIMIT
@@ -1253,7 +1253,7 @@ LIMIT
 ---------------------indexName = name_1_age_1
 keyPattern = { name: 1.0, age: 1.0 }
 ---------------------direction = 1
----------------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['age']: [MinKey, MaxKey]
+---------------------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['age']: [MinKey, MaxKey]
 ---------------------fetched = 0
 ---------------------sortedByDiskLoc = 0
 ---------------------getSort = [{ age: 1 }, { name: 1 }, { name: 1, age: 1 }, ]
@@ -1318,7 +1318,7 @@ Stats:
         "indexVersion" : 2,
         "direction" : "forward",
         "indexBounds" : { "name" : [ 
-            "[\"yangyazhou2\", \"yangyazhou2\"]" ],
+            "[\"coutamg\", \"coutamg\"]" ],
           "age" : [ 
             "[MinKey, MaxKey]" ] },
         "keysExamined" : 3,
@@ -1360,7 +1360,7 @@ PROJ
 ---------------------------indexName = name_1
 keyPattern = { name: 1.0 }
 ---------------------------direction = 1
----------------------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+---------------------------bounds = field #0['name']: ["coutamg", "coutamg"]
 ---------------------------fetched = 0
 ---------------------------sortedByDiskLoc = 1
 ---------------------------getSort = [{ name: 1 }, ]
@@ -1437,7 +1437,7 @@ Stats:
           "indexVersion" : 2,
           "direction" : "forward",
           "indexBounds" : { "name" : [ 
-              "[\"yangyazhou2\", \"yangyazhou2\"]" ] },
+              "[\"coutamg\", \"coutamg\"]" ] },
           "keysExamined" : 2,
           "seeks" : 1,
           "dupsTested" : 0,
@@ -1469,7 +1469,7 @@ LIMIT
 ---------------------indexName = name_1_age_1
 keyPattern = { name: 1.0, age: 1.0 }
 ---------------------direction = 1
----------------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['age']: [MinKey, MaxKey]
+---------------------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['age']: [MinKey, MaxKey]
 ---------------------fetched = 0
 ---------------------sortedByDiskLoc = 0
 ---------------------getSort = [{ age: 1 }, { name: 1 }, { name: 1, age: 1 }, ]
@@ -1481,7 +1481,7 @@ keyPattern = { name: 1.0, age: 1.0 }
 2021-01-24T22:27:47.158+0800 D QUERY    [conn-1] yang test ...PlanStage::StageState MultiPlanStage::doWork 
 2021-01-24T22:27:47.158+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('60092fd71e227e5cd1191fa9'), age: 332.0 }
 2021-01-24T22:27:47.158+0800 D QUERY    [conn-1] yang test ...PlanStage::StageState MultiPlanStage::doWork 
-2021-01-24T22:27:47.158+0800 I COMMAND  [conn-1] command test.test2 appName: "MongoDB Shell" command: find { find: "test2", filter: { name: "yangyazhou2" }, limit: 3.0, singleBatch: false, sort: { age: 1.0 }, projection: { age: 1.0 }, lsid: { id: UUID("b1982310-f0a8-4589-abae-b485fe49eff2") }, $db: "test" } planSummary: IXSCAN { name: 1, age: 1 } keysExamined:3 docsExamined:3 fromMultiPlanner:1 cursorExhausted:1 numYields:0 nreturned:3 reslen:197 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 4ms
+2021-01-24T22:27:47.158+0800 I COMMAND  [conn-1] command test.test2 appName: "MongoDB Shell" command: find { find: "test2", filter: { name: "coutamg" }, limit: 3.0, singleBatch: false, sort: { age: 1.0 }, projection: { age: 1.0 }, lsid: { id: UUID("b1982310-f0a8-4589-abae-b485fe49eff2") }, $db: "test" } planSummary: IXSCAN { name: 1, age: 1 } keysExamined:3 docsExamined:3 fromMultiPlanner:1 cursorExhausted:1 numYields:0 nreturned:3 reslen:197 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 4ms
 2021-01-24T22:27:48.617+0800 D STORAGE  [clientcursormon] NamespaceUUIDCache: registered namespace test.test2 with UUID f266c460-dafe-4d6b-a7fa-dc351c25c6cb
 2021-01-24T22:27:48.617+0800 D STORAGE  [clientcursormon] NamespaceUUIDCache: registered namespace test.test with UUID 520904ec-0432-4c00-a15d-788e2f5d707b
 2021-01-24T22:27:48.617+0800 D STORAGE  [clientcursormon] NamespaceUUIDCache: registered namespace local.startup_log with UUID bf378154-885b-4f4c-a142-2af33af619c8

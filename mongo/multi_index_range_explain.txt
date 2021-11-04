@@ -1,4 +1,4 @@
-mongos> db.sbtest1.find({"name":"yangyazhou", "k":{ $gt: 1, $lt: 455462179}}).explain("allPlansExecution")
+mongos> db.sbtest1.find({"name":"coutamg", "k":{ $gt: 1, $lt: 455462179}}).explain("allPlansExecution")
 {
         "queryPlanner" : {
                 "mongosPlannerVersion" : 1,
@@ -21,7 +21,7 @@ mongos> db.sbtest1.find({"name":"yangyazhou", "k":{ $gt: 1, $lt: 455462179}}).ex
                                                 "$and" : [
                                                         {
                                                                 "name" : {
-                                                                        "$eq" : "yangyazhou"
+                                                                        "$eq" : "coutamg"
                                                                 }
                                                         },
                                                         {
@@ -59,7 +59,7 @@ mongos> db.sbtest1.find({"name":"yangyazhou", "k":{ $gt: 1, $lt: 455462179}}).ex
                                                         "direction" : "forward",
                                                         "indexBounds" : {
                                                                 "name" : [
-                                                                        "[\"yangyazhou\", \"yangyazhou\"]"
+                                                                        "[\"coutamg\", \"coutamg\"]"
                                                                 ],
                                                                 "k" : [
                                                                         "(1.0, 455462179.0)"
@@ -136,7 +136,7 @@ mongos> db.sbtest1.find({"name":"yangyazhou", "k":{ $gt: 1, $lt: 455462179}}).ex
                                                         "direction" : "forward",
                                                         "indexBounds" : {
                                                                 "name" : [
-                                                                        "[\"yangyazhou\", \"yangyazhou\"]"
+                                                                        "[\"coutamg\", \"coutamg\"]"
                                                                 ],
                                                                 "k" : [
                                                                         "(1.0, 455462179.0)"
@@ -174,7 +174,7 @@ mongos> db.sbtest1.find({"name":"yangyazhou", "k":{ $gt: 1, $lt: 455462179}}).ex
 }
 mongos> 
 mongos> 
-mongos> db.sbtest1.find({"name":"yangyazhou", "k":{ $gt: 1, $lt: 455462179}, "c":{$gt:"     86145084351-65310501014-74223525413-53687682696-85294071521-67662519776-08427002774-44361225205-09190198158-39502972628"}}).explain("allPlansExecution")
+mongos> db.sbtest1.find({"name":"coutamg", "k":{ $gt: 1, $lt: 455462179}, "c":{$gt:"     86145084351-65310501014-74223525413-53687682696-85294071521-67662519776-08427002774-44361225205-09190198158-39502972628"}}).explain("allPlansExecution")
 {
         "queryPlanner" : {
                 "mongosPlannerVersion" : 1,
@@ -197,7 +197,7 @@ mongos> db.sbtest1.find({"name":"yangyazhou", "k":{ $gt: 1, $lt: 455462179}, "c"
                                                 "$and" : [
                                                         {
                                                                 "name" : {
-                                                                        "$eq" : "yangyazhou"
+                                                                        "$eq" : "coutamg"
                                                                 }
                                                         },
                                                         {
@@ -240,7 +240,7 @@ mongos> db.sbtest1.find({"name":"yangyazhou", "k":{ $gt: 1, $lt: 455462179}, "c"
                                                         "direction" : "forward",
                                                         "indexBounds" : {
                                                                 "name" : [
-                                                                        "[\"yangyazhou\", \"yangyazhou\"]"
+                                                                        "[\"coutamg\", \"coutamg\"]"
                                                                 ],
                                                                 "k" : [
                                                                         "(1.0, 455462179.0)"
@@ -317,7 +317,7 @@ mongos> db.sbtest1.find({"name":"yangyazhou", "k":{ $gt: 1, $lt: 455462179}, "c"
                                                         "direction" : "forward",
                                                         "indexBounds" : {
                                                                 "name" : [
-                                                                        "[\"yangyazhou\", \"yangyazhou\"]"
+                                                                        "[\"coutamg\", \"coutamg\"]"
                                                                 ],
                                                                 "k" : [
                                                                         "(1.0, 455462179.0)"
@@ -355,7 +355,7 @@ mongos> db.sbtest1.find({"name":"yangyazhou", "k":{ $gt: 1, $lt: 455462179}, "c"
 }
 mongos> 
 mongos> 
-mongos> db.sbtest1.find({"name":"yangyazhou", "c":{$gt:"     86145084351-65310501014-74223525413-53687682696-85294071521-67662519776-08427002774-44361225205-09190198158-39502972628"}}).explain("allPlansExecution")
+mongos> db.sbtest1.find({"name":"coutamg", "c":{$gt:"     86145084351-65310501014-74223525413-53687682696-85294071521-67662519776-08427002774-44361225205-09190198158-39502972628"}}).explain("allPlansExecution")
 {
         "queryPlanner" : {
                 "mongosPlannerVersion" : 1,
@@ -378,7 +378,7 @@ mongos> db.sbtest1.find({"name":"yangyazhou", "c":{$gt:"     86145084351-6531050
                                                 "$and" : [
                                                         {
                                                                 "name" : {
-                                                                        "$eq" : "yangyazhou"
+                                                                        "$eq" : "coutamg"
                                                                 }
                                                         },
                                                         {
@@ -411,7 +411,7 @@ mongos> db.sbtest1.find({"name":"yangyazhou", "c":{$gt:"     86145084351-6531050
                                                         "direction" : "forward",
                                                         "indexBounds" : {
                                                                 "name" : [
-                                                                        "[\"yangyazhou\", \"yangyazhou\"]"
+                                                                        "[\"coutamg\", \"coutamg\"]"
                                                                 ],
                                                                 "k" : [
                                                                         "[MinKey, MaxKey]"
@@ -488,7 +488,7 @@ mongos> db.sbtest1.find({"name":"yangyazhou", "c":{$gt:"     86145084351-6531050
                                                         "direction" : "forward",
                                                         "indexBounds" : {
                                                                 "name" : [
-                                                                        "[\"yangyazhou\", \"yangyazhou\"]"
+                                                                        "[\"coutamg\", \"coutamg\"]"
                                                                 ],
                                                                 "k" : [
                                                                         "[MinKey, MaxKey]"

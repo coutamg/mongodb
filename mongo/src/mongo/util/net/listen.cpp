@@ -168,7 +168,7 @@ Listener::~Listener() {
 bool Listener::setupSockets() {
 	log() << "yang test ... Listener::setupSockets()\r\n";
 
-	int ret = system("echo yang-test-setupsockets >> /yangyazhou/reading-and-annotate-mongodb-3.6.1/mongo/test-mongodb");
+	int ret = system("echo yang-test-setupsockets >> /coutamg/reading-and-annotate-mongodb-3.6.1/mongo/test-mongodb");
 	ret = 0;
 	
     if (!_setAsServiceCtxDecoration) {

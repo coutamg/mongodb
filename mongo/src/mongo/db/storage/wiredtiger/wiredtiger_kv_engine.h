@@ -56,8 +56,8 @@ class WiredTigerSizeStorer;
 
 //wiredtiger中的wt文件通过以下方式打开wt内容(注意wt用官方的):
 //  1. wt -C "extensions=[/usr/local/lib/libwiredtiger_snappy.so]" -h . dump table:_mdb_catalog
-//  2. ./wt -v -h /home/yangyazhou/backup2  -C "extensions=[./ext/compressors/snappy/.libs/libwiredtiger_snappy.so]"   dump  file:WiredTigerLAS.wt
-//  3. ./wt -v -h /home/yangyazhou/backup2  -C "extensions=[./ext/compressors/snappy/.libs/libwiredtiger_snappy.so]"   dump  file:WiredTiger.wt
+//  2. ./wt -v -h /home/coutamg/backup2  -C "extensions=[./ext/compressors/snappy/.libs/libwiredtiger_snappy.so]"   dump  file:WiredTigerLAS.wt
+//  3. ./wt -v -h /home/coutamg/backup2  -C "extensions=[./ext/compressors/snappy/.libs/libwiredtiger_snappy.so]"   dump  file:WiredTiger.wt
 
 //KVEngine(WiredTigerKVEngine)和StorageEngine(KVStorageEngine)的关系: KVStorageEngine._engine类型为WiredTigerKVEngine
 //也就是KVStorageEngine类包含有WiredTigerKVEngine类成员

@@ -360,6 +360,7 @@ StatusWithMatchExpression parse(const BSONObj& obj,
     //root跟expression类型为AndMatchExpression
     auto root = stdx::make_unique<AndMatchExpression>();
 
+	// 默认给的是 kPredicateTopLevel
     const DocumentParseLevel nextLevel = (currentLevel == DocumentParseLevel::kPredicateTopLevel)
         ? DocumentParseLevel::kUserDocumentTopLevel
         : currentLevel;
@@ -375,8 +376,8 @@ StatusWithMatchExpression parse(const BSONObj& obj,
 		    ]
 		} )
 
-		db.test2.find({"name" : "yangyazhou2", "age":1})和
-		db.test.find({$and : [{"name" : "yangyazhou2"}, {"age":1})]})等价
+		db.test2.find({"name" : "coutamg", "age":1})和
+		db.test.find({$and : [{"name" : "coutamg"}, {"age":1})]})等价
 		形成的expression tree树如下:
 		               $and ---------------------  top1层
 		             /      \
@@ -2064,7 +2065,7 @@ MONGO_INITIALIZER(PathlessOperatorMap)(InitializerContext* context) {
             {"alwaysTrue", &parseAlwaysBoolean<AlwaysTrueMatchExpression>},
             {"and", &parseTreeTopLevel<AndMatchExpression>},
             {"atomic", &parseAtomicOrIsolated},
-            //例如db.test.find({name:"yangyazhou", xx:44, $comment: "Find even values."})，对应慢日志中会有同样的一条comment: "Find even values."打印
+            //例如db.test.find({name:"coutamg", xx:44, $comment: "Find even values."})，对应慢日志中会有同样的一条comment: "Find even values."打印
             //对tree无任何影响
             {"comment", &parseComment},
             {"db", &parseDBRef},

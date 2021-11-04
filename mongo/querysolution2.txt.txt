@@ -1,17 +1,17 @@
 > db.test.find()
 { "_id" : ObjectId("5fb382233eb7182b2756cfad") }
-{ "_id" : ObjectId("5ffd6df45ca3bde0fbfe1403"), "name" : "yangyazhou", "age" : 11, "male" : 1 }
-{ "_id" : ObjectId("5ffd6dfe5ca3bde0fbfe1404"), "name" : "yangyazhou", "age" : 11, "male" : 1, "xx" : 1 }
-{ "_id" : ObjectId("60000d033a76b04597281513"), "name" : "yangyazhou", "age" : 113, "male" : 1, "xx" : 1 }
+{ "_id" : ObjectId("5ffd6df45ca3bde0fbfe1403"), "name" : "coutamg", "age" : 11, "male" : 1 }
+{ "_id" : ObjectId("5ffd6dfe5ca3bde0fbfe1404"), "name" : "coutamg", "age" : 11, "male" : 1, "xx" : 1 }
+{ "_id" : ObjectId("60000d033a76b04597281513"), "name" : "coutamg", "age" : 113, "male" : 1, "xx" : 1 }
 { "_id" : ObjectId("600160020c16be9d31e9c02f"), "xx" : 2 }
 { "_id" : ObjectId("6005367bf6e12f1036c4d74d"), "xx" : 3 }
 { "_id" : ObjectId("600536bbf6e12f1036c4d74e"), "xx" : 34 }
 { "_id" : ObjectId("600536c0f6e12f1036c4d74f"), "ss" : 34 }
-{ "_id" : ObjectId("600536ecf6e12f1036c4d750"), "name" : "yangyazhou2", "age" : 113, "male" : 1, "xx" : 1 }
-{ "_id" : ObjectId("600795217e830577d1f018b6"), "name" : "yangyazhou2", "age" : 1133, "male" : 0, "xx" : 21 }
-{ "_id" : ObjectId("600795247e830577d1f018b7"), "name" : "yangyazhou2", "age" : 1133, "male" : 0, "xx" : 21 }
-{ "_id" : ObjectId("600795357e830577d1f018b8"), "name" : "yangyazhou2", "age" : 113, "male" : 1, "xx" : 1 }
-{ "_id" : ObjectId("600796697e830577d1f018b9"), "name" : "yangyazhou2", "age" : 113, "male" : 1, "xx" : 1, "xx2" : 1 }
+{ "_id" : ObjectId("600536ecf6e12f1036c4d750"), "name" : "coutamg", "age" : 113, "male" : 1, "xx" : 1 }
+{ "_id" : ObjectId("600795217e830577d1f018b6"), "name" : "coutamg", "age" : 1133, "male" : 0, "xx" : 21 }
+{ "_id" : ObjectId("600795247e830577d1f018b7"), "name" : "coutamg", "age" : 1133, "male" : 0, "xx" : 21 }
+{ "_id" : ObjectId("600795357e830577d1f018b8"), "name" : "coutamg", "age" : 113, "male" : 1, "xx" : 1 }
+{ "_id" : ObjectId("600796697e830577d1f018b9"), "name" : "coutamg", "age" : 113, "male" : 1, "xx" : 1, "xx2" : 1 }
 > 
 > 
 > db.test.getIndexes()
@@ -92,13 +92,13 @@
         }
 ]
 > db.test.getPlanCache().clear()
-> db.test.find( {$and : [{ $and : [ { name : "yangyazhou2" }, { "age" : 1133 } ] },{ $and : [ {  xx : 21 }, { "male" : 0} ] } ]} )
-{ "_id" : ObjectId("600795217e830577d1f018b6"), "name" : "yangyazhou2", "age" : 1133, "male" : 0, "xx" : 21 }
-{ "_id" : ObjectId("600795247e830577d1f018b7"), "name" : "yangyazhou2", "age" : 1133, "male" : 0, "xx" : 21 }
+> db.test.find( {$and : [{ $and : [ { name : "coutamg" }, { "age" : 1133 } ] },{ $and : [ {  xx : 21 }, { "male" : 0} ] } ]} )
+{ "_id" : ObjectId("600795217e830577d1f018b6"), "name" : "coutamg", "age" : 1133, "male" : 0, "xx" : 21 }
+{ "_id" : ObjectId("600795247e830577d1f018b7"), "name" : "coutamg", "age" : 1133, "male" : 0, "xx" : 21 }
 
 
 2021-02-25T16:43:47.137+0800 I COMMAND  [conn-1] yang test ................ServiceEntryPointMongod::handleRequest op:2013
-2021-02-25T16:43:47.137+0800 D COMMAND  [conn-1] run command test.$cmd { find: "test", filter: { $and: [ { $and: [ { name: "yangyazhou2" }, { age: 1133.0 } ] }, { $and: [ { xx: 21.0 }, { male: 0.0 } ] } ] }, lsid: { id: UUID("0fdf7685-c6aa-42c2-8694-2a40933d24bc") }, $db: "test" } find
+2021-02-25T16:43:47.137+0800 D COMMAND  [conn-1] run command test.$cmd { find: "test", filter: { $and: [ { $and: [ { name: "coutamg" }, { age: 1133.0 } ] }, { $and: [ { xx: 21.0 }, { male: 0.0 } ] } ] }, lsid: { id: UUID("0fdf7685-c6aa-42c2-8694-2a40933d24bc") }, $db: "test" } find
 2021-02-25T16:43:47.137+0800 D STORAGE  [conn-1] NamespaceUUIDCache: registered namespace test.test with UUID 520904ec-0432-4c00-a15d-788e2f5d707b
 2021-02-25T16:43:47.138+0800 D QUERY    [conn-1] Beginning planning...
 =============================
@@ -107,7 +107,7 @@ Canonical query:
 ns=test.testTree: $and
     age == 1133.0
     male == 0.0
-    name == "yangyazhou2"
+    name == "coutamg"
     xx == 21.0
 Sort: {}
 Proj: {}
@@ -134,7 +134,7 @@ Proj: {}
 $and
     age == 1133.0  || First: 1 notFirst: full path: age
     male == 0.0  || First: 2 3 5 notFirst: 4 full path: male
-    name == "yangyazhou2"  || First: 0 4 notFirst: 3 full path: name
+    name == "coutamg"  || First: 0 4 notFirst: 3 full path: name
     xx == 21.0  || First: notFirst: 5 full path: xx
 2021-02-25T16:43:47.138+0800 D QUERY    [conn-1] Tagging memoID 1
 2021-02-25T16:43:47.138+0800 D QUERY    [conn-1] Enumerator: memo just before moving:
@@ -142,11 +142,11 @@ $and
 $and
     age == 1133.0
     male == 0.0  || Selected Index #4 pos 1 combine 1
-    name == "yangyazhou2"  || Selected Index #4 pos 0 combine 1
+    name == "coutamg"  || Selected Index #4 pos 0 combine 1
     xx == 21.0
 2021-02-25T16:43:47.138+0800 D QUERY    [conn-1] About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:
 $and
-    name == "yangyazhou2"  || Selected Index #4 pos 0 combine 1
+    name == "coutamg"  || Selected Index #4 pos 0 combine 1
     male == 0.0  || Selected Index #4 pos 1 combine 1
     age == 1133.0
     xx == 21.0
@@ -164,7 +164,7 @@ FETCH
 ---------indexName = name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['male']: [0.0, 0.0]
+---------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [0.0, 0.0]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = []
@@ -182,7 +182,7 @@ FETCH
 ---------indexName = name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['male']: [0.0, 0.0]
+---------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [0.0, 0.0]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = [{ male: 1 }, { name: 1 }, { name: 1, male: 1 }, ]
@@ -192,11 +192,11 @@ keyPattern = { name: 1.0, male: 1.0 }
 $and
     age == 1133.0
     male == 0.0
-    name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+    name == "coutamg"  || Selected Index #0 pos 0 combine 1
     xx == 21.0
 2021-02-25T16:43:47.138+0800 D QUERY    [conn-1] About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:
 $and
-    name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+    name == "coutamg"  || Selected Index #0 pos 0 combine 1
     age == 1133.0
     male == 0.0
     xx == 21.0
@@ -215,7 +215,7 @@ FETCH
 ---------indexName = name_1
 keyPattern = { name: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+---------bounds = field #0['name']: ["coutamg", "coutamg"]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = []
@@ -234,7 +234,7 @@ FETCH
 ---------indexName = name_1
 keyPattern = { name: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+---------bounds = field #0['name']: ["coutamg", "coutamg"]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = [{ name: 1 }, ]
@@ -244,20 +244,20 @@ keyPattern = { name: 1.0 }
 $and
     age == 1133.0  || Selected Index #1 pos 0 combine 1
     male == 0.0
-    name == "yangyazhou2"
+    name == "coutamg"
     xx == 21.0
 2021-02-25T16:43:47.139+0800 D QUERY    [conn-1] About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:
 $and
     age == 1133.0  || Selected Index #1 pos 0 combine 1
     male == 0.0
-    name == "yangyazhou2"
+    name == "coutamg"
     xx == 21.0
 2021-02-25T16:43:47.139+0800 D QUERY    [conn-1] Planner: adding QuerySolutionNode:
 FETCH
 ---filter:
         $and
             male == 0.0
-            name == "yangyazhou2"
+            name == "coutamg"
             xx == 21.0
 ---fetched = 1
 ---sortedByDiskLoc = 1
@@ -276,7 +276,7 @@ FETCH
 ---filter:
         $and
             male == 0.0
-            name == "yangyazhou2"
+            name == "coutamg"
             xx == 21.0
 ---fetched = 1
 ---sortedByDiskLoc = 1
@@ -296,20 +296,20 @@ keyPattern = { age: 1.0 }
 $and
     age == 1133.0
     male == 0.0  || Selected Index #2 pos 0 combine 1
-    name == "yangyazhou2"
+    name == "coutamg"
     xx == 21.0
 2021-02-25T16:43:47.139+0800 D QUERY    [conn-1] About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:
 $and
     male == 0.0  || Selected Index #2 pos 0 combine 1
     age == 1133.0
-    name == "yangyazhou2"
+    name == "coutamg"
     xx == 21.0
 2021-02-25T16:43:47.139+0800 D QUERY    [conn-1] Planner: adding QuerySolutionNode:
 FETCH
 ---filter:
         $and
             age == 1133.0
-            name == "yangyazhou2"
+            name == "coutamg"
             xx == 21.0
 ---fetched = 1
 ---sortedByDiskLoc = 1
@@ -328,7 +328,7 @@ FETCH
 ---filter:
         $and
             age == 1133.0
-            name == "yangyazhou2"
+            name == "coutamg"
             xx == 21.0
 ---fetched = 1
 ---sortedByDiskLoc = 1
@@ -348,12 +348,12 @@ keyPattern = { male: 1.0 }
 $and
     age == 1133.0
     male == 0.0  || Selected Index #3 pos 0 combine 1
-    name == "yangyazhou2"  || Selected Index #3 pos 1 combine 1
+    name == "coutamg"  || Selected Index #3 pos 1 combine 1
     xx == 21.0
 2021-02-25T16:43:47.139+0800 D QUERY    [conn-1] About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:
 $and
     male == 0.0  || Selected Index #3 pos 0 combine 1
-    name == "yangyazhou2"  || Selected Index #3 pos 1 combine 1
+    name == "coutamg"  || Selected Index #3 pos 1 combine 1
     age == 1133.0
     xx == 21.0
 2021-02-25T16:43:47.139+0800 D QUERY    [conn-1] Planner: adding QuerySolutionNode:
@@ -370,7 +370,7 @@ FETCH
 ---------indexName = male_1_name_1
 keyPattern = { male: 1.0, name: 1.0 }
 ---------direction = 1
----------bounds = field #0['male']: [0.0, 0.0], field #1['name']: ["yangyazhou2", "yangyazhou2"]
+---------bounds = field #0['male']: [0.0, 0.0], field #1['name']: ["coutamg", "coutamg"]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = []
@@ -388,7 +388,7 @@ FETCH
 ---------indexName = male_1_name_1
 keyPattern = { male: 1.0, name: 1.0 }
 ---------direction = 1
----------bounds = field #0['male']: [0.0, 0.0], field #1['name']: ["yangyazhou2", "yangyazhou2"]
+---------bounds = field #0['male']: [0.0, 0.0], field #1['name']: ["coutamg", "coutamg"]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = [{ male: 1 }, { male: 1, name: 1 }, { name: 1 }, ]
@@ -398,20 +398,20 @@ keyPattern = { male: 1.0, name: 1.0 }
 $and
     age == 1133.0
     male == 0.0  || Selected Index #5 pos 0 combine 1
-    name == "yangyazhou2"
+    name == "coutamg"
     xx == 21.0  || Selected Index #5 pos 1 combine 1
 2021-02-25T16:43:47.139+0800 D QUERY    [conn-1] About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:
 $and
     male == 0.0  || Selected Index #5 pos 0 combine 1
     xx == 21.0  || Selected Index #5 pos 1 combine 1
     age == 1133.0
-    name == "yangyazhou2"
+    name == "coutamg"
 2021-02-25T16:43:47.139+0800 D QUERY    [conn-1] Planner: adding QuerySolutionNode:
 FETCH
 ---filter:
         $and
             age == 1133.0
-            name == "yangyazhou2"
+            name == "coutamg"
 ---fetched = 1
 ---sortedByDiskLoc = 1
 ---getSort = []
@@ -429,7 +429,7 @@ FETCH
 ---filter:
         $and
             age == 1133.0
-            name == "yangyazhou2"
+            name == "coutamg"
 ---fetched = 1
 ---sortedByDiskLoc = 1
 ---getSort = [{ male: 1 }, { male: 1, xx: 1 }, { xx: 1 }, ]
@@ -448,12 +448,12 @@ keyPattern = { male: 1.0, xx: 1.0 }
 $and
     age == 1133.0  || Selected Index #1 pos 0 combine 1
     male == 0.0  || Selected Index #4 pos 1 combine 1
-    name == "yangyazhou2"  || Selected Index #4 pos 0 combine 1
+    name == "coutamg"  || Selected Index #4 pos 0 combine 1
     xx == 21.0
 2021-02-25T16:43:47.139+0800 D QUERY    [conn-1] About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:
 $and
     age == 1133.0  || Selected Index #1 pos 0 combine 1
-    name == "yangyazhou2"  || Selected Index #4 pos 0 combine 1
+    name == "coutamg"  || Selected Index #4 pos 0 combine 1
     male == 0.0  || Selected Index #4 pos 1 combine 1
     xx == 21.0
 2021-02-25T16:43:47.139+0800 D QUERY    [conn-1] Planner: adding QuerySolutionNode:
@@ -461,7 +461,7 @@ FETCH
 ---filter:
         $and
             age == 1133.0  || Selected Index #1 pos 0 combine 1
-            name == "yangyazhou2"  || Selected Index #4 pos 0 combine 1
+            name == "coutamg"  || Selected Index #4 pos 0 combine 1
             male == 0.0  || Selected Index #4 pos 1 combine 1
             xx == 21.0
 ---fetched = 1
@@ -486,7 +486,7 @@ keyPattern = { age: 1.0 }
 ------------indexName = name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ------------direction = 1
-------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['male']: [0.0, 0.0]
+------------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [0.0, 0.0]
 ------------fetched = 0
 ------------sortedByDiskLoc = 1
 ------------getSort = []
@@ -495,7 +495,7 @@ FETCH
 ---filter:
         $and
             age == 1133.0  || Selected Index #1 pos 0 combine 1
-            name == "yangyazhou2"  || Selected Index #4 pos 0 combine 1
+            name == "coutamg"  || Selected Index #4 pos 0 combine 1
             male == 0.0  || Selected Index #4 pos 1 combine 1
             xx == 21.0
 ---fetched = 1
@@ -520,7 +520,7 @@ keyPattern = { age: 1.0 }
 ------------indexName = name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ------------direction = 1
-------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['male']: [0.0, 0.0]
+------------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [0.0, 0.0]
 ------------fetched = 0
 ------------sortedByDiskLoc = 1
 ------------getSort = [{ male: 1 }, { name: 1 }, { name: 1, male: 1 }, ]
@@ -530,11 +530,11 @@ keyPattern = { name: 1.0, male: 1.0 }
 $and
     age == 1133.0
     male == 0.0  || Selected Index #5 pos 0 combine 1
-    name == "yangyazhou2"  || Selected Index #4 pos 0 combine 1
+    name == "coutamg"  || Selected Index #4 pos 0 combine 1
     xx == 21.0  || Selected Index #5 pos 1 combine 1
 2021-02-25T16:43:47.139+0800 D QUERY    [conn-1] About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:
 $and
-    name == "yangyazhou2"  || Selected Index #4 pos 0 combine 1
+    name == "coutamg"  || Selected Index #4 pos 0 combine 1
     male == 0.0  || Selected Index #5 pos 0 combine 1
     xx == 21.0  || Selected Index #5 pos 1 combine 1
     age == 1133.0
@@ -545,11 +545,11 @@ $and
 $and
     age == 1133.0  || Selected Index #1 pos 0 combine 1
     male == 0.0
-    name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+    name == "coutamg"  || Selected Index #0 pos 0 combine 1
     xx == 21.0
 2021-02-25T16:43:47.139+0800 D QUERY    [conn-1] About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:
 $and
-    name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+    name == "coutamg"  || Selected Index #0 pos 0 combine 1
     age == 1133.0  || Selected Index #1 pos 0 combine 1
     male == 0.0
     xx == 21.0
@@ -557,7 +557,7 @@ $and
 FETCH
 ---filter:
         $and
-            name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+            name == "coutamg"  || Selected Index #0 pos 0 combine 1
             age == 1133.0  || Selected Index #1 pos 0 combine 1
             male == 0.0
             xx == 21.0
@@ -574,7 +574,7 @@ FETCH
 ------------indexName = name_1
 keyPattern = { name: 1.0 }
 ------------direction = 1
-------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+------------bounds = field #0['name']: ["coutamg", "coutamg"]
 ------------fetched = 0
 ------------sortedByDiskLoc = 1
 ------------getSort = []
@@ -591,7 +591,7 @@ keyPattern = { age: 1.0 }
 FETCH
 ---filter:
         $and
-            name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+            name == "coutamg"  || Selected Index #0 pos 0 combine 1
             age == 1133.0  || Selected Index #1 pos 0 combine 1
             male == 0.0
             xx == 21.0
@@ -608,7 +608,7 @@ FETCH
 ------------indexName = name_1
 keyPattern = { name: 1.0 }
 ------------direction = 1
-------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+------------bounds = field #0['name']: ["coutamg", "coutamg"]
 ------------fetched = 0
 ------------sortedByDiskLoc = 1
 ------------getSort = [{ name: 1 }, ]
@@ -627,11 +627,11 @@ keyPattern = { age: 1.0 }
 $and
     age == 1133.0
     male == 0.0  || Selected Index #5 pos 0 combine 1
-    name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+    name == "coutamg"  || Selected Index #0 pos 0 combine 1
     xx == 21.0  || Selected Index #5 pos 1 combine 1
 2021-02-25T16:43:47.140+0800 D QUERY    [conn-1] About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:
 $and
-    name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+    name == "coutamg"  || Selected Index #0 pos 0 combine 1
     male == 0.0  || Selected Index #5 pos 0 combine 1
     xx == 21.0  || Selected Index #5 pos 1 combine 1
     age == 1133.0
@@ -639,7 +639,7 @@ $and
 FETCH
 ---filter:
         $and
-            name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+            name == "coutamg"  || Selected Index #0 pos 0 combine 1
             male == 0.0  || Selected Index #5 pos 0 combine 1
             xx == 21.0  || Selected Index #5 pos 1 combine 1
             age == 1133.0
@@ -656,7 +656,7 @@ FETCH
 ------------indexName = name_1
 keyPattern = { name: 1.0 }
 ------------direction = 1
-------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+------------bounds = field #0['name']: ["coutamg", "coutamg"]
 ------------fetched = 0
 ------------sortedByDiskLoc = 1
 ------------getSort = []
@@ -673,7 +673,7 @@ keyPattern = { male: 1.0, xx: 1.0 }
 FETCH
 ---filter:
         $and
-            name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+            name == "coutamg"  || Selected Index #0 pos 0 combine 1
             male == 0.0  || Selected Index #5 pos 0 combine 1
             xx == 21.0  || Selected Index #5 pos 1 combine 1
             age == 1133.0
@@ -690,7 +690,7 @@ FETCH
 ------------indexName = name_1
 keyPattern = { name: 1.0 }
 ------------direction = 1
-------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+------------bounds = field #0['name']: ["coutamg", "coutamg"]
 ------------fetched = 0
 ------------sortedByDiskLoc = 1
 ------------getSort = [{ name: 1 }, ]
@@ -704,25 +704,25 @@ keyPattern = { male: 1.0, xx: 1.0 }
 ------------sortedByDiskLoc = 1
 ------------getSort = [{ male: 1 }, { male: 1, xx: 1 }, { xx: 1 }, ]
 2021-02-25T16:43:47.140+0800 D QUERY    [conn-1] Planner: outputted 9 indexed solutions.
-2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6700) setEndPosition inclusive: 1 { : "yangyazhou2", : 0.0 }
+2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6700) setEndPosition inclusive: 1 { : "coutamg", : 0.0 }
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6700)       cmp: -1
-2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6280) setEndPosition inclusive: 1 { : "yangyazhou2" }
+2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6280) setEndPosition inclusive: 1 { : "coutamg" }
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6280)       cmp: -1
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6180) setEndPosition inclusive: 1 { : 1133.0 }
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6180)       cmp: -1
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6380) setEndPosition inclusive: 1 { : 0.0 }
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6380)       cmp: -1
-2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6580) setEndPosition inclusive: 1 { : 0.0, : "yangyazhou2" }
+2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6580) setEndPosition inclusive: 1 { : 0.0, : "coutamg" }
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6580)       cmp: -1
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6880) setEndPosition inclusive: 1 { : 0.0, : 21.0 }
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6880)       cmp: -1
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6180) setEndPosition inclusive: 1 { : 1133.0 }
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6180)       cmp: -1
-2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6280) setEndPosition inclusive: 1 { : "yangyazhou2" }
+2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6280) setEndPosition inclusive: 1 { : "coutamg" }
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6280)       cmp: -1
-2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6280) setEndPosition inclusive: 1 { : "yangyazhou2" }
+2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6280) setEndPosition inclusive: 1 { : "coutamg" }
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6280)       cmp: -1
-2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6700) setEndPosition inclusive: 1 { : "yangyazhou2", : 0.0 }
+2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6700) setEndPosition inclusive: 1 { : "coutamg", : 0.0 }
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6700)       cmp: -1
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6180) setEndPosition inclusive: 1 { : 1133.0 }
 2021-02-25T16:43:47.141+0800 I STORAGE  [conn-1] WT index (0x5593f05a6180)       cmp: -1
@@ -742,7 +742,7 @@ FETCH
 ---------indexName = name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['male']: [0.0, 0.0]
+---------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [0.0, 0.0]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = [{ male: 1 }, { name: 1 }, { name: 1, male: 1 }, ]
@@ -786,7 +786,7 @@ Stats:
     "indexVersion" : 2,
     "direction" : "forward",
     "indexBounds" : { "name" : [ 
-        "[\"yangyazhou2\", \"yangyazhou2\"]" ],
+        "[\"coutamg\", \"coutamg\"]" ],
       "male" : [ 
         "[0.0, 0.0]" ] },
     "keysExamined" : 2,
@@ -813,7 +813,7 @@ FETCH
 ---------indexName = name_1
 keyPattern = { name: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+---------bounds = field #0['name']: ["coutamg", "coutamg"]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = [{ name: 1 }, ]
@@ -856,7 +856,7 @@ Stats:
     "indexVersion" : 2,
     "direction" : "forward",
     "indexBounds" : { "name" : [ 
-        "[\"yangyazhou2\", \"yangyazhou2\"]" ] },
+        "[\"coutamg\", \"coutamg\"]" ] },
     "keysExamined" : 3,
     "seeks" : 1,
     "dupsTested" : 0,
@@ -870,7 +870,7 @@ FETCH
 ---filter:
         $and
             male == 0.0
-            name == "yangyazhou2"
+            name == "coutamg"
             xx == 21.0
 ---fetched = 1
 ---sortedByDiskLoc = 1
@@ -888,7 +888,7 @@ Stats:
 { "stage" : "FETCH",
   "filter" : { "$and" : [ 
       { "male" : { "$eq" : 0 } }, 
-      { "name" : { "$eq" : "yangyazhou2" } }, 
+      { "name" : { "$eq" : "coutamg" } }, 
       { "xx" : { "$eq" : 21 } } ] },
   "nReturned" : 2,
   "executionTimeMillisEstimate" : 0,
@@ -938,7 +938,7 @@ FETCH
 ---filter:
         $and
             age == 1133.0
-            name == "yangyazhou2"
+            name == "coutamg"
             xx == 21.0
 ---fetched = 1
 ---sortedByDiskLoc = 1
@@ -956,7 +956,7 @@ Stats:
 { "stage" : "FETCH",
   "filter" : { "$and" : [ 
       { "age" : { "$eq" : 1133 } }, 
-      { "name" : { "$eq" : "yangyazhou2" } }, 
+      { "name" : { "$eq" : "coutamg" } }, 
       { "xx" : { "$eq" : 21 } } ] },
   "nReturned" : 2,
   "executionTimeMillisEstimate" : 0,
@@ -1015,7 +1015,7 @@ FETCH
 ---------indexName = male_1_name_1
 keyPattern = { male: 1.0, name: 1.0 }
 ---------direction = 1
----------bounds = field #0['male']: [0.0, 0.0], field #1['name']: ["yangyazhou2", "yangyazhou2"]
+---------bounds = field #0['male']: [0.0, 0.0], field #1['name']: ["coutamg", "coutamg"]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = [{ male: 1 }, { male: 1, name: 1 }, { name: 1 }, ]
@@ -1061,7 +1061,7 @@ Stats:
     "indexBounds" : { "male" : [ 
         "[0.0, 0.0]" ],
       "name" : [ 
-        "[\"yangyazhou2\", \"yangyazhou2\"]" ] },
+        "[\"coutamg\", \"coutamg\"]" ] },
     "keysExamined" : 2,
     "seeks" : 1,
     "dupsTested" : 0,
@@ -1076,7 +1076,7 @@ FETCH
 ---filter:
         $and
             age == 1133.0
-            name == "yangyazhou2"
+            name == "coutamg"
 ---fetched = 1
 ---sortedByDiskLoc = 1
 ---getSort = [{ male: 1 }, { male: 1, xx: 1 }, { xx: 1 }, ]
@@ -1093,7 +1093,7 @@ Stats:
 { "stage" : "FETCH",
   "filter" : { "$and" : [ 
       { "age" : { "$eq" : 1133 } }, 
-      { "name" : { "$eq" : "yangyazhou2" } } ] },
+      { "name" : { "$eq" : "coutamg" } } ] },
   "nReturned" : 2,
   "executionTimeMillisEstimate" : 0,
   "works" : 3,
@@ -1146,7 +1146,7 @@ FETCH
 ---filter:
         $and
             age == 1133.0  || Selected Index #1 pos 0 combine 1
-            name == "yangyazhou2"  || Selected Index #4 pos 0 combine 1
+            name == "coutamg"  || Selected Index #4 pos 0 combine 1
             male == 0.0  || Selected Index #4 pos 1 combine 1
             xx == 21.0
 ---fetched = 1
@@ -1171,7 +1171,7 @@ keyPattern = { age: 1.0 }
 ------------indexName = name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ------------direction = 1
-------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['male']: [0.0, 0.0]
+------------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [0.0, 0.0]
 ------------fetched = 0
 ------------sortedByDiskLoc = 1
 ------------getSort = [{ male: 1 }, { name: 1 }, { name: 1, male: 1 }, ]
@@ -1179,7 +1179,7 @@ Stats:
 { "stage" : "FETCH",
   "filter" : { "$and" : [ 
       { "age" : { "$eq" : 1133 } }, 
-      { "name" : { "$eq" : "yangyazhou2" } }, 
+      { "name" : { "$eq" : "coutamg" } }, 
       { "male" : { "$eq" : 0 } }, 
       { "xx" : { "$eq" : 21 } } ] },
   "nReturned" : 1,
@@ -1259,7 +1259,7 @@ Stats:
         "indexVersion" : 2,
         "direction" : "forward",
         "indexBounds" : { "name" : [ 
-            "[\"yangyazhou2\", \"yangyazhou2\"]" ],
+            "[\"coutamg\", \"coutamg\"]" ],
           "male" : [ 
             "[0.0, 0.0]" ] },
         "keysExamined" : 1,
@@ -1274,7 +1274,7 @@ Stats:
 FETCH
 ---filter:
         $and
-            name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+            name == "coutamg"  || Selected Index #0 pos 0 combine 1
             age == 1133.0  || Selected Index #1 pos 0 combine 1
             male == 0.0
             xx == 21.0
@@ -1291,7 +1291,7 @@ FETCH
 ------------indexName = name_1
 keyPattern = { name: 1.0 }
 ------------direction = 1
-------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+------------bounds = field #0['name']: ["coutamg", "coutamg"]
 ------------fetched = 0
 ------------sortedByDiskLoc = 1
 ------------getSort = [{ name: 1 }, ]
@@ -1307,7 +1307,7 @@ keyPattern = { age: 1.0 }
 Stats:
 { "stage" : "FETCH",
   "filter" : { "$and" : [ 
-      { "name" : { "$eq" : "yangyazhou2" } }, 
+      { "name" : { "$eq" : "coutamg" } }, 
       { "age" : { "$eq" : 1133 } }, 
       { "male" : { "$eq" : 0 } }, 
       { "xx" : { "$eq" : 21 } } ] },
@@ -1359,7 +1359,7 @@ Stats:
         "indexVersion" : 2,
         "direction" : "forward",
         "indexBounds" : { "name" : [ 
-            "[\"yangyazhou2\", \"yangyazhou2\"]" ] },
+            "[\"coutamg\", \"coutamg\"]" ] },
         "keysExamined" : 2,
         "seeks" : 1,
         "dupsTested" : 0,
@@ -1399,7 +1399,7 @@ Stats:
 FETCH
 ---filter:
         $and
-            name == "yangyazhou2"  || Selected Index #0 pos 0 combine 1
+            name == "coutamg"  || Selected Index #0 pos 0 combine 1
             male == 0.0  || Selected Index #5 pos 0 combine 1
             xx == 21.0  || Selected Index #5 pos 1 combine 1
             age == 1133.0
@@ -1416,7 +1416,7 @@ FETCH
 ------------indexName = name_1
 keyPattern = { name: 1.0 }
 ------------direction = 1
-------------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"]
+------------bounds = field #0['name']: ["coutamg", "coutamg"]
 ------------fetched = 0
 ------------sortedByDiskLoc = 1
 ------------getSort = [{ name: 1 }, ]
@@ -1432,7 +1432,7 @@ keyPattern = { male: 1.0, xx: 1.0 }
 Stats:
 { "stage" : "FETCH",
   "filter" : { "$and" : [ 
-      { "name" : { "$eq" : "yangyazhou2" } }, 
+      { "name" : { "$eq" : "coutamg" } }, 
       { "male" : { "$eq" : 0 } }, 
       { "xx" : { "$eq" : 21 } }, 
       { "age" : { "$eq" : 1133 } } ] },
@@ -1484,7 +1484,7 @@ Stats:
         "indexVersion" : 2,
         "direction" : "forward",
         "indexBounds" : { "name" : [ 
-            "[\"yangyazhou2\", \"yangyazhou2\"]" ] },
+            "[\"coutamg\", \"coutamg\"]" ] },
         "keysExamined" : 2,
         "seeks" : 1,
         "dupsTested" : 0,
@@ -1538,17 +1538,17 @@ FETCH
 ---------indexName = name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['male']: [0.0, 0.0]
+---------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [0.0, 0.0]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = [{ male: 1 }, { name: 1 }, { name: 1, male: 1 }, ]
 2021-02-25T16:43:47.144+0800 D QUERY    [conn-1] Winning plan: IXSCAN { name: 1, male: 1 }
 2021-02-25T16:43:47.145+0800 D QUERY    [conn-1] yang test ...PlanStage::StageState MultiPlanStage::doWork 
-2021-02-25T16:43:47.145+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795217e830577d1f018b6'), name: "yangyazhou2", age: 1133.0, male: 0.0, xx: 21.0 }
+2021-02-25T16:43:47.145+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795217e830577d1f018b6'), name: "coutamg", age: 1133.0, male: 0.0, xx: 21.0 }
 2021-02-25T16:43:47.145+0800 D QUERY    [conn-1] yang test ...PlanStage::StageState MultiPlanStage::doWork 
-2021-02-25T16:43:47.145+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795247e830577d1f018b7'), name: "yangyazhou2", age: 1133.0, male: 0.0, xx: 21.0 }
+2021-02-25T16:43:47.145+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795247e830577d1f018b7'), name: "coutamg", age: 1133.0, male: 0.0, xx: 21.0 }
 2021-02-25T16:43:47.145+0800 D QUERY    [conn-1] yang test ...PlanStage::StageState MultiPlanStage::doWork 
-2021-02-25T16:43:47.145+0800 I COMMAND  [conn-1] command test.test appName: "MongoDB Shell" command: find { find: "test", filter: { $and: [ { $and: [ { name: "yangyazhou2" }, { age: 1133.0 } ] }, { $and: [ { xx: 21.0 }, { male: 0.0 } ] } ] }, lsid: { id: UUID("0fdf7685-c6aa-42c2-8694-2a40933d24bc") }, $db: "test" } planSummary: IXSCAN { name: 1, male: 1 } keysExamined:2 docsExamined:2 fromMultiPlanner:1 cursorExhausted:1 numYields:0 nreturned:2 reslen:254 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 8ms
+2021-02-25T16:43:47.145+0800 I COMMAND  [conn-1] command test.test appName: "MongoDB Shell" command: find { find: "test", filter: { $and: [ { $and: [ { name: "coutamg" }, { age: 1133.0 } ] }, { $and: [ { xx: 21.0 }, { male: 0.0 } ] } ] }, lsid: { id: UUID("0fdf7685-c6aa-42c2-8694-2a40933d24bc") }, $db: "test" } planSummary: IXSCAN { name: 1, male: 1 } keysExamined:2 docsExamined:2 fromMultiPlanner:1 cursorExhausted:1 numYields:0 nreturned:2 reslen:254 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 8ms
 
 
 
@@ -1561,17 +1561,17 @@ keyPattern = { name: 1.0, male: 1.0 }
 
 
 
-第二次执行> db.test.find( {$and : [{ $and : [ { name : "yangyazhou2" }, { "age" : 1133 } ] },{ $and : [ {  xx : 21 }, { "male" : 0} ] } ]} )
+第二次执行> db.test.find( {$and : [{ $and : [ { name : "coutamg" }, { "age" : 1133 } ] },{ $and : [ {  xx : 21 }, { "male" : 0} ] } ]} )
 将会这cache plan，参考下面日志：
 2021-02-25T16:48:15.673+0800 I COMMAND  [conn-1] yang test ................ServiceEntryPointMongod::handleRequest op:2013
-2021-02-25T16:48:15.673+0800 D COMMAND  [conn-1] run command test.$cmd { find: "test", filter: { $and: [ { $and: [ { name: "yangyazhou2" }, { age: 1133.0 } ] }, { $and: [ { xx: 21.0 }, { male: 0.0 } ] } ] }, lsid: { id: UUID("0fdf7685-c6aa-42c2-8694-2a40933d24bc") }, $db: "test" } find
+2021-02-25T16:48:15.673+0800 D COMMAND  [conn-1] run command test.$cmd { find: "test", filter: { $and: [ { $and: [ { name: "coutamg" }, { age: 1133.0 } ] }, { $and: [ { xx: 21.0 }, { male: 0.0 } ] } ] }, lsid: { id: UUID("0fdf7685-c6aa-42c2-8694-2a40933d24bc") }, $db: "test" } find
 2021-02-25T16:48:15.673+0800 D STORAGE  [conn-1] NamespaceUUIDCache: registered namespace test.test with UUID 520904ec-0432-4c00-a15d-788e2f5d707b
 2021-02-25T16:48:15.674+0800 D QUERY    [conn-1] Tagging the match expression according to cache data: 
 Filter:
 $and
     age == 1133.0
     male == 0.0
-    name == "yangyazhou2"
+    name == "coutamg"
     xx == 21.0
 Cache data:
 (index-tagged expression tree: tree=Node
@@ -1590,7 +1590,7 @@ Cache data:
 2021-02-25T16:48:15.674+0800 D QUERY    [conn-1] Index 7: male_1_xx_1
 2021-02-25T16:48:15.674+0800 D QUERY    [conn-1] Tagged tree:
 $and
-    name == "yangyazhou2"  || Selected Index #6 pos 0 combine 1
+    name == "coutamg"  || Selected Index #6 pos 0 combine 1
     male == 0.0  || Selected Index #6 pos 1 combine 1
     age == 1133.0
     xx == 21.0
@@ -1608,16 +1608,16 @@ FETCH
 ---------indexName = name_1_male_1
 keyPattern = { name: 1.0, male: 1.0 }
 ---------direction = 1
----------bounds = field #0['name']: ["yangyazhou2", "yangyazhou2"], field #1['male']: [0.0, 0.0]
+---------bounds = field #0['name']: ["coutamg", "coutamg"], field #1['male']: [0.0, 0.0]
 ---------fetched = 0
 ---------sortedByDiskLoc = 1
 ---------getSort = [{ male: 1 }, { name: 1 }, { name: 1, male: 1 }, ]
-2021-02-25T16:48:15.674+0800 I STORAGE  [conn-1] WT index (0x5593f05a6700) setEndPosition inclusive: 1 { : "yangyazhou2", : 0.0 }
+2021-02-25T16:48:15.674+0800 I STORAGE  [conn-1] WT index (0x5593f05a6700) setEndPosition inclusive: 1 { : "coutamg", : 0.0 }
 2021-02-25T16:48:15.674+0800 I STORAGE  [conn-1] WT index (0x5593f05a6700)       cmp: -1
 2021-02-25T16:48:15.674+0800 D QUERY    [conn-1] score(1.66697) = baseScore(1) + productivity((2 advanced)/(3 works) = 0.666667) + tieBreakers(0.0001 noFetchBonus + 0.0001 noSortBonus + 0.0001 noIxisectBonus = 0.0003)
-2021-02-25T16:48:15.674+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795217e830577d1f018b6'), name: "yangyazhou2", age: 1133.0, male: 0.0, xx: 21.0 }
-2021-02-25T16:48:15.675+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795247e830577d1f018b7'), name: "yangyazhou2", age: 1133.0, male: 0.0, xx: 21.0 }
-2021-02-25T16:48:15.676+0800 I COMMAND  [conn-1] command test.test appName: "MongoDB Shell" command: find { find: "test", filter: { $and: [ { $and: [ { name: "yangyazhou2" }, { age: 1133.0 } ] }, { $and: [ { xx: 21.0 }, { male: 0.0 } ] } ] }, lsid: { id: UUID("0fdf7685-c6aa-42c2-8694-2a40933d24bc") }, $db: "test" } planSummary: IXSCAN { name: 1, male: 1 } keysExamined:2 docsExamined:2 cursorExhausted:1 numYields:0 nreturned:2 reslen:254 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 2ms
+2021-02-25T16:48:15.674+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795217e830577d1f018b6'), name: "coutamg", age: 1133.0, male: 0.0, xx: 21.0 }
+2021-02-25T16:48:15.675+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795247e830577d1f018b7'), name: "coutamg", age: 1133.0, male: 0.0, xx: 21.0 }
+2021-02-25T16:48:15.676+0800 I COMMAND  [conn-1] command test.test appName: "MongoDB Shell" command: find { find: "test", filter: { $and: [ { $and: [ { name: "coutamg" }, { age: 1133.0 } ] }, { $and: [ { xx: 21.0 }, { male: 0.0 } ] } ] }, lsid: { id: UUID("0fdf7685-c6aa-42c2-8694-2a40933d24bc") }, $db: "test" } planSummary: IXSCAN { name: 1, male: 1 } keysExamined:2 docsExamined:2 cursorExhausted:1 numYields:0 nreturned:2 reslen:254 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 2ms
 
 
 
@@ -3260,8 +3260,8 @@ keyPattern = { age: 1.0 }
 2021-02-27T16:38:28.132+0800 D QUERY    [conn-5] Only one plan is available; it will be run but will not be cached. query: { $and: [ { age: { $gte: 1.0, $lte: 255.0 } }, { age: { $gte: 111.0, $lte: 255.0 } } ] } sort: {} projection: {}, planSummary: IXSCAN { age: 1 }
 2021-02-27T16:38:28.132+0800 I STORAGE  [conn-5] WT index (0x5593f05a6180) setEndPosition inclusive: 1 { : 255.0 }
 2021-02-27T16:38:28.132+0800 I STORAGE  [conn-5] WT index (0x5593f05a6180)       cmp: -1
-2021-02-27T16:38:28.132+0800 I QUERY    [conn-5] yang test....FindCmd::run,OBJ:{ _id: ObjectId('60000d033a76b04597281513'), name: "yangyazhou", age: 113.0, male: 1.0, xx: 1.0 }
-2021-02-27T16:38:28.132+0800 I QUERY    [conn-5] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600536ecf6e12f1036c4d750'), name: "yangyazhou2", age: 113.0, male: 1.0, xx: 1.0 }
-2021-02-27T16:38:28.132+0800 I QUERY    [conn-5] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795357e830577d1f018b8'), name: "yangyazhou2", age: 113.0, male: 1.0, xx: 1.0 }
-2021-02-27T16:38:28.133+0800 I QUERY    [conn-5] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600796697e830577d1f018b9'), name: "yangyazhou2", age: 113.0, male: 1.0, xx: 1.0, xx2: 1.0 }
+2021-02-27T16:38:28.132+0800 I QUERY    [conn-5] yang test....FindCmd::run,OBJ:{ _id: ObjectId('60000d033a76b04597281513'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0 }
+2021-02-27T16:38:28.132+0800 I QUERY    [conn-5] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600536ecf6e12f1036c4d750'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0 }
+2021-02-27T16:38:28.132+0800 I QUERY    [conn-5] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795357e830577d1f018b8'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0 }
+2021-02-27T16:38:28.133+0800 I QUERY    [conn-5] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600796697e830577d1f018b9'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0, xx2: 1.0 }
 2021-02-27T16:38:28.133+0800 I COMMAND  [conn-5] command test.test appName: "MongoDB Shell" command: find { find: "test", filter: { $and: [ { age: { $gte: 1.0, $lte: 255.0 } }, { age: { $gte: 111.0, $lte: 255.0 } } ] }, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } planSummary: IXSCAN { age: 1 } keysExamined:4 docsExamined:4 cursorExhausted:1 numYields:0 nreturned:4 reslen:438 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 2ms

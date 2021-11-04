@@ -168,7 +168,7 @@ private:
     //    BSON compares against scanned keys. In this case _checker will be NULL.
     //
 
-    //也就是db.test.find({"name": "yangyazhou"}).explain("allPlansExecution")返回中的indexBounds内容，指定key范围
+    //也就是db.test.find({"nacoutamgyazhou"}).explain("allPlansExecution")返回中的indexBounds内容，指定key范围
     // The key that the index cursor should start on/after.
     BSONObj _startKey;
     // The key that the index cursor should stop on/after.
