@@ -97,7 +97,7 @@
 { "_id" : ObjectId("600795247e830577d1f018b7"), "name" : "coutamg", "age" : 1133, "male" : 0, "xx" : 21 }
 
 
-2021-02-25T16:43:47.137+0800 I COMMAND  [conn-1] yang test ................ServiceEntryPointMongod::handleRequest op:2013
+2021-02-25T16:43:47.137+0800 I COMMAND  [conn-1] ddd test ................ServiceEntryPointMongod::handleRequest op:2013
 2021-02-25T16:43:47.137+0800 D COMMAND  [conn-1] run command test.$cmd { find: "test", filter: { $and: [ { $and: [ { name: "coutamg" }, { age: 1133.0 } ] }, { $and: [ { xx: 21.0 }, { male: 0.0 } ] } ] }, lsid: { id: UUID("0fdf7685-c6aa-42c2-8694-2a40933d24bc") }, $db: "test" } find
 2021-02-25T16:43:47.137+0800 D STORAGE  [conn-1] NamespaceUUIDCache: registered namespace test.test with UUID 520904ec-0432-4c00-a15d-788e2f5d707b
 2021-02-25T16:43:47.138+0800 D QUERY    [conn-1] Beginning planning...
@@ -1543,11 +1543,11 @@ keyPattern = { name: 1.0, male: 1.0 }
 ---------sortedByDiskLoc = 1
 ---------getSort = [{ male: 1 }, { name: 1 }, { name: 1, male: 1 }, ]
 2021-02-25T16:43:47.144+0800 D QUERY    [conn-1] Winning plan: IXSCAN { name: 1, male: 1 }
-2021-02-25T16:43:47.145+0800 D QUERY    [conn-1] yang test ...PlanStage::StageState MultiPlanStage::doWork 
-2021-02-25T16:43:47.145+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795217e830577d1f018b6'), name: "coutamg", age: 1133.0, male: 0.0, xx: 21.0 }
-2021-02-25T16:43:47.145+0800 D QUERY    [conn-1] yang test ...PlanStage::StageState MultiPlanStage::doWork 
-2021-02-25T16:43:47.145+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795247e830577d1f018b7'), name: "coutamg", age: 1133.0, male: 0.0, xx: 21.0 }
-2021-02-25T16:43:47.145+0800 D QUERY    [conn-1] yang test ...PlanStage::StageState MultiPlanStage::doWork 
+2021-02-25T16:43:47.145+0800 D QUERY    [conn-1] ddd test ...PlanStage::StageState MultiPlanStage::doWork 
+2021-02-25T16:43:47.145+0800 I QUERY    [conn-1] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('600795217e830577d1f018b6'), name: "coutamg", age: 1133.0, male: 0.0, xx: 21.0 }
+2021-02-25T16:43:47.145+0800 D QUERY    [conn-1] ddd test ...PlanStage::StageState MultiPlanStage::doWork 
+2021-02-25T16:43:47.145+0800 I QUERY    [conn-1] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('600795247e830577d1f018b7'), name: "coutamg", age: 1133.0, male: 0.0, xx: 21.0 }
+2021-02-25T16:43:47.145+0800 D QUERY    [conn-1] ddd test ...PlanStage::StageState MultiPlanStage::doWork 
 2021-02-25T16:43:47.145+0800 I COMMAND  [conn-1] command test.test appName: "MongoDB Shell" command: find { find: "test", filter: { $and: [ { $and: [ { name: "coutamg" }, { age: 1133.0 } ] }, { $and: [ { xx: 21.0 }, { male: 0.0 } ] } ] }, lsid: { id: UUID("0fdf7685-c6aa-42c2-8694-2a40933d24bc") }, $db: "test" } planSummary: IXSCAN { name: 1, male: 1 } keysExamined:2 docsExamined:2 fromMultiPlanner:1 cursorExhausted:1 numYields:0 nreturned:2 reslen:254 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 8ms
 
 
@@ -1563,7 +1563,7 @@ keyPattern = { name: 1.0, male: 1.0 }
 
 第二次执行> db.test.find( {$and : [{ $and : [ { name : "coutamg" }, { "age" : 1133 } ] },{ $and : [ {  xx : 21 }, { "male" : 0} ] } ]} )
 将会这cache plan，参考下面日志：
-2021-02-25T16:48:15.673+0800 I COMMAND  [conn-1] yang test ................ServiceEntryPointMongod::handleRequest op:2013
+2021-02-25T16:48:15.673+0800 I COMMAND  [conn-1] ddd test ................ServiceEntryPointMongod::handleRequest op:2013
 2021-02-25T16:48:15.673+0800 D COMMAND  [conn-1] run command test.$cmd { find: "test", filter: { $and: [ { $and: [ { name: "coutamg" }, { age: 1133.0 } ] }, { $and: [ { xx: 21.0 }, { male: 0.0 } ] } ] }, lsid: { id: UUID("0fdf7685-c6aa-42c2-8694-2a40933d24bc") }, $db: "test" } find
 2021-02-25T16:48:15.673+0800 D STORAGE  [conn-1] NamespaceUUIDCache: registered namespace test.test with UUID 520904ec-0432-4c00-a15d-788e2f5d707b
 2021-02-25T16:48:15.674+0800 D QUERY    [conn-1] Tagging the match expression according to cache data: 
@@ -1615,8 +1615,8 @@ keyPattern = { name: 1.0, male: 1.0 }
 2021-02-25T16:48:15.674+0800 I STORAGE  [conn-1] WT index (0x5593f05a6700) setEndPosition inclusive: 1 { : "coutamg", : 0.0 }
 2021-02-25T16:48:15.674+0800 I STORAGE  [conn-1] WT index (0x5593f05a6700)       cmp: -1
 2021-02-25T16:48:15.674+0800 D QUERY    [conn-1] score(1.66697) = baseScore(1) + productivity((2 advanced)/(3 works) = 0.666667) + tieBreakers(0.0001 noFetchBonus + 0.0001 noSortBonus + 0.0001 noIxisectBonus = 0.0003)
-2021-02-25T16:48:15.674+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795217e830577d1f018b6'), name: "coutamg", age: 1133.0, male: 0.0, xx: 21.0 }
-2021-02-25T16:48:15.675+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795247e830577d1f018b7'), name: "coutamg", age: 1133.0, male: 0.0, xx: 21.0 }
+2021-02-25T16:48:15.674+0800 I QUERY    [conn-1] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('600795217e830577d1f018b6'), name: "coutamg", age: 1133.0, male: 0.0, xx: 21.0 }
+2021-02-25T16:48:15.675+0800 I QUERY    [conn-1] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('600795247e830577d1f018b7'), name: "coutamg", age: 1133.0, male: 0.0, xx: 21.0 }
 2021-02-25T16:48:15.676+0800 I COMMAND  [conn-1] command test.test appName: "MongoDB Shell" command: find { find: "test", filter: { $and: [ { $and: [ { name: "coutamg" }, { age: 1133.0 } ] }, { $and: [ { xx: 21.0 }, { male: 0.0 } ] } ] }, lsid: { id: UUID("0fdf7685-c6aa-42c2-8694-2a40933d24bc") }, $db: "test" } planSummary: IXSCAN { name: 1, male: 1 } keysExamined:2 docsExamined:2 cursorExhausted:1 numYields:0 nreturned:2 reslen:254 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 2ms
 
 
@@ -1644,7 +1644,7 @@ keyPattern = { name: 1.0, male: 1.0 }
 
 
 
-2021-02-27T15:45:46.688+0800 I COMMAND  [conn-5] yang test ................ServiceEntryPointMongod::handleRequest op:2013
+2021-02-27T15:45:46.688+0800 I COMMAND  [conn-5] ddd test ................ServiceEntryPointMongod::handleRequest op:2013
 2021-02-27T15:45:46.688+0800 D COMMAND  [conn-5] run command test.$cmd { find: "test3", filter: { a: 1.0, $or: [ { b: 2.0, c: 2.0 }, { b: 3.0, c: 3.0 } ] }, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } find
 2021-02-27T15:45:46.688+0800 D STORAGE  [conn-5] NamespaceUUIDCache: registered namespace test.test3 with UUID 4c0ba900-654e-4d98-8d87-169d5222a6ba
 2021-02-27T15:45:46.689+0800 D QUERY    [conn-5] Beginning planning...
@@ -3164,11 +3164,11 @@ keyPattern = { a: 1.0, b: 1.0 }
 ---------sortedByDiskLoc = 0
 ---------getSort = [{ a: 1 }, { a: 1, b: 1 }, { b: 1 }, ]
 2021-02-27T15:45:46.697+0800 D QUERY    [conn-5] Winning plan: IXSCAN { a: 1, b: 1 }
-2021-02-27T15:45:46.697+0800 D QUERY    [conn-5] yang test ...PlanStage::StageState MultiPlanStage::doWork 
+2021-02-27T15:45:46.697+0800 D QUERY    [conn-5] ddd test ...PlanStage::StageState MultiPlanStage::doWork 
 2021-02-27T15:45:46.697+0800 I COMMAND  [conn-5] command test.test3 appName: "MongoDB Shell" command: find { find: "test3", filter: { a: 1.0, $or: [ { b: 2.0, c: 2.0 }, { b: 3.0, c: 3.0 } ] }, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } planSummary: IXSCAN { a: 1, b: 1 } keysExamined:0 docsExamined:0 fromMultiPlanner:1 cursorExhausted:1 numYields:0 nreturned:0 reslen:83 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 9ms
-2021-02-27T15:45:46.699+0800 I COMMAND  [conn-5] yang test ................ServiceEntryPointMongod::handleRequest op:2013
+2021-02-27T15:45:46.699+0800 I COMMAND  [conn-5] ddd test ................ServiceEntryPointMongod::handleRequest op:2013
 2021-02-27T15:45:46.699+0800 D COMMAND  [conn-5] run command test.$cmd { isMaster: 1.0, forShell: 1.0, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } isMaster
-2021-02-27T15:45:46.699+0800 D COMMAND  [conn-5] yang test .......... command counters:isMaster
+2021-02-27T15:45:46.699+0800 D COMMAND  [conn-5] ddd test .......... command counters:isMaster
 2021-02-27T15:45:46.699+0800 I COMMAND  [conn-5] command test.$cmd appName: "MongoDB Shell" command: isMaster { isMaster: 1.0, forShell: 1.0, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } numYields:0 reslen:208 locks:{} protocol:op_msg 0ms
 2021-02-27T15:45:47.993+0800 D -        [PeriodicTaskRunner] cleaning up unused lock buckets of the global lock manager
 2021-02-27T15:45:49.322+0800 D STORAGE  [clientcursormon] NamespaceUUIDCache: registered namespace test.test3 with UUID 4c0ba900-654e-4d98-8d87-169d5222a6ba
@@ -3188,7 +3188,7 @@ keyPattern = { a: 1.0, b: 1.0 }
 以下查询会有合并
 > db.test.find({"$and":[{"age":{"$gte":1,"$lte":255}}, {"age":{"$gte":111,"$lte":255}}]}, {"xx":1})
 
-2021-02-27T16:38:28.130+0800 I COMMAND  [conn-5] yang test ................ServiceEntryPointMongod::handleRequest op:2013
+2021-02-27T16:38:28.130+0800 I COMMAND  [conn-5] ddd test ................ServiceEntryPointMongod::handleRequest op:2013
 2021-02-27T16:38:28.131+0800 D COMMAND  [conn-5] run command test.$cmd { find: "test", filter: { $and: [ { age: { $gte: 1.0, $lte: 255.0 } }, { age: { $gte: 111.0, $lte: 255.0 } } ] }, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } find
 2021-02-27T16:38:28.131+0800 D STORAGE  [conn-5] NamespaceUUIDCache: registered namespace test.test with UUID 520904ec-0432-4c00-a15d-788e2f5d707b
 2021-02-27T16:38:28.131+0800 D QUERY    [conn-5] Beginning planning...
@@ -3260,8 +3260,8 @@ keyPattern = { age: 1.0 }
 2021-02-27T16:38:28.132+0800 D QUERY    [conn-5] Only one plan is available; it will be run but will not be cached. query: { $and: [ { age: { $gte: 1.0, $lte: 255.0 } }, { age: { $gte: 111.0, $lte: 255.0 } } ] } sort: {} projection: {}, planSummary: IXSCAN { age: 1 }
 2021-02-27T16:38:28.132+0800 I STORAGE  [conn-5] WT index (0x5593f05a6180) setEndPosition inclusive: 1 { : 255.0 }
 2021-02-27T16:38:28.132+0800 I STORAGE  [conn-5] WT index (0x5593f05a6180)       cmp: -1
-2021-02-27T16:38:28.132+0800 I QUERY    [conn-5] yang test....FindCmd::run,OBJ:{ _id: ObjectId('60000d033a76b04597281513'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0 }
-2021-02-27T16:38:28.132+0800 I QUERY    [conn-5] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600536ecf6e12f1036c4d750'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0 }
-2021-02-27T16:38:28.132+0800 I QUERY    [conn-5] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600795357e830577d1f018b8'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0 }
-2021-02-27T16:38:28.133+0800 I QUERY    [conn-5] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600796697e830577d1f018b9'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0, xx2: 1.0 }
+2021-02-27T16:38:28.132+0800 I QUERY    [conn-5] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('60000d033a76b04597281513'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0 }
+2021-02-27T16:38:28.132+0800 I QUERY    [conn-5] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('600536ecf6e12f1036c4d750'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0 }
+2021-02-27T16:38:28.132+0800 I QUERY    [conn-5] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('600795357e830577d1f018b8'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0 }
+2021-02-27T16:38:28.133+0800 I QUERY    [conn-5] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('600796697e830577d1f018b9'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0, xx2: 1.0 }
 2021-02-27T16:38:28.133+0800 I COMMAND  [conn-5] command test.test appName: "MongoDB Shell" command: find { find: "test", filter: { $and: [ { age: { $gte: 1.0, $lte: 255.0 } }, { age: { $gte: 111.0, $lte: 255.0 } } ] }, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } planSummary: IXSCAN { age: 1 } keysExamined:4 docsExamined:4 cursorExhausted:1 numYields:0 nreturned:4 reslen:438 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 2ms

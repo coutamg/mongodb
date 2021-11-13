@@ -46,7 +46,7 @@ namespace {
  * corresponding to the cursor id passed from the application. In order to generate these results,
  * may issue getMore commands to remote nodes in one or more shards.
  */
-//class ClusterGetMoreCmd final : public BasicCommand { yang add change
+//class ClusterGetMoreCmd final : public BasicCommand { ddd add change
 class ClusterGetMoreCmd : public BasicCommand {
     MONGO_DISALLOW_COPYING(ClusterGetMoreCmd);
 
@@ -119,8 +119,8 @@ public:
         }
 
 		
-		//log() << "yang test ..... getmore resp:" << response.toBSON().toString(false);
-		log() << "yang test .... getmore cmd:" << cmdObj.toString(false);
+		//log() << "ddd test ..... getmore resp:" << response.toBSON().toString(false);
+		log() << "ddd test .... getmore cmd:" << cmdObj.toString(false);
 		Client* client = opCtx->getClient();
 		if (client->hasRemote()) {
             const HostAndPort hp = client->getRemote();

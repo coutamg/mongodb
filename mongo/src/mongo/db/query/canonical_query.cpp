@@ -146,6 +146,7 @@ StatusWith<std::unique_ptr<CanonicalQuery>> CanonicalQuery::canonicalize(
 
 //FindCmd::run     PlanCacheListPlans::list调用，
 //从qr中获取_qr，_isIsolated，_proj等信息存储到CanonicalQuery类中
+// _isIsolated 已经被废弃，4.0 用事务代替
 // static
 StatusWith<std::unique_ptr<CanonicalQuery>> 
   CanonicalQuery::canonicalize(
@@ -198,7 +199,19 @@ StatusWith<std::unique_ptr<CanonicalQuery>>
 	//树型的expression结构，该原始树形结构中的节点是有一个个的查询操作符
 	//最终存入CanonicalQuery._root
     std::unique_ptr<MatchExpression> me = std::move(statusWithMatcher.getValue());
-
+	LOG(1) << "ddd test expression: " << me->toString();
+	/*
+		db.inventory.find( {$and : [{ $and : [ { price : 0.99 }, { count : 99 } ] },
+									{ $and : [ { sale : true }, { qty : 20}]}] } )
+	
+	$and
+		$and
+			price == 0.99
+			count == 99.0
+		$and
+			sale == true
+			qty == 20.0
+	*/
     // Make the CQ we'll hopefully return.
     //构造CanonicalQuery
     std::unique_ptr<CanonicalQuery> cq(new CanonicalQuery());
@@ -215,6 +228,16 @@ StatusWith<std::unique_ptr<CanonicalQuery>>
     if (!initStatus.isOK()) {
         return initStatus;
     }
+	LOG(1) << "ddd test cq: " << cq->toString();
+	/*
+		ddd test cq: ns=test.inventoryTree: 
+	
+	$and
+		count == 99.0
+		price == 0.99
+		qty == 20.0
+		sale == true
+	*/
     return std::move(cq);
 }
 
@@ -271,6 +294,7 @@ Status CanonicalQuery::init(OperationContext* opCtx,
     _collator = std::move(collator);
 
     _canHaveNoopMatchNodes = canHaveNoopMatchNodes;
+	// isolated 在4.0被废弃
     _isIsolated = QueryRequest::isQueryIsolated(_qr->getFilter());
     if (_isIsolated) {
         RARELY {

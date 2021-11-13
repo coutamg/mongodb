@@ -64,7 +64,7 @@
 
 
 
-2021-02-27T21:04:08.504+0800 I COMMAND  [conn-5] yang test ................ServiceEntryPointMongod::handleRequest op:2013
+2021-02-27T21:04:08.504+0800 I COMMAND  [conn-5] ddd test ................ServiceEntryPointMongod::handleRequest op:2013
 2021-02-27T21:04:08.504+0800 D COMMAND  [conn-5] run command test.$cmd { find: "test3", filter: { a: 5.0, b: 6.0 }, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } find
 2021-02-27T21:04:08.504+0800 D STORAGE  [conn-5] NamespaceUUIDCache: registered namespace test.test3 with UUID 4c0ba900-654e-4d98-8d87-169d5222a6ba
 2021-02-27T21:04:08.504+0800 D QUERY    [conn-5] Beginning planning...
@@ -315,13 +315,13 @@ keyPattern = { a: 1.0, c: 1.0 }
 ---------sortedByDiskLoc = 0
 ---------getSort = [{ a: 1 }, { a: 1, c: 1 }, { c: 1 }, ]
 2021-02-27T21:04:08.508+0800 D QUERY    [conn-5] Winning plan: IXSCAN { a: 1, c: 1 }
-2021-02-27T21:04:08.509+0800 D QUERY    [conn-5] yang test ...PlanStage::StageState MultiPlanStage::doWork 
-2021-02-27T21:04:08.509+0800 I QUERY    [conn-5] yang test....FindCmd::run,OBJ:{ _id: ObjectId('6039f5bcce1d8b2a60b52704'), a: 5.0, b: 6.0, c: 7.0, d: 8.0, e: 9.0 }
-2021-02-27T21:04:08.509+0800 D QUERY    [conn-5] yang test ...PlanStage::StageState MultiPlanStage::doWork 
+2021-02-27T21:04:08.509+0800 D QUERY    [conn-5] ddd test ...PlanStage::StageState MultiPlanStage::doWork 
+2021-02-27T21:04:08.509+0800 I QUERY    [conn-5] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('6039f5bcce1d8b2a60b52704'), a: 5.0, b: 6.0, c: 7.0, d: 8.0, e: 9.0 }
+2021-02-27T21:04:08.509+0800 D QUERY    [conn-5] ddd test ...PlanStage::StageState MultiPlanStage::doWork 
 2021-02-27T21:04:08.509+0800 I COMMAND  [conn-5] command test.test3 appName: "MongoDB Shell" command: find { find: "test3", filter: { a: 5.0, b: 6.0 }, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } planSummary: IXSCAN { a: 1, c: 1 } keysExamined:1 docsExamined:1 fromMultiPlanner:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:163 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 5ms
-2021-02-27T21:04:08.511+0800 I COMMAND  [conn-5] yang test ................ServiceEntryPointMongod::handleRequest op:2013
+2021-02-27T21:04:08.511+0800 I COMMAND  [conn-5] ddd test ................ServiceEntryPointMongod::handleRequest op:2013
 2021-02-27T21:04:08.511+0800 D COMMAND  [conn-5] run command test.$cmd { isMaster: 1.0, forShell: 1.0, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } isMaster
-2021-02-27T21:04:08.511+0800 D COMMAND  [conn-5] yang test .......... command counters:isMaster
+2021-02-27T21:04:08.511+0800 D COMMAND  [conn-5] ddd test .......... command counters:isMaster
 2021-02-27T21:04:08.511+0800 I COMMAND  [conn-5] command test.$cmd appName: "MongoDB Shell" command: isMaster { isMaster: 1.0, forShell: 1.0, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } numYields:0 reslen:208 locks:{} protocol:op_msg 0ms
 2021-02-27T21:04:08.697+0800 D -        [PeriodicTaskRunner] cleaning up unused lock buckets of the global lock manager
 
@@ -372,7 +372,7 @@ keyPattern = { a: 1.0, c: 1.0 }
 
 
 
-2021-02-27T21:04:13.471+0800 I COMMAND  [conn-5] yang test ................ServiceEntryPointMongod::handleRequest op:2013
+2021-02-27T21:04:13.471+0800 I COMMAND  [conn-5] ddd test ................ServiceEntryPointMongod::handleRequest op:2013
 2021-02-27T21:04:13.471+0800 D COMMAND  [conn-5] run command test.$cmd { find: "test3", filter: { a: 5.0, b: 6.0 }, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } find
 2021-02-27T21:04:13.472+0800 D STORAGE  [conn-5] NamespaceUUIDCache: registered namespace test.test3 with UUID 4c0ba900-654e-4d98-8d87-169d5222a6ba
 2021-02-27T21:04:13.472+0800 D QUERY    [conn-5] Tagging the match expression according to cache data: 
@@ -412,11 +412,11 @@ keyPattern = { a: 1.0, c: 1.0 }
 2021-02-27T21:04:13.472+0800 I STORAGE  [conn-5] WT index (0x5593f082e300) setEndPosition inclusive: 1 { : 5.0, : MaxKey }
 2021-02-27T21:04:13.472+0800 I STORAGE  [conn-5] WT index (0x5593f082e300)       cmp: 1
 2021-02-27T21:04:13.472+0800 D QUERY    [conn-5] score(1.5003) = baseScore(1) + productivity((1 advanced)/(2 works) = 0.5) + tieBreakers(0.0001 noFetchBonus + 0.0001 noSortBonus + 0.0001 noIxisectBonus = 0.0003)
-2021-02-27T21:04:13.472+0800 I QUERY    [conn-5] yang test....FindCmd::run,OBJ:{ _id: ObjectId('6039f5bcce1d8b2a60b52704'), a: 5.0, b: 6.0, c: 7.0, d: 8.0, e: 9.0 }
+2021-02-27T21:04:13.472+0800 I QUERY    [conn-5] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('6039f5bcce1d8b2a60b52704'), a: 5.0, b: 6.0, c: 7.0, d: 8.0, e: 9.0 }
 2021-02-27T21:04:13.473+0800 I COMMAND  [conn-5] command test.test3 appName: "MongoDB Shell" command: find { find: "test3", filter: { a: 5.0, b: 6.0 }, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } planSummary: IXSCAN { a: 1, c: 1 } keysExamined:1 docsExamined:1 cursorExhausted:1 numYields:0 nreturned:1 reslen:163 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 1ms
-2021-02-27T21:04:13.475+0800 I COMMAND  [conn-5] yang test ................ServiceEntryPointMongod::handleRequest op:2013
+2021-02-27T21:04:13.475+0800 I COMMAND  [conn-5] ddd test ................ServiceEntryPointMongod::handleRequest op:2013
 2021-02-27T21:04:13.475+0800 D COMMAND  [conn-5] run command test.$cmd { isMaster: 1.0, forShell: 1.0, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } isMaster
-2021-02-27T21:04:13.475+0800 D COMMAND  [conn-5] yang test .......... command counters:isMaster
+2021-02-27T21:04:13.475+0800 D COMMAND  [conn-5] ddd test .......... command counters:isMaster
 2021-02-27T21:04:13.475+0800 I COMMAND  [conn-5] command test.$cmd appName: "MongoDB Shell" command: isMaster { isMaster: 1.0, forShell: 1.0, lsid: { id: UUID("1b90e5a7-835f-42b6-a0ba-3ca08773329c") }, $db: "test" } numYields:0 reslen:208 locks:{} protocol:op_msg 0ms
 2021-02-27T21:04:13.698+0800 D -        [PeriodicTaskRunner] cleaning up unused lock buckets of the global lock manager
 2021-02-27T21:04:13.831+0800 D STORAGE  [clientcursormon] NamespaceUUIDCache: registered namespace test.test3 with UUID 4c0ba900-654e-4d98-8d87-169d5222a6ba

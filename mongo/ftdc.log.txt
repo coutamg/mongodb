@@ -191,35 +191,35 @@ go get github.com/10gen/ftdc-utils
 			"Avg": 0,
 			"Var": 0
 		},
-		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-yang-0.172.23.240.29:28018.available": {
+		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-ddd-0.172.23.240.29:28018.available": {
 			"Avg": 0,
 			"Var": 0
 		},
-		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-yang-0.172.23.240.29:28018.created": {
+		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-ddd-0.172.23.240.29:28018.created": {
 			"Avg": 0,
 			"Var": 0
 		},
-		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-yang-0.172.23.240.29:28018.inUse": {
+		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-ddd-0.172.23.240.29:28018.inUse": {
 			"Avg": 0,
 			"Var": 0
 		},
-		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-yang-0.172.23.240.29:28018.refreshing": {
+		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-ddd-0.172.23.240.29:28018.refreshing": {
 			"Avg": 0,
 			"Var": 0
 		},
-		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-yang-0.poolAvailable": {
+		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-ddd-0.poolAvailable": {
 			"Avg": 0,
 			"Var": 0
 		},
-		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-yang-0.poolCreated": {
+		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-ddd-0.poolCreated": {
 			"Avg": 0,
 			"Var": 0
 		},
-		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-yang-0.poolInUse": {
+		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-ddd-0.poolInUse": {
 			"Avg": 0,
 			"Var": 0
 		},
-		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-yang-0.poolRefreshing": {
+		"connPoolStats.pools.NetworkInterfaceASIO-TaskExecutorPool-ddd-0.poolRefreshing": {
 			"Avg": 0,
 			"Var": 0
 		},

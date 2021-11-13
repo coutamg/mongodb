@@ -39,7 +39,7 @@ namespace mongo {
 Status ElementPath::init(StringData path) {
     _shouldTraverseNonleafArrays = true;
     _shouldTraverseLeafArray = true;
-	//path也就是{ aa : 0.99 }或者{ aa: { $lt: "0.99" } }
+	//path也就是{ aa : 0.99 }或者{ aa: { $lt: "0.99" } }中的 aa
 	//FieldRef::parse
     _fieldRef.parse(path);
     return Status::OK();

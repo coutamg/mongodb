@@ -96,14 +96,18 @@ public:
  上面的subclass分别对应以下类:
  GTEMatchExpression GTMatchExpression LTMatchExpression LTEMatchExpression EqualityMatchExpression
  */ //parseComparison中会使用
+ // ComparisonMatchExpression继承LeafMatchExpression，LeafMatchExpression继承PathMatchExpression
 class ComparisonMatchExpression : public LeafMatchExpression {
 public:
     explicit ComparisonMatchExpression(MatchType type) : LeafMatchExpression(type) {}
 
+	// 例如 {a : 99.0}, 则 path = a, rhs = {a : 99.0}
     Status init(StringData path, const BSONElement& rhs);
 
     virtual ~ComparisonMatchExpression() {}
 
+	// MatchExpression::matchesBSON 与 matchesBSONElement -> matches -> 
+	// 子类的matchesSingleElement
     bool matchesSingleElement(const BSONElement&, MatchDetails* details = nullptr) const final;
 
     virtual void debugString(StringBuilder& debug, int level = 0) const;
@@ -144,7 +148,7 @@ protected:
         _collator = collator;
     }
 
-    //parseComparison调用，path也就是{ aa : 0.99 }或者{ aa: { $lt: "0.99" } },
+    //parseComparison调用，path也就是{ aa : 0.99 }或者{ aa: { $lt: "0.99" } }中的 aa,
     //rhs为path对应的原始bson
     BSONElement _rhs;
 

@@ -101,7 +101,7 @@ test2
 db.test.find( {$or : [{ $and : [ { name : "coutamg" }, { "age" : 99 } ] },{ $or : [ {  name : "coutamg" }, { "xx" : 3} ] } ]} ).sort({"name":1}).limit(7) 查询对应query日志打印如下:
 
 
-2021-02-05T09:59:27.802+0800 I COMMAND  [conn-2] yang test ................ServiceEntryPointMongod::handleRequest op:2013
+2021-02-05T09:59:27.802+0800 I COMMAND  [conn-2] ddd test ................ServiceEntryPointMongod::handleRequest op:2013
 2021-02-05T09:59:27.803+0800 D COMMAND  [conn-2] run command test.$cmd { find: "test", filter: { $or: [ { $and: [ { name: "coutamg" }, { age: 99.0 } ] }, { $or: [ { name: "coutamg" }, { xx: 3.0 } ] } ] }, limit: 7.0, singleBatch: false, sort: { name: 1.0 }, lsid: { id: UUID("3713a047-3dc6-474f-b2e9-2717b16afc4d") }, $db: "test" } find
 2021-02-05T09:59:27.803+0800 D STORAGE  [conn-2] NamespaceUUIDCache: registered namespace test.test with UUID 520904ec-0432-4c00-a15d-788e2f5d707b
 2021-02-05T09:59:27.803+0800 D QUERY    [conn-2] Running query as sub-queries: query: { $or: [ { $and: [ { name: "coutamg" }, { age: 99.0 } ] }, { $or: [ { name: "coutamg" }, { xx: 3.0 } ] } ] } sort: { name: 1.0 } projection: {} limit: 7
@@ -1010,14 +1010,14 @@ keyPattern = { name: 1.0 }
 ---------------getSort = [{ name: 1 }, ]
 2021-02-05T09:59:27.813+0800 I STORAGE  [conn-2] WT index (0x55e650d93880) setEndPosition inclusive: 1 { : MaxKey }
 2021-02-05T09:59:27.813+0800 I STORAGE  [conn-2] WT index (0x55e650d93880)       cmp: 1
-2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] yang test....FindCmd::run,OBJ:{ _id: ObjectId('6005367bf6e12f1036c4d74d'), xx: 3.0 }
-2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] yang test....FindCmd::run,OBJ:{ _id: ObjectId('5ffd6df45ca3bde0fbfe1403'), name: "coutamg", age: 11.0, male: 1.0 }
-2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] yang test....FindCmd::run,OBJ:{ _id: ObjectId('5ffd6dfe5ca3bde0fbfe1404'), name: "coutamg", age: 11.0, male: 1.0, xx: 1.0 }
-2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] yang test....FindCmd::run,OBJ:{ _id: ObjectId('60000d033a76b04597281513'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0 }
+2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('6005367bf6e12f1036c4d74d'), xx: 3.0 }
+2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('5ffd6df45ca3bde0fbfe1403'), name: "coutamg", age: 11.0, male: 1.0 }
+2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('5ffd6dfe5ca3bde0fbfe1404'), name: "coutamg", age: 11.0, male: 1.0, xx: 1.0 }
+2021-02-05T09:59:27.813+0800 I QUERY    [conn-2] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('60000d033a76b04597281513'), name: "coutamg", age: 113.0, male: 1.0, xx: 1.0 }
 2021-02-05T09:59:27.814+0800 I COMMAND  [conn-2] command test.test appName: "MongoDB Shell" command: find { find: "test", filter: { $or: [ { $and: [ { name: "coutamg" }, { age: 99.0 } ] }, { $or: [ { name: "coutamg" }, { xx: 3.0 } ] } ] }, limit: 7.0, singleBatch: false, sort: { name: 1.0 }, lsid: { id: UUID("3713a047-3dc6-474f-b2e9-2717b16afc4d") }, $db: "test" } planSummary: IXSCAN { name: 1 } keysExamined:13 docsExamined:13 cursorExhausted:1 numYields:0 nreturned:4 reslen:362 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 10ms
-2021-02-05T09:59:27.819+0800 I COMMAND  [conn-2] yang test ................ServiceEntryPointMongod::handleRequest op:2013
+2021-02-05T09:59:27.819+0800 I COMMAND  [conn-2] ddd test ................ServiceEntryPointMongod::handleRequest op:2013
 2021-02-05T09:59:27.819+0800 D COMMAND  [conn-2] run command test.$cmd { isMaster: 1.0, forShell: 1.0, lsid: { id: UUID("3713a047-3dc6-474f-b2e9-2717b16afc4d") }, $db: "test" } isMaster
-2021-02-05T09:59:27.819+0800 D COMMAND  [conn-2] yang test .......... command counters:isMaster
+2021-02-05T09:59:27.819+0800 D COMMAND  [conn-2] ddd test .......... command counters:isMaster
 2021-02-05T09:59:27.819+0800 I COMMAND  [conn-2] command test.$cmd appName: "MongoDB Shell" command: isMaster { isMaster: 1.0, forShell: 1.0, lsid: { id: UUID("3713a047-3dc6-474f-b2e9-2717b16afc4d") }, $db: "test" } numYields:0 reslen:208 locks:{} protocol:op_msg 0ms
 2021-02-05T09:59:28.303+0800 D STORAGE  [clientcursormon] NamespaceUUIDCache: registered namespace test.test2 with UUID f266c460-dafe-4d6b-a7fa-dc351c25c6cb
 2021-02-05T09:59:28.303+0800 D STORAGE  [clientcursormon] NamespaceUUIDCache: registered namespace test.test with UUID 520904ec-0432-4c00-a15d-788e2f5d707b
@@ -1101,7 +1101,7 @@ keyPattern = { name: 1.0 }
 2021-01-24T22:27:44.615+0800 D STORAGE  [clientcursormon] NamespaceUUIDCache: registered namespace admin.system.version with UUID ab5bbbc2-9a13-4905-bd4d-6701da1ffa4c
 2021-01-24T22:27:44.615+0800 D STORAGE  [clientcursormon] NamespaceUUIDCache: registered namespace config.system.sessions with UUID 509fde18-9764-4f45-9262-e9be5712711f
 2021-01-24T22:27:45.603+0800 D -        [PeriodicTaskRunner] cleaning up unused lock buckets of the global lock manager
-2021-01-24T22:27:47.154+0800 I COMMAND  [conn-1] yang test ................ServiceEntryPointMongod::handleRequest op:2013
+2021-01-24T22:27:47.154+0800 I COMMAND  [conn-1] ddd test ................ServiceEntryPointMongod::handleRequest op:2013
 2021-01-24T22:27:47.154+0800 D COMMAND  [conn-1] run command test.$cmd { find: "test2", filter: { name: "coutamg" }, limit: 3.0, singleBatch: false, sort: { age: 1.0 }, projection: { age: 1.0 }, lsid: { id: UUID("b1982310-f0a8-4589-abae-b485fe49eff2") }, $db: "test" } find
 2021-01-24T22:27:47.154+0800 D STORAGE  [conn-1] NamespaceUUIDCache: registered namespace test.test2 with UUID f266c460-dafe-4d6b-a7fa-dc351c25c6cb
 2021-01-24T22:27:47.154+0800 D QUERY    [conn-1] Beginning planning...
@@ -1474,13 +1474,13 @@ keyPattern = { name: 1.0, age: 1.0 }
 ---------------------sortedByDiskLoc = 0
 ---------------------getSort = [{ age: 1 }, { name: 1 }, { name: 1, age: 1 }, ]
 2021-01-24T22:27:47.158+0800 D QUERY    [conn-1] Winning plan: IXSCAN { name: 1, age: 1 }
-2021-01-24T22:27:47.158+0800 D QUERY    [conn-1] yang test ...PlanStage::StageState MultiPlanStage::doWork 
-2021-01-24T22:27:47.158+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600bee823a3461be717745ba'), age: 11.0 }
-2021-01-24T22:27:47.158+0800 D QUERY    [conn-1] yang test ...PlanStage::StageState MultiPlanStage::doWork 
-2021-01-24T22:27:47.158+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('600bee843a3461be717745bb'), age: 112.0 }
-2021-01-24T22:27:47.158+0800 D QUERY    [conn-1] yang test ...PlanStage::StageState MultiPlanStage::doWork 
-2021-01-24T22:27:47.158+0800 I QUERY    [conn-1] yang test....FindCmd::run,OBJ:{ _id: ObjectId('60092fd71e227e5cd1191fa9'), age: 332.0 }
-2021-01-24T22:27:47.158+0800 D QUERY    [conn-1] yang test ...PlanStage::StageState MultiPlanStage::doWork 
+2021-01-24T22:27:47.158+0800 D QUERY    [conn-1] ddd test ...PlanStage::StageState MultiPlanStage::doWork 
+2021-01-24T22:27:47.158+0800 I QUERY    [conn-1] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('600bee823a3461be717745ba'), age: 11.0 }
+2021-01-24T22:27:47.158+0800 D QUERY    [conn-1] ddd test ...PlanStage::StageState MultiPlanStage::doWork 
+2021-01-24T22:27:47.158+0800 I QUERY    [conn-1] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('600bee843a3461be717745bb'), age: 112.0 }
+2021-01-24T22:27:47.158+0800 D QUERY    [conn-1] ddd test ...PlanStage::StageState MultiPlanStage::doWork 
+2021-01-24T22:27:47.158+0800 I QUERY    [conn-1] ddd test....FindCmd::run,OBJ:{ _id: ObjectId('60092fd71e227e5cd1191fa9'), age: 332.0 }
+2021-01-24T22:27:47.158+0800 D QUERY    [conn-1] ddd test ...PlanStage::StageState MultiPlanStage::doWork 
 2021-01-24T22:27:47.158+0800 I COMMAND  [conn-1] command test.test2 appName: "MongoDB Shell" command: find { find: "test2", filter: { name: "coutamg" }, limit: 3.0, singleBatch: false, sort: { age: 1.0 }, projection: { age: 1.0 }, lsid: { id: UUID("b1982310-f0a8-4589-abae-b485fe49eff2") }, $db: "test" } planSummary: IXSCAN { name: 1, age: 1 } keysExamined:3 docsExamined:3 fromMultiPlanner:1 cursorExhausted:1 numYields:0 nreturned:3 reslen:197 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_msg 4ms
 2021-01-24T22:27:48.617+0800 D STORAGE  [clientcursormon] NamespaceUUIDCache: registered namespace test.test2 with UUID f266c460-dafe-4d6b-a7fa-dc351c25c6cb
 2021-01-24T22:27:48.617+0800 D STORAGE  [clientcursormon] NamespaceUUIDCache: registered namespace test.test with UUID 520904ec-0432-4c00-a15d-788e2f5d707b

@@ -62,7 +62,7 @@ BSONObj buildErrReply(const DBException& ex) {
 /*
 
 Breakpoint 1, mongo::ServiceEntryPointMongos::handleRequest (this=<optimized out>, opCtx=0x7f957f43a640, message=...) at src/mongo/s/service_entry_point_mongos.cpp:76
-76              LOG(1) << "yang test ........ ServiceEntryPointMongos::handleRequest thread name:" << StringData(name) << "  op:" << (int)op;
+76              LOG(1) << "ddd test ........ ServiceEntryPointMongos::handleRequest thread name:" << StringData(name) << "  op:" << (int)op;
 (gdb) bt
 #0  mongo::ServiceEntryPointMongos::handleRequest (this=<optimized out>, opCtx=0x7f957f43a640, message=...) at src/mongo/s/service_entry_point_mongos.cpp:76
 #1  0x00007f957be86f5a in mongo::ServiceStateMachine::_processMessage (this=this@entry=0x7f957f40a710, guard=...) at src/mongo/transport/service_state_machine.cpp:424
@@ -147,8 +147,8 @@ DbResponse ServiceEntryPointMongos::handleRequest(OperationContext* opCtx, const
 	memset(name, 0, 100);
 	prctl(PR_GET_NAME, name);
 
-	//[conn----yangtest1] yang test ........ ServiceEntryPointMongos::handleRequest thread name:conn---.ngtest1  op:2004
-	LOG(1) << "yang test ........ ServiceEntryPointMongos::handleRequest thread name:" << StringData(name) << "  op:" << (int)op;
+	//[conn----yangtest1] ddd test ........ ServiceEntryPointMongos::handleRequest thread name:conn---.ngtest1  op:2004
+	LOG(1) << "ddd test ........ ServiceEntryPointMongos::handleRequest thread name:" << StringData(name) << "  op:" << (int)op;
 	*/
 	
     // This exception will not be returned to the caller, but will be logged and will close the

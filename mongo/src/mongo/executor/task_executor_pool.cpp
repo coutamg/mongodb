@@ -42,7 +42,7 @@ namespace executor {
 
 // If less than or equal to 0, the suggested pool size will be determined by the number of cores. If
 // set to a particular positive value, this will be used as the pool size.
-MONGO_EXPORT_SERVER_PARAMETER(taskExecutorPoolSize, int, 1);//0); yang add change
+MONGO_EXPORT_SERVER_PARAMETER(taskExecutorPoolSize, int, 1);//0); ddd add change
 
 //makeShardingTaskExecutorPoolµ÷ÓÃ
 size_t TaskExecutorPool::getSuggestedPoolSize() {

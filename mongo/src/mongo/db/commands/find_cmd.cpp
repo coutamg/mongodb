@@ -390,12 +390,12 @@ at src/mongo/db/commands/find_cmd.cpp:311
                 break;
             }
 /*
-2018-11-01T15:50:35.766+0800 I QUERY	[conn1] yang test....FindCmd::run,OBJ:{ _id: 296446204, k: 2927256, c: "	 
+2018-11-01T15:50:35.766+0800 I QUERY	[conn1] ddd test....FindCmd::run,OBJ:{ _id: 296446204, k: 2927256, c: "	 
 57107967939-44137227834-24587740032-15980392750-15036476717-35100161171-04316050421-66523371550-06261438843-50432265427", 
 pad: "	  13080577566-76793693218-00011035587-01443926745-80818518372", yangtest1: "	 13080577566-76793693218-00011035587
 -01443926745-80818518372", yangtest2: " 	13080577566-76793693218-00011035587-01443926745-80818518372" }
 */
-			log() << "yang test....FindCmd::run,OBJ:"<< (obj); //obj为按照PlanExecutor获取到的结果
+			log() << "ddd test....FindCmd::run,OBJ:"<< (obj); //obj为按照PlanExecutor获取到的结果
             // Add result to output buffer.
             firstBatch.append(obj); //添加到firstBatch，在后面通过firstBatch.done返回客户端
             numResults++;

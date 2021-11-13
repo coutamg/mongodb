@@ -94,7 +94,7 @@ OpMsg OpMsg::parse(const Message& message) try {
     invariant(!message.empty());
     invariant(message.operation() == dbMsg);
 
-	//LOG(1) << "yang test ..... OpMsg::parse";
+	//LOG(1) << "ddd test ..... OpMsg::parse";
 	//获取flagBits
     const uint32_t flags = OpMsg::flags(message);
 	//flagBits有效性检查
@@ -122,7 +122,7 @@ OpMsg OpMsg::parse(const Message& message) try {
     while (!sectionsBuf.atEof()) {
 		//BufReader::read
         const auto sectionKind = sectionsBuf.read<Section>();
-		//LOG(1) << "yang test ..... OpMsg::parse  sectionKind:" << uint32_t(sectionKind);
+		//LOG(1) << "ddd test ..... OpMsg::parse  sectionKind:" << uint32_t(sectionKind);
 		//kind为0对应命令请求body内容，内容通过bson报错
         switch (sectionKind) {
 			//body kind

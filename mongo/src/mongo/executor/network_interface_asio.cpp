@@ -174,7 +174,7 @@ std::string NetworkInterfaceASIO::getHostName() {
 //initializeGlobalShardingState->TaskExecutorPool::startup->ShardingTaskExecutor::startup->ThreadPoolTaskExecutor::startup
 //ThreadPoolTaskExecutor::startup  
 void NetworkInterfaceASIO::startup() { 
-	LOG(2) << "yang test ............ NetworkInterfaceASIO::startup:" << (int)kIOServiceWorkers;
+	LOG(2) << "ddd test ............ NetworkInterfaceASIO::startup:" << (int)kIOServiceWorkers;
     _serviceRunners.resize(kIOServiceWorkers);
     for (std::size_t i = 0; i < kIOServiceWorkers; ++i) { 
         _serviceRunners[i] = stdx::thread([this, i]() {

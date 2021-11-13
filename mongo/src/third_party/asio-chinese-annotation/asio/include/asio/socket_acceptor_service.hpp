@@ -315,7 +315,7 @@ public:
 #endif // defined(ASIO_HAS_MOVE)
 
   /// Start an asynchronous accept.
-  //template <typename Protocol1, typename SocketService, typename AcceptHandler> //yang add
+  //template <typename Protocol1, typename SocketService, typename AcceptHandler> //ddd add
   ASIO_INITFN_RESULT_TYPE(AcceptHandler,
       void (asio::error_code))
   async_accept(implementation_type& impl,

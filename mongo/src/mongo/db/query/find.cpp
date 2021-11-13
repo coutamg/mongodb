@@ -522,7 +522,7 @@ std::string runQuery(OperationContext* opCtx,
     CurOp& curOp = *CurOp::get(opCtx);
     curOp.ensureStarted(); //确定该操作的起始时间
 
-	LOG(2) << "yang test Running query: ";
+	LOG(2) << "ddd test Running query: ";
     uassert(ErrorCodes::InvalidNamespace,
             str::stream() << "Invalid ns [" << nss.ns() << "]",
             nss.isValid());

@@ -953,7 +953,7 @@ Status storeMongodOptions(const moe::Environment& params) {
     if (params.count("storage.engine")) {
         storageGlobalParams.engine = params["storage.engine"].as<string>();
         storageGlobalParams.engineSetByUser = true;
-		cout << "yang test .... storeMongodOptions engineSetByUser" << endl;
+		cout << "ddd test .... storeMongodOptions engineSetByUser" << endl;
     }
 
     if (params.count("storage.dbPath")) {

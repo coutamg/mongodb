@@ -383,7 +383,7 @@ StatusWith<BSONObj> IndexCatalogImpl::createIndexOnEmptyCollection(OperationCont
     invariant(opCtx->lockState()->isCollectionLockedForMode(_collection->ns().toString(), MODE_X));
     invariant(_collection->numRecords(opCtx) == 0);
 
-	//log() << "yang test .... IndexCatalogImpl::createIndexOnEmptyCollection";
+	//log() << "ddd test .... IndexCatalogImpl::createIndexOnEmptyCollection";
     _checkMagic();
     Status status = checkUnfinished();
     if (!status.isOK())
@@ -469,7 +469,7 @@ Status IndexCatalogImpl::IndexBuildBlock::init() {
     auto descriptor = stdx::make_unique<IndexDescriptor>(
         _collection, IndexNames::findPluginName(keyPattern), _spec);
 
-	//log() << "yang test ... IndexCatalogImpl::IndexBuildBlock::init";
+	//log() << "ddd test ... IndexCatalogImpl::IndexBuildBlock::init";
 	//获取索引名信息
 	//IndexDescriptor::indexName 
     _indexName = descriptor->indexName();

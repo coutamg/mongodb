@@ -198,8 +198,8 @@ void ClusterWriter::write(OperationContext* opCtx,
 			//ChunkManagerTargeter::ChunkManagerTargeter
             ChunkManagerTargeter targeter(request.getTargetingNS(), &targeterStats);
 
-			//yang test ............... ClusterWriter::write  nss:test.test targeter ns:test.test
-			//LOG(3) << "yang test ............... ClusterWriter::write  nss:" << request.getNS().ns() << " targeter ns:" << request.getTargetingNS().ns();
+			//ddd test ............... ClusterWriter::write  nss:test.test targeter ns:test.test
+			//LOG(3) << "ddd test ............... ClusterWriter::write  nss:" << request.getNS().ns() << " targeter ns:" << request.getTargetingNS().ns();
 
 			//ChunkManagerTargeter::init 获取路由信息
 			Status targetInitStatus = targeter.init(opCtx);

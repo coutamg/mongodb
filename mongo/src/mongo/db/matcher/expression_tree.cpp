@@ -67,6 +67,7 @@ void ListOfMatchExpression::_listToBSON(BSONArrayBuilder* out) const {
 //CanonicalQuery::canonicalize->CanonicalQuery::init->MatchExpression::optimize
 MatchExpression::ExpressionOptimizerFunc ListOfMatchExpression::getOptimizer() const {
     return [](std::unique_ptr<MatchExpression> expression) -> std::unique_ptr<MatchExpression> {
+		// 拿到子节点集合
         auto& children = static_cast<ListOfMatchExpression&>(*expression)._expressions;
 
         // Recursively apply optimizations to child expressions.
@@ -90,7 +91,7 @@ MatchExpression::ExpressionOptimizerFunc ListOfMatchExpression::getOptimizer() c
         if (matchType == AND || matchType == OR) {
             std::vector<MatchExpression*> absorbedExpressions;
             for (MatchExpression*& childExpression : children) {
-				//父子expression type一样
+				//父子expression type一样，父子一样归为一类，不一样呢？？？
                 if (childExpression->matchType() == matchType) {
                     // Move this child out of the children array.
                     //先把childExpression临时保存到childExpressionPtr
@@ -127,6 +128,7 @@ MatchExpression::ExpressionOptimizerFunc ListOfMatchExpression::getOptimizer() c
             children.erase(std::remove(children.begin(), children.end(), nullptr), children.end());
 
             // Append the absorbed children to the end of the array.
+			// 把父节点下所有的子节点归到一层
             children.insert(children.end(), absorbedExpressions.begin(), absorbedExpressions.end());
         }
 

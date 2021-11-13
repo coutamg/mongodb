@@ -70,7 +70,7 @@ public:
 private:
     bool _shouldTraverseNonleafArrays;
     bool _shouldTraverseLeafArray;
-    FieldRef _fieldRef;
+    FieldRef _fieldRef;// ? field ?‘.’????????? "a.b" ?? "a", "b"
 };
 
 class ElementIterator {

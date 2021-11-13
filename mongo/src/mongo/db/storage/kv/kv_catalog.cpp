@@ -565,8 +565,8 @@ std::string KVCatalog::_newUniqueIdent(StringData ns, const char* kind) {
     buf << (_directoryForIndexes ? '/' : '-');
     buf << _next.fetchAndAdd(1) << '-' << _rand;
 
-	//yang test ......... KVCatalog::_newUniqueIdent, bufstr:test/collection/7--3550907941469880053
-	log() << "yang test ......... KVCatalog::_newUniqueIdent, bufstr:" << buf.str();
+	//ddd test ......... KVCatalog::_newUniqueIdent, bufstr:test/collection/7--3550907941469880053
+	log() << "ddd test ......... KVCatalog::_newUniqueIdent, bufstr:" << buf.str();
     return buf.str();
 }
 
@@ -669,7 +669,7 @@ Status KVCatalog::newCollection(OperationContext* opCtx,
     StatusWith<RecordId> res = 
     	//WiredTigerRecordStore::_insertRecords  记录collection元数据到_mdb_catalog.wt，数据内容如下:
     	/*
-        yang test ...WiredTigerRecordStore::_insertRecords . _uri:table:_mdb_catalog key:RecordId(5) value:{ ns: "test.coutamg", ident: "test/collection/7--3550907941469880053", md: { ns: "test.coutamg", options: { uuid: UUID("13867264-68f8-422d-a13c-2d92a0d43e8e") }, indexes: [], prefix: -1 } }
+        ddd test ...WiredTigerRecordStore::_insertRecords . _uri:table:_mdb_catalog key:RecordId(5) value:{ ns: "test.coutamg", ident: "test/collection/7--3550907941469880053", md: { ns: "test.coutamg", options: { uuid: UUID("13867264-68f8-422d-a13c-2d92a0d43e8e") }, indexes: [], prefix: -1 } }
     	
 		stored meta data for test.coll @ RecordId(4) 
 		obj:{ ns: "test.coll", ident: "test/collection/4-7637131936287447509", md: { ns: "test.coll", options: { uuid: UUID("440d1a2b-5122-40e9-b0c0-7ec58f072055") }, indexes: [], prefix: -1 } }

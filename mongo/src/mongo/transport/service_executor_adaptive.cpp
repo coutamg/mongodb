@@ -52,7 +52,7 @@ namespace {
 //实时在线调整db.adminCommand( { setParameter: 1, adaptiveServiceExecutorReservedThreads: 200} ) 
 
 //最少默认都要这么多个线程运行
-MONGO_EXPORT_SERVER_PARAMETER(adaptiveServiceExecutorReservedThreads, int, 1); //yang change debug
+MONGO_EXPORT_SERVER_PARAMETER(adaptiveServiceExecutorReservedThreads, int, 1); //ddd change debug
 
 // Each worker thread will allow ASIO to run for this many milliseconds before checking
 // whether it should exit
@@ -338,7 +338,7 @@ Status ServiceExecutorAdaptive::schedule(ServiceExecutorAdaptive::Task task, Sch
         //本线程立马直接执行wrappedTask任务，不用入队到boost-asio全局队列等待调度执行
         //io_context::dispatch   io_context::dispatch 
         if(_localThreadState->recursionDepth > 2) //实际上永远不会大于2，从代码分析看出source阶段后进入process阶段的适合用了该标识，process的下一阶段任务已经没有该标识勒
-			log() << "yang test .... _localThreadState->recursionDepth:" << _localThreadState->recursionDepth;
+			log() << "ddd test .... _localThreadState->recursionDepth:" << _localThreadState->recursionDepth;
         _ioContext->dispatch(std::move(wrappedTask));  
     } else { //入队   io_context::post
     	//入队到schedule得全局队列，等待工作线程调度
@@ -516,11 +516,11 @@ void ServiceExecutorAdaptive::_controllerThreadRoutine() {
 //ServiceExecutorAdaptive::start  _controllerThreadRoutine  中调用
 void ServiceExecutorAdaptive::_startWorkerThread() {
     stdx::unique_lock<stdx::mutex> lk(_threadsMutex);
-	//warning() << "yang test   _startWorkerThread:  num1:" << _threads.size();
+	//warning() << "ddd test   _startWorkerThread:  num1:" << _threads.size();
 	//该stdx::list list中追加一个ThreadState
     auto num = _threads.size();
     auto it = _threads.emplace(_threads.begin(), _tickSource); 
-	warning() << "yang test   _startWorkerThread: 22222 num2:" << _threads.size();
+	warning() << "ddd test   _startWorkerThread: 22222 num2:" << _threads.size();
 
 	//还没有执行过task任务的线程数
     _threadsPending.addAndFetch(1);

@@ -79,7 +79,7 @@ MONGO_INITIALIZER_WITH_PREREQUISITES(SetupInternalSecurityUser, ("EndStartupOpti
 (InitializerContext* const context) try {
     User* user = new User(UserName("__system", "local"));
 
-	LOG(2) << "yang test .....................SetupInternalSecurityUser";
+	LOG(2) << "ddd test .....................SetupInternalSecurityUser";
     user->incrementRefCount();  // Pin this user so the ref count never drops below 1.
     ActionSet allActions;
     allActions.addAllActions();
@@ -590,7 +590,7 @@ Status AuthorizationManager::_fetchUserV2(OperationContext* opCtx,
                                           const UserName& userName,
                                           std::unique_ptr<User>* acquiredUser) { //在外层最终存入到_authenticatedUsers
     BSONObj userObj;
-	log() << "yang test ........................AuthorizationManager::_fetchUserV2\r\n";
+	log() << "ddd test ........................AuthorizationManager::_fetchUserV2\r\n";
     Status status = getUserDescription(opCtx, userName, &userObj);
     if (!status.isOK()) {
         return status;

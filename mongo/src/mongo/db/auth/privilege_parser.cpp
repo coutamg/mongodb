@@ -528,40 +528,40 @@ Status ParsedPrivilege::parsedPrivilegeToPrivilege(const ParsedPrivilege& parsed
 
 	/*
 	管理员权限
-	2019-03-27T17:17:47.527+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<system resource>
-	2019-03-27T17:17:47.527+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<all normal resources>
-	2019-03-27T17:17:47.527+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<database config>
-	2019-03-27T17:17:47.527+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<database local>
-	2019-03-27T17:17:47.527+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<local.system.indexes>
-	2019-03-27T17:17:47.527+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<local.system.js>
-	2019-03-27T17:17:47.527+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<local.system.namespaces>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<config.system.indexes>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<config.system.js>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<config.system.namespaces>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<local.system.replset>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<collection system.profile in any database>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<$setFeatureCompatibilityVersion.version>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<collection system.users in any database>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<admin.system.users>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<admin.system.roles>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<admin.system.version>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<admin.system.new_users>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<admin.system.backup_users>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<collection system.indexes in any database>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<collection system.namespaces in any database>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<collection system.js in any database>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<config.settings>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<all resources>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<admin.tempusers>
-	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] yang test ....parsedPrivilegeToPrivilege:<admin.temproles>
+	2019-03-27T17:17:47.527+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<system resource>
+	2019-03-27T17:17:47.527+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<all normal resources>
+	2019-03-27T17:17:47.527+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<database config>
+	2019-03-27T17:17:47.527+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<database local>
+	2019-03-27T17:17:47.527+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<local.system.indexes>
+	2019-03-27T17:17:47.527+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<local.system.js>
+	2019-03-27T17:17:47.527+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<local.system.namespaces>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<config.system.indexes>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<config.system.js>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<config.system.namespaces>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<local.system.replset>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<collection system.profile in any database>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<$setFeatureCompatibilityVersion.version>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<collection system.users in any database>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<admin.system.users>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<admin.system.roles>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<admin.system.version>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<admin.system.new_users>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<admin.system.backup_users>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<collection system.indexes in any database>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<collection system.namespaces in any database>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<collection system.js in any database>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<config.settings>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<all resources>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<admin.tempusers>
+	2019-03-27T17:17:47.528+0800 I ACCESS	[conn----yangtest2] ddd test ....parsedPrivilegeToPrivilege:<admin.temproles>
 
 	//用户权限
 	//ResourcePattern::toString
-	2019-03-27T17:17:07.593+0800 I ACCESS   [conn----yangtest1] yang test ....parsedPrivilegeToPrivilege:<database test1>
-2019-03-27T17:17:07.593+0800 I ACCESS   [conn----yangtest1] yang test ....parsedPrivilegeToPrivilege:<test1.system.indexes>
-2019-03-27T17:17:07.593+0800 I ACCESS   [conn----yangtest1] yang test ....parsedPrivilegeToPrivilege:<test1.system.js>
-2019-03-27T17:17:07.593+0800 I ACCESS   [conn----yangtest1] yang test ....parsedPrivilegeToPrivilege:<test1.system.namespaces>
-	log() << "yang test ....parsedPrivilegeToPrivilege:" << resource.toString();
+	2019-03-27T17:17:07.593+0800 I ACCESS   [conn----yangtest1] ddd test ....parsedPrivilegeToPrivilege:<database test1>
+2019-03-27T17:17:07.593+0800 I ACCESS   [conn----yangtest1] ddd test ....parsedPrivilegeToPrivilege:<test1.system.indexes>
+2019-03-27T17:17:07.593+0800 I ACCESS   [conn----yangtest1] ddd test ....parsedPrivilegeToPrivilege:<test1.system.js>
+2019-03-27T17:17:07.593+0800 I ACCESS   [conn----yangtest1] ddd test ....parsedPrivilegeToPrivilege:<test1.system.namespaces>
+	log() << "ddd test ....parsedPrivilegeToPrivilege:" << resource.toString();
 	*/
 
 	//removeAllActionsFromSet

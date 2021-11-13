@@ -2500,7 +2500,7 @@ bool insertBatchAndHandleErrors(...) {
     for (auto it = batch.begin(); it != batch.end(); ++it) {
         globalOpCounters.gotInsert(); //insert操作计数
         try {
-			//log() << "yang test ............getNamespace().ns():" << wholeOp.getNamespace().ns();
+			//log() << "ddd test ............getNamespace().ns():" << wholeOp.getNamespace().ns();
 			//writeConflictRetry里面会执行{}中的函数体 
             writeConflictRetry(opCtx, "insert", wholeOp.getNamespace().ns(), [&] {
                 try {

@@ -52,7 +52,7 @@ SSM状态机任务中的dealTask任务，通过该继承关系，ServiceEntryPointMongod和ServiceE
 //_initAndListen->（serviceContext->setServiceEntryPoint）中构造使用该类, 存入ServiceContextMongoD::ServiceContext._serviceEntryPoint
 //class ServiceEntryPointMongod final : public ServiceEntryPointImpl { //原始定义
 //mongod服务入口点  继承ServiceEntryPointImpl，也就确定了对应的链接session信息
-class ServiceEntryPointMongod : public ServiceEntryPointImpl {//yang change
+class ServiceEntryPointMongod : public ServiceEntryPointImpl {//ddd change
     MONGO_DISALLOW_COPYING(ServiceEntryPointMongod);
 
 public:

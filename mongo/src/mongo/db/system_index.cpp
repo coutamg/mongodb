@@ -196,7 +196,7 @@ Status verifySystemIndexes(OperationContext* opCtx) {
 void createSystemIndexes(OperationContext* opCtx, Collection* collection) {
     invariant(collection);
     const NamespaceString& ns = collection->ns();
-	log() << "yang test ..... createSystemIndexes";
+	log() << "ddd test ..... createSystemIndexes";
     if (ns == AuthorizationManager::usersCollectionNamespace) {
         auto indexSpec = fassertStatusOK( //"admin.system.users"¼¯ºÏ
             40455,

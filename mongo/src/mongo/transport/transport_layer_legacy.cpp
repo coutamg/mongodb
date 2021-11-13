@@ -115,7 +115,7 @@ Status TransportLayerLegacy::LegacyTicket::fill(AbstractMessagingPort* amp) {
 
 //创建socket并bind  新版本都是使用asio不是使用legacy
 Status TransportLayerLegacy::setup() {
-	error() << "yang test ...  TransportLayerLegacy::setup";
+	error() << "ddd test ...  TransportLayerLegacy::setup";
     if (!_listener->setupSockets()) {
         error() << "Failed to set up sockets during startup.";
         return {ErrorCodes::InternalError, "Failed to set up sockets"};

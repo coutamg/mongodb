@@ -257,6 +257,11 @@ StatusWithMatchExpression parseComparison(
     }
 
 	//ComparisonMatchExpression::init
+	/*
+		db.inventory.find( {aa : {$eq : "111"}} )
+		ddd test name: aa, ele: $eq: "111"
+	*/
+	LOG(1) << "ddd test name: " << name << ", ele: " << e.toString();
     auto s = temp->init(name, e);
     if (!s.isOK()) {
         return s;
@@ -389,11 +394,14 @@ StatusWithMatchExpression parse(const BSONObj& obj,
 		*/ 
 		//filter{}中的第一层operation只能是pathlessOperatorMap map表中操作符
         if (e.fieldName()[0] == '$') {
+			// 切掉 ‘$’
             auto name = e.fieldNameStringData().substr(1);
 			//根据name获取对应的回调func  pathlessOperatorMap
+			// 比如 name = "and" 则 
+			// parseExpressionMatchFunction = parseTreeTopLevel 函数
             auto parseExpressionMatchFunction = retrievePathlessParser(name);
 
-			LOG(2) << "yang test StatusWithMatchExpression parse name: " << name;
+			LOG(2) << "ddd test StatusWithMatchExpression parse name: " << name;
             if (!parseExpressionMatchFunction) {
                 return {Status(ErrorCodes::BadValue,
                                str::stream() << "unknown top level operator: "
@@ -429,9 +437,12 @@ StatusWithMatchExpression parse(const BSONObj& obj,
 
 		//{ aa : 0.99 }走后面分支，{ aa: { $eq: "0.99" } }走本分支。  
 		if (isExpressionDocument(e, false)) {
-			LOG(2) << "yang test StatusWithMatchExpression parse isExpressionDocument name: " << 
+			LOG(1) << "ddd test StatusWithMatchExpression parse isExpressionDocument name: " << 
 				e.fieldNameStringData() << ", obj: " << e.toString();
-			
+			/*
+				db.inventory.find( {aa : {$eq : "111"}} )
+				ddd test StatusWithMatchExpression parse isExpressionDocument name: aa, obj: aa: { $eq: "111" }
+			*/
 			//{"price":{$gt:2000,$lt:5000}}走该分支
 			
 			//这里面循环解析出子expression添加到root tree中
@@ -447,7 +458,7 @@ StatusWithMatchExpression parse(const BSONObj& obj,
             continue;
         }
 
-		LOG(2) << "yang test StatusWithMatchExpression parse not-isExpressionDocument name: " << 
+		LOG(2) << "ddd test StatusWithMatchExpression parse not-isExpressionDocument name: " << 
 			e.fieldNameStringData() << ", obj: " << e.toString();
 		
 		//$regex 正则请求，忽略
@@ -475,7 +486,6 @@ StatusWithMatchExpression parse(const BSONObj& obj,
         root->clearAndRelease();
         return {std::move(real)};
     }
-
     return {std::move(root)};
 }
 
@@ -1331,6 +1341,7 @@ StatusWithMatchExpression parseTreeTopLevel(
         if (e.type() != BSONType::Object)
             return Status(ErrorCodes::BadValue, "$or/$and/$nor entries need to be full objects");
 
+		// 递归解析
         auto sub = parse(e.Obj(), expCtx, extensionsCallback, allowedFeatures, currentLevel);
         if (!sub.isOK())
             return sub.getStatus();
@@ -1603,6 +1614,11 @@ StatusWithMatchExpression parseSubField(const BSONObj& context,
                                         const ExtensionsCallback* extensionsCallback,
                                         MatchExpressionParser::AllowedFeatureSet allowedFeatures,
                                         DocumentParseLevel currentLevel) {
+	LOG(1) << "ddd test parseSubField name: " << name << ", e: " << e.toString();
+	/*
+		db.inventory.find( {aa : {$eq : "111"}} )
+		ddd test parseSubField name: aa, e: $eq: "111"
+	*/
 	//eq走这里
 	if ("$eq"_sd == e.fieldNameStringData()) {
         return parseComparison(name, new EqualityMatchExpression(), e, expCtx, allowedFeatures);

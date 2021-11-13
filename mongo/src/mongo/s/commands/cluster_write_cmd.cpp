@@ -168,7 +168,7 @@ public:
     Status checkAuthForRequest(OperationContext* opCtx, const OpMsgRequest& request) final {
 
 		//Status status(ErrorCodes::Unauthorized, str::stream() << " must run from localhost when running db without auth");
-		//LOG(2) << "yang test ................... checkAuthForRequest";
+		//LOG(2) << "ddd test ................... checkAuthForRequest";
 
         Status status = auth::checkAuthForWriteCommand( AuthorizationSession::get(opCtx->getClient()), _writeType, request);
 
@@ -237,7 +237,7 @@ public:
 		long long end = curTimeMicros64();
 		auto consumeTime = end - start;
 
-		//LOG(2) << "yang test 1 ClusterWriteCmd::enhancedRun:" << redact(batchedRequest.toBSON()) << " time(ms):" << (int)consumeTime;
+		//LOG(2) << "ddd test 1 ClusterWriteCmd::enhancedRun:" << redact(batchedRequest.toBSON()) << " time(ms):" << (int)consumeTime;
 
         // Populate the lastError object based on the write response
         batchErrorToLastError(batchedRequest, response, &LastError::get(opCtx->getClient()));

@@ -220,7 +220,7 @@ private:
             if (size > 0) {
                 asyncBuffers += size; //buffer offset向后移动
             }
-            //LOG(0) << "yang test ......... opportunisticRead";
+            //LOG(0) << "ddd test ......... opportunisticRead";
             //继续异步方式读取数据，读取到指定长度数据后执行handler回调处理
             asio::async_read(stream, asyncBuffers, std::forward<CompleteHandler>(handler));
         } else { 
@@ -228,7 +228,7 @@ private:
             //直接read获取到size字节数据，则直接执行handler 
             handler(ec, size);
         }
-        //LOG(0) << "yang test ....2..... opportunisticRead:" << size;
+        //LOG(0) << "ddd test ....2..... opportunisticRead:" << size;
     }
 
     template <typename Stream, typename ConstBufferSequence, typename CompleteHandler>
@@ -254,7 +254,7 @@ private:
             if (size > 0) {
                 asyncBuffers += size;
                 }
-            //LOG(0) << "yang test ......... opportunisticWrite";
+            //LOG(0) << "ddd test ......... opportunisticWrite";
             //数据得读取及handler回调执行见asio库得write_op::operator
             asio::async_write(stream, asyncBuffers, std::forward<CompleteHandler>(handler));
         } else {

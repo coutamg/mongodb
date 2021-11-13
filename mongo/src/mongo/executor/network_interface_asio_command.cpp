@@ -278,7 +278,7 @@ void NetworkInterfaceASIO::_beginCommunication(AsyncOp* op) {
         return;
     }
 
-	//[NetworkInterfaceASIO-TaskExecutorPool-yang-0-0] Initiating asynchronous command: RemoteCommand 34 -- target:
+	//[NetworkInterfaceASIO-TaskExecutorPool-ddd-0-0] Initiating asynchronous command: RemoteCommand 34 -- target:
     LOG(3) << "Initiating asynchronous command: " << redact(op->request().toString());
 	//NetworkInterfaceASIO::AsyncOp::beginCommand
 	//压缩msg数据构建新的AsyncCommand对象
@@ -315,8 +315,8 @@ void NetworkInterfaceASIO::_completeOperation(AsyncOp* op, ResponseStatus resp) 
     if (!metadata.isEmpty()) {
         resp.metadata = metadata;
     }
-	//D ASIO     [NetworkInterfaceASIO-TaskExecutorPool-yang-0-0] yang test .......... NetworkInterfaceASIO::_completeOperation
-	//LOG(3) << "yang test .......... NetworkInterfaceASIO::_completeOperation";
+	//D ASIO     [NetworkInterfaceASIO-TaskExecutorPool-ddd-0-0] ddd test .......... NetworkInterfaceASIO::_completeOperation
+	//LOG(3) << "ddd test .......... NetworkInterfaceASIO::_completeOperation";
 
     // Cancel this operation's timeout. Note that the timeout callback may already be running,
     // may have run, or may have already been scheduled to run in the near future.
@@ -441,7 +441,7 @@ void NetworkInterfaceASIO::_completeOperation(AsyncOp* op, ResponseStatus resp) 
 //ASIOConnection::refresh  NetworkInterfaceASIO::_runConnectionHook  NetworkInterfaceASIO::_authenticate
 //NetworkInterfaceASIO::_beginCommunication
 void NetworkInterfaceASIO::_asyncRunCommand(AsyncOp* op, NetworkOpHandler handler) {
-	//[NetworkInterfaceASIO-TaskExecutorPool-yang-0-0] Starting asynchronous command 93108 on host 172.23.240.29:28018
+	//[NetworkInterfaceASIO-TaskExecutorPool-ddd-0-0] Starting asynchronous command 93108 on host 172.23.240.29:28018
     LOG(2) << "Starting asynchronous command " << op->request().id << " on host "
            << op->request().target.toString();
 

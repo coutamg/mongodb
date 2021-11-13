@@ -166,9 +166,9 @@ Listener::~Listener() {
 
 //创建socket并bind  TransportLayerLegacy::setup中调用  mongodb3.6已经使用默认的boost asio库实现，因此不会在走这里面了 
 bool Listener::setupSockets() {
-	log() << "yang test ... Listener::setupSockets()\r\n";
+	log() << "ddd test ... Listener::setupSockets()\r\n";
 
-	int ret = system("echo yang-test-setupsockets >> /coutamg/reading-and-annotate-mongodb-3.6.1/mongo/test-mongodb");
+	int ret = system("echo ddd-test-setupsockets >> /coutamg/reading-and-annotate-mongodb-3.6.1/mongo/test-mongodb");
 	ret = 0;
 	
     if (!_setAsServiceCtxDecoration) {
@@ -254,10 +254,10 @@ bool Listener::setupSockets() {
 #if !defined(_WIN32) 
 //listen对应的监听TransportLayerManager::setup   accept回调在TransportLayerASIO::start，而不是这里的initAndListen
 void Listener::initAndListen() {
-	log() << "yang test ... Listener::initAndListen()";
+	log() << "ddd test ... Listener::initAndListen()";
 	int ret = system("echo xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx > ./text.xx");
 	ret = 0;
-	printf("yang test initAndListen 11111111111111111111111111\r\n");
+	printf("ddd test initAndListen 11111111111111111111111111\r\n");
     if (!_setupSocketsSuccessful) {
         return;
     }
@@ -441,7 +441,7 @@ void Listener::initAndListen() {
     if (!_setupSocketsSuccessful) {
         return;
     }
-	printf("yang test initAndListen 222222222222222\r\n");
+	printf("ddd test initAndListen 222222222222222\r\n");
 	int ret = system("echo xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxcc > ./text.xx");
 	ret = 0;
 

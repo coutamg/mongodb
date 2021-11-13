@@ -59,7 +59,7 @@
 #include "mongo/util/mongoutils/str.h"
 //#include <faiss/IndexFlat.h>
 
-//#define TRACING_ENABLED 0  yang change
+//#define TRACING_ENABLED 0  ddd change
 #define TRACING_ENABLED 1
 
 #if TRACING_ENABLED
@@ -1271,8 +1271,8 @@ Status WiredTigerIndexUnique::_insert(WT_CURSOR* c,
     KeyString value(keyStringVersion(), id);
     if (!data.getTypeBits().isAllZeros())
         value.appendTypeBits(data.getTypeBits());
-//	log(1) << "yang test WiredTigerIndexUnique::_insert key: " << redact(&key);  
-	//log() << "yang test WiredTigerIndexUnique::_insert";
+//	log(1) << "ddd test WiredTigerIndexUnique::_insert key: " << redact(&key);  
+	//log() << "ddd test WiredTigerIndexUnique::_insert";
 
 	//根据V构造WiredTigerItem
     WiredTigerItem valueItem(value.getBuffer(), value.getSize());
@@ -1285,7 +1285,7 @@ Status WiredTigerIndexUnique::_insert(WT_CURSOR* c,
 
 	
 	//auto& record = key;
-	//log() << "yang test WiredTigerIndexUnique::_insert" << " key:" << redact(record)<< " value:"<< id;
+	//log() << "ddd test WiredTigerIndexUnique::_insert" << " key:" << redact(record)<< " value:"<< id;
 	//	<< " value:" << redact(value.toBson());
 	
 	//key一样，但是value和索引表的value不一样，说明冲突了
@@ -1503,11 +1503,11 @@ Status WiredTigerIndexStandard::_insert(WT_CURSOR* c,
 
     //TRACE_INDEX << " key: " << keyBson << " id: " << id;
 	//log() << "WT index (" << (const void*)this << ") ";
-	//log(1) << "yang test WiredTigerIndexStandard::_insert key: " << redact(&keyBson);
+	//log(1) << "ddd test WiredTigerIndexStandard::_insert key: " << redact(&keyBson);
 
 
 	auto& keyBson1 = keyBson;
-	log() << "yang test WiredTigerIndexStandard::_insert"  << "index key:" << redact(keyBson1) <<"index value:" << id.repr();
+	log() << "ddd test WiredTigerIndexStandard::_insert"  << "index key:" << redact(keyBson1) <<"index value:" << id.repr();
 	
     KeyString key(keyStringVersion(), keyBson, _ordering, id);
     WiredTigerItem keyItem(key.getBuffer(), key.getSize());
@@ -1518,7 +1518,7 @@ Status WiredTigerIndexStandard::_insert(WT_CURSOR* c,
 
     setKey(c, keyItem.Get());
     c->set_value(c, valueItem.Get());
-	//log() << "yang test ...WiredTigerIndexStandard::_insert . index key:" << redact((const char*)(keyItem.Get()->data)) << " value:" << redact((const char*)(valueItem.Get()->data));
+	//log() << "ddd test ...WiredTigerIndexStandard::_insert . index key:" << redact((const char*)(keyItem.Get()->data)) << " value:" << redact((const char*)(valueItem.Get()->data));
     int ret = WT_OP_CHECK(c->insert(c));
 
     if (ret != WT_DUPLICATE_KEY)

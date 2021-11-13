@@ -106,7 +106,7 @@ PlanStage::StageState PlanStage::work(WorkingSetID* out) {   //存在根据StageStat
     ++_commonStats.works;
 
 	//StageType type = this->stageType();
-	//log() << "yang test PlanStage::work stageType:" << (int)type;  
+	//log() << "ddd test PlanStage::work stageType:" << (int)type;  
     StageState workResult = doWork(out); 
 //有哪些类的doWork需要执行，参考buildStages 如MultiPlanStage::doWork CollectionScan::doWork  
 //IndexScan::doWork  FetchStage::doWork

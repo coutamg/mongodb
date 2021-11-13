@@ -42,10 +42,10 @@ namespace mongo {
 namespace version {
 namespace {
 
-constexpr auto kVersion = "3.6.1"_sd;
+constexpr auto kVersion = "3.6.0"_sd;
 constexpr int kMajorVersion = 3;
 constexpr int kMinorVersion = 6;
-constexpr int kPatchVersion = 1;
+constexpr int kPatchVersion = 0;
 constexpr int kExtraVersion = 0;
 constexpr auto kVersionExtraStr = ""_sd;
 constexpr auto kGitVersion = "nogitversion"_sd;
@@ -55,7 +55,7 @@ constexpr auto kJsEngine = "mozjs"_sd;
 // TODO: In C++14, make these constexpr too.
 const std::initializer_list<StringData> kModulesList = {  };
 const std::initializer_list<VersionInfoInterface::BuildInfoTuple> kBuildEnvironment =
-    { std::make_tuple("distmod", "", true, true), std::make_tuple("distarch", "x86_64", true, true), std::make_tuple("cc", "gcc: gcc (GCC) 8.2.0", true, false), std::make_tuple("ccflags", "-fno-omit-frame-pointer -fno-strict-aliasing -ggdb -pthread -static-libstdc++ -Wall -Wsign-compare -Wno-unknown-pragmas -Winvalid-pch -O2 -Wno-unused-local-typedefs -Wno-unused-function -Wno-deprecated-declarations -Wno-unused-const-variable -Wno-unused-but-set-variable -Wno-missing-braces -fstack-protector-strong -fno-builtin-memcmp", true, false), std::make_tuple("cxx", "g++: g++ (GCC) 8.2.0", true, false), std::make_tuple("cxxflags", "-Woverloaded-virtual -Wno-maybe-uninitialized -std=c++14", true, false), std::make_tuple("linkflags", "-pthread -Wl,-z,now -rdynamic -fstack-protector-strong -fuse-ld=gold -Wl,--build-id -Wl,--hash-style=gnu -Wl,-z,noexecstack -Wl,--warn-execstack -Wl,-z,relro", true, false), std::make_tuple("target_arch", "x86_64", true, true), std::make_tuple("target_os", "linux", true, false) };
+    { std::make_tuple("distmod", "", true, true), std::make_tuple("distarch", "x86_64", true, true), std::make_tuple("cc", "/data/gcc-5.4.0/bin/gcc: gcc (GCC) 5.4.0", true, false), std::make_tuple("ccflags", "-fno-omit-frame-pointer -fno-strict-aliasing -ggdb -pthread -static-libstdc++ -Wall -Wsign-compare -Wno-unknown-pragmas -Winvalid-pch -Werror -O2 -Wno-unused-local-typedefs -Wno-unused-function -Wno-deprecated-declarations -Wno-unused-but-set-variable -Wno-missing-braces -fstack-protector-strong -fno-builtin-memcmp", true, false), std::make_tuple("cxx", "/data/gcc-5.4.0/bin/g++: g++ (GCC) 5.4.0", true, false), std::make_tuple("cxxflags", "-Woverloaded-virtual -Wno-maybe-uninitialized -std=c++14", true, false), std::make_tuple("linkflags", "-pthread -Wl,-z,now -rdynamic -Wl,--fatal-warnings -fstack-protector-strong -fuse-ld=gold -Wl,--build-id -Wl,--hash-style=gnu -Wl,-z,noexecstack -Wl,--warn-execstack -Wl,-z,relro", true, false), std::make_tuple("target_arch", "x86_64", true, true), std::make_tuple("target_os", "linux", true, false) };
 
 }  // namespace
 }  // namespace version

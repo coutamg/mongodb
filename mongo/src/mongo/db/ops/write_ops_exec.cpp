@@ -91,7 +91,7 @@ void finishCurOp(OperationContext* opCtx, CurOp* curOp) {
             durationCount<Microseconds>(curOp->elapsedTimeExcludingPauses());
         curOp->debug().executionTimeMicros = executionTimeMicros;
 
-		log() << "yang test ........................ finishCurOp:";
+		log() << "ddd test ........................ finishCurOp:";
         recordCurOpMetrics(opCtx);
 		//表级操作及时延统计
         Top::get(opCtx->getServiceContext())
@@ -122,7 +122,7 @@ void finishCurOp(OperationContext* opCtx, CurOp* curOp) {
         if (logAll || (shouldSample && logSlow)) {//ServiceEntryPointMongod::handleRequest中也会有输出打印
             Locker::LockerInfo lockerInfo;
             opCtx->lockState()->getLockerInfo(&lockerInfo);
-			log() << "yang test ........................ update delete log report:";
+			log() << "ddd test ........................ update delete log report:";
 			//OpDebug::report
             log() << curOp->debug().report(opCtx->getClient(), *curOp, lockerInfo.stats);
         }
@@ -449,11 +449,11 @@ bool insertBatchAndHandleErrors(OperationContext* opCtx,
     // Try to insert the batch one-at-a-time. This path is executed both for singular batches, and
     // for batches that failed all-at-once inserting.
     //一次性一条一条插入，上面集合是一次性插入
-    //log() << "yang test ...insertBatchAndHandleErrors.........getNamespace().ns():" << wholeOp.getNamespace().ns();
+    //log() << "ddd test ...insertBatchAndHandleErrors.........getNamespace().ns():" << wholeOp.getNamespace().ns();
     for (auto it = batch.begin(); it != batch.end(); ++it) {
         globalOpCounters.gotInsert(); //insert操作计数
         try {
-			//log() << "yang test ............getNamespace().ns():" << wholeOp.getNamespace().ns();
+			//log() << "ddd test ............getNamespace().ns():" << wholeOp.getNamespace().ns();
 			//writeConflictRetry里面会执行{}中的函数体 
             writeConflictRetry(opCtx, "insert", wholeOp.getNamespace().ns(), [&] {
                 try {
@@ -536,8 +536,8 @@ WriteResult performInserts(OperationContext* opCtx, const write_ops::Insert& who
         curOp.debug().ninserted = 0;
     }
 
-	//log() << "yang test ................... getnamespace:" << wholeOp.getNamespace() << wholeOp.getDbName();
-	//例如use test;db.test.insert({"yang":1, "ya":2}),则_nss为test.test, _dbname为test
+	//log() << "ddd test ................... getnamespace:" << wholeOp.getNamespace() << wholeOp.getDbName();
+	//例如use test;db.test.insddd{"yang":1, "ya":2}),则_nss为test.test, _dbname为test
 	uassertStatusOK(userAllowedWriteNS(wholeOp.getNamespace())); //对集合做检查
 	
     if (wholeOp.getNamespace().isSystemDotIndexes()) { 
@@ -585,8 +585,8 @@ WriteResult performInserts(OperationContext* opCtx, const write_ops::Insert& who
 
             BSONObj toInsert = fixedDoc.getValue().isEmpty() ? doc : std::move(fixedDoc.getValue());
 			// db.collname.insert({"name":"coutamg1", "age":22})
-			//yang test performInserts... doc:{ _id: ObjectId('5badf00412ee982ae019e0c1'), name: "coutamg1", age: 22.0 }
-			//log() << "yang test performInserts... doc:" << redact(toInsert);
+			//ddd test performInserts... doc:{ _id: ObjectId('5badf00412ee982ae019e0c1'), name: "coutamg1", age: 22.0 }
+			//log() << "ddd test performInserts... doc:" << redact(toInsert);
 			//把文档插入到batch数组
             batch.emplace_back(stmtId, toInsert);
             bytesInBatch += batch.back().doc.objsize();
@@ -949,7 +949,7 @@ WriteResult performDeletes(OperationContext* opCtx, const write_ops::Delete& who
     size_t stmtIdIndex = 0;
     WriteResult out;
     out.results.reserve(wholeOp.getDeletes().size());
-	log() << "yang test ........................ performDeletes:" << wholeOp.getDeletes().size();
+	log() << "ddd test ........................ performDeletes:" << wholeOp.getDeletes().size();
 
 	//singleOp类型为DeleteOpEntry     write_ops::Delete::getDeletes
     for (auto&& singleOp : wholeOp.getDeletes()) {

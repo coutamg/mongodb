@@ -223,7 +223,7 @@ func main() {
 	}
 
 	var discoverChan chan string
-        fmt.Fprintf(os.Stderr, "yang test %t", statOpts.Discover)
+        fmt.Fprintf(os.Stderr, "ddd test %t", statOpts.Discover)
 	if statOpts.Discover {
 		discoverChan = make(chan string, 128)
 	}

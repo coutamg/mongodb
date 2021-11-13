@@ -138,7 +138,7 @@ void ShardingState::setEnabledForTest(const std::string& shardName) {
 }
 
 Status ShardingState::canAcceptShardedCommands() const {
-	LOG(1) << "yang test ...............serverGlobalParams.clusterRole:" << (int)serverGlobalParams.clusterRole;
+	LOG(1) << "ddd test ...............serverGlobalParams.clusterRole:" << (int)serverGlobalParams.clusterRole;
     if (serverGlobalParams.clusterRole != ClusterRole::ShardServer) {
         return {ErrorCodes::NoShardingEnabled,
                 "Cannot accept sharding commands if not started with --shardsvr"};

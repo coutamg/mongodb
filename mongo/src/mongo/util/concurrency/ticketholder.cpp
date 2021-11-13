@@ -58,11 +58,11 @@ TicketHolder::TicketHolder(int num) : _outof(num) {
     _check(sem_init(&_sem, 0, num));
 
 	/*
-	2019-04-15T17:39:42.799+0800 I -		[main] yang test .........................TicketHolder num:128
-	2019-04-15T17:39:42.799+0800 I -		[main] yang test .........................TicketHolder num:128
-	2019-04-15T17:39:42.808+0800 I -		[main] yang test .........................TicketHolder num:1000000
+	2019-04-15T17:39:42.799+0800 I -		[main] ddd test .........................TicketHolder num:128
+	2019-04-15T17:39:42.799+0800 I -		[main] ddd test .........................TicketHolder num:128
+	2019-04-15T17:39:42.808+0800 I -		[main] ddd test .........................TicketHolder num:1000000
 	*/
-	//log() << "yang test .........................TicketHolder num:" << num;
+	//log() << "ddd test .........................TicketHolder num:" << num;
 }
 
 TicketHolder::~TicketHolder() {

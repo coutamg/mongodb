@@ -113,7 +113,7 @@ PlanStage::StageState MultiPlanStage::doWork(WorkingSetID* out) {
         *out = _statusMemberId;
         return PlanStage::FAILURE;
     }
-	LOG(2) << "yang test ...PlanStage::StageState MultiPlanStage::doWork ";
+	LOG(2) << "ddd test ...PlanStage::StageState MultiPlanStage::doWork ";
 
 	//选择这个最优的查询计划
     CandidatePlan& bestPlan = _candidates[_bestPlanIdx];

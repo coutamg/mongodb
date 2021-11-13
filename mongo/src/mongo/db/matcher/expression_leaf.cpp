@@ -58,11 +58,15 @@ bool ComparisonMatchExpression::equivalent(const MatchExpression* other) const {
     }
 
     const StringData::ComparatorInterface* stringComparator = nullptr;
+	// BSONElement 的比较是忽略 fieldName，直接比较 value，比较规则参考 
+	// BSONElement 的 woCompare
     BSONElementComparator eltCmp(BSONElementComparator::FieldNamesMode::kIgnore, stringComparator);
+	// 调用 DeferredComparison::operator== 构造 DeferredComparison 对象
+	// 最后调用 BSONComparatorInterfaceBase::evaluate -> BSONElement::woCompare 
     return path() == realOther->path() && eltCmp.evaluate(_rhs == realOther->_rhs);
 }
 
-//parseComparison调用，path也就是{ aa : 0.99 }或者{ aa: { $lt: "0.99" } },rhs为原始bson
+//parseComparison调用，path也就是{ aa : 0.99 }或者{ aa: { $lt: "0.99" } }中的 aa,rhs为原始bson
 Status ComparisonMatchExpression::init(StringData path, const BSONElement& rhs) {
     _rhs = rhs;
 

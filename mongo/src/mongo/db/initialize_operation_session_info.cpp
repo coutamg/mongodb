@@ -87,7 +87,7 @@ void initializeOperationSessionInfo(OperationContext* opCtx,
 	//3.6 mongo shell每次请求都会带上lsid: { id: UUID("xxx-5b45-42c8-8f44-xxxxx") }
     auto osi = OperationSessionInfoFromClient::parse("OperationSessionInfo"_sd, requestBody);
 
-	log() << "yang test ............ initializeOperationSessionInfo txn number: ";// << ", getSessionId: " << osi.getSessionId().toBSON();
+	log() << "ddd test ............ initializeOperationSessionInfo txn number: ";// << ", getSessionId: " << osi.getSessionId().toBSON();
  	//OperationSessionInfoFromClient::getSessionId 
  	//lsid检查见//lsid检查见OperationContextSession::OperationContextSession
     if (osi.getSessionId()) {

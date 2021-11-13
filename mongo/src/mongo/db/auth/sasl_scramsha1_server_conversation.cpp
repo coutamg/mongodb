@@ -168,7 +168,7 @@ StatusWith<bool> SaslSCRAMSHA1ServerConversation::_firstStep(std::vector<string>
 
     std::string clientNonce = input[2].substr(2);
 
-	log() << "yang test ........................ SaslSCRAMSHA1ServerConversation::_firstStep";
+	log() << "ddd test ........................ SaslSCRAMSHA1ServerConversation::_firstStep";
     // The authentication database is also the source database for the user.
     User* userObj;
     Status status =

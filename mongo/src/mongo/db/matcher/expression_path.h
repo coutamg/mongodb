@@ -60,12 +60,16 @@ public:
      * [1, 2] for document {f: [1, 2]}. Returns false if this expression should only match against
      * [1, 2].
      */
+	// 被 LeafMatchExpression 继承的返回都是 true
     virtual bool shouldExpandLeafArray() const = 0;
 
+	// MatchExpression::matchesBSON, matchesBSONElement -> matches -> 
+	// 子类的matchesSingleElement
     bool matches(const MatchableDocument* doc, MatchDetails* details = nullptr) const final {
         MatchableDocument::IteratorHolder cursor(doc, &_elementPath);
         while (cursor->more()) {
             ElementIterator::Context e = cursor->next();
+			// 用各个子类的实现的 matchesSingleElement， 例如 ComparisonMatchExpression::matchesSingleElement 
             if (!matchesSingleElement(e.element(), details)) {
                 continue;
             }
@@ -82,10 +86,11 @@ public:
     }
 
     //ComparisonMatchExpression::init调用
-    //path也就是{ aa : 0.99 }或者{ aa: { $lt: "0.99" } } 
+    //path也就是{ aa : 0.99 }或者{ aa: { $lt: "0.99" } }中的 aa 
     Status setPath(StringData path) {//PathMatchExpression::setPath
         _path = path;
         //ElementPath::init
+		// 对 filed 按 "." 切分，如 "a.b" -> "a" "b"
         auto status = _elementPath.init(_path);
         if (!status.isOK()) {
             return status;

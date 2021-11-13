@@ -136,8 +136,8 @@ void OpCounters::_checkWrap() {
 //∂‘”¶db.serverStatus().opcounters
 BSONObj OpCounters::getObj() const {
     BSONObjBuilder b;
-	//[ftdc] yang test ............... OpCounters::getObj
-	//log() << "yang test ............... OpCounters::getObj";
+	//[ftdc] ddd test ............... OpCounters::getObj
+	//log() << "ddd test ............... OpCounters::getObj";
     b.append("insert", _insert.loadRelaxed());
     b.append("query", _query.loadRelaxed());
     b.append("update", _update.loadRelaxed());

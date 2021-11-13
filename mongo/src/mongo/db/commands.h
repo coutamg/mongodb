@@ -272,7 +272,7 @@ db/commands.h:commands/cluster_flush_router_config_cmd.cpp:class FlushRouterConf
 db/commands.h:commands/cluster_get_last_error_cmd.cpp:class GetLastErrorCmd : public BasicCommand {
 db/commands.h:commands/cluster_get_shard_map_cmd.cpp:class CmdGetShardMap : public BasicCommand {
 db/commands.h:commands/cluster_get_shard_version_cmd.cpp:class GetShardVersion : public BasicCommand {
-db/commands.h:commands/cluster_getmore_cmd.cpp://class ClusterGetMoreCmd final : public BasicCommand { yang add change
+db/commands.h:commands/cluster_getmore_cmd.cpp://class ClusterGetMoreCmd final : public BasicCommand { ddd add change
 db/commands.h:commands/cluster_getmore_cmd.cpp:class ClusterGetMoreCmd : public BasicCommand {
 db/commands.h:commands/cluster_index_filter_cmd.cpp:class ClusterIndexFilterCmd : public BasicCommand {
 db/commands.h:commands/cluster_is_db_grid_cmd.cpp:class IsDbGridCmd : public BasicCommand {
@@ -448,7 +448,7 @@ s/commands/cluster_flush_router_config_cmd.cpp:class FlushRouterConfigCmd : publ
 s/commands/cluster_get_last_error_cmd.cpp:class GetLastErrorCmd : public BasicCommand {
 s/commands/cluster_get_shard_map_cmd.cpp:class CmdGetShardMap : public BasicCommand {
 s/commands/cluster_get_shard_version_cmd.cpp:class GetShardVersion : public BasicCommand {
-s/commands/cluster_getmore_cmd.cpp://class ClusterGetMoreCmd final : public BasicCommand { yang add change
+s/commands/cluster_getmore_cmd.cpp://class ClusterGetMoreCmd final : public BasicCommand { ddd add change
 s/commands/cluster_getmore_cmd.cpp:class ClusterGetMoreCmd : public BasicCommand {
 s/commands/cluster_index_filter_cmd.cpp:class ClusterIndexFilterCmd : public BasicCommand {
 s/commands/cluster_is_db_grid_cmd.cpp:class IsDbGridCmd : public BasicCommand {

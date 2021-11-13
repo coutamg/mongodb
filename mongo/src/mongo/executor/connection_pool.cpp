@@ -653,8 +653,8 @@ void ConnectionPool::SpecificPool::spawnConnections(stdx::unique_lock<stdx::mute
     if (_inSpawnConnections)
         return;
 
-	//2019-03-07T11:17:40.056+0800 I ASIO     [conn----yangtest1] yang test...........ConnectionPool::SpecificPool::spawnConnections
-	//log() << "yang test...........ConnectionPool::SpecificPool::spawnConnections";
+	//2019-03-07T11:17:40.056+0800 I ASIO     [conn----yangtest1] ddd test...........ConnectionPool::SpecificPool::spawnConnections
+	//log() << "ddd test...........ConnectionPool::SpecificPool::spawnConnections";
     _inSpawnConnections = true;
     auto guard = MakeGuard([&] { _inSpawnConnections = false; });
 

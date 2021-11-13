@@ -732,7 +732,7 @@ void execCommandDatabase(OperationContext* opCtx,
         if (command->shouldAffectCommandCounter()) {
             OpCounters* opCounters = &globalOpCounters;
             opCounters->gotCommand();
-			LOG(2) << "yang test .......... command counters:" << request.getCommandName();
+			LOG(2) << "ddd test .......... command counters:" << request.getCommandName();
         }
 
         // Handle command option maxTimeMS.
@@ -979,7 +979,7 @@ DbResponse receivedQuery(OperationContext* opCtx,
     CurOp& op = *CurOp::get(opCtx);
     DbResponse dbResponse;
 
-	LOG(1) << "yang test ... receivedQuery";
+	LOG(1) << "ddd test ... receivedQuery";
     try {
         Client* client = opCtx->getClient();
         Status status = AuthorizationSession::get(client)->checkAuthForFind(nss, false);
@@ -1228,9 +1228,9 @@ DbResponse ServiceEntryPointMongod::handleRequest(OperationContext* opCtx, const
 
 	
 	//str::stream s;
-	//s << "yang test ................ServiceEntryPointMongod::handleRequest op:" << op;
-	//log() << "yang test ................ServiceEntryPointMongod::handleRequest op:" << (int)op;
-	//log() << "yang test ........ServiceEntryPointMongod::handleRequest 11";
+	//s << "ddd test ................ServiceEntryPointMongod::handleRequest op:" << op;
+	//log() << "ddd test ................ServiceEntryPointMongod::handleRequest op:" << (int)op;
+	//log() << "ddd test ........ServiceEntryPointMongod::handleRequest 11";
 	//根据message构造DbMessage
     DbMessage dbmsg(m);
 	//根据操作上下文获取对应的client

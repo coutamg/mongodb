@@ -517,7 +517,7 @@ Status AuthorizationSession::checkAuthForCreate(const NamespaceString& ns,
     const bool hasCreateCollectionAction =
         isAuthorizedForActionsOnNamespace(ns, ActionType::createCollection);
 
-	//log() << "yang test ..................... AuthorizationSession::checkAuthForCreate:" << hasCreateCollectionAction;
+	//log() << "ddd test ..................... AuthorizationSession::checkAuthForCreate:" << hasCreateCollectionAction;
     // If attempting to create a view, check for additional required privileges.
     if (cmdObj["viewOn"]) {
         // You need the createCollection action on this namespace; the insert action is not
@@ -680,12 +680,12 @@ bool AuthorizationSession::isAuthorizedForPrivileges(const vector<Privilege>& pr
     for (size_t i = 0; i < privileges.size(); ++i) {
 		//注意这里，只有认证成功后的账号才拥有对应账号权限，见函数里面具体实现
         if (!_isAuthorizedForPrivilege(privileges[i])) {
-			//log() << "yang test ................... isAuthorizedForPrivileges,  failed !!!!!!!!!!!!!!!!!!";
+			//log() << "ddd test ................... isAuthorizedForPrivileges,  failed !!!!!!!!!!!!!!!!!!";
             return false;
         }
 	}
 
-	//log() << "yang test ................... isAuthorizedForPrivileges,  ok !!!!!!!!!!!!!!!!!!";
+	//log() << "ddd test ................... isAuthorizedForPrivileges,  ok !!!!!!!!!!!!!!!!!!";
     return true;
 }
 
@@ -906,7 +906,7 @@ bool AuthorizationSession::_isAuthorizedForPrivilege(const Privilege& privilege)
 
 	//本次请求的action
     ActionSet unmetRequirements = privilege.getActions();
-	//log() << "yang test ..............._isAuthorizedForPrivilege:" << unmetRequirements.toString();
+	//log() << "ddd test ..............._isAuthorizedForPrivilege:" << unmetRequirements.toString();
     PrivilegeVector defaultPrivileges = getDefaultPrivileges();
 	
 	//这个和localhost链接相关，跳过
@@ -931,7 +931,7 @@ bool AuthorizationSession::_isAuthorizedForPrivilege(const Privilege& privilege)
         User* user = *it;
         for (int i = 0; i < resourceSearchListLength; ++i) {
             ActionSet userActions = user->getActionsForResource(resourceSearchList[i]);
-			//log() << "yang test ................... useractions:" << userActions.toString();
+			//log() << "ddd test ................... useractions:" << userActions.toString();
 			//如果本次请求的action在userActions中，那么清除后，unmetRequirements应该为空，否则说明本次请求的action不在userActions中
             unmetRequirements.removeAllActionsFromSet(userActions);
 
@@ -939,7 +939,7 @@ bool AuthorizationSession::_isAuthorizedForPrivilege(const Privilege& privilege)
                 return true;
         }
     }
-	//log() << "yang test ................... useractions,  failed !!!!!!!!!!!!!!!!!!";
+	//log() << "ddd test ................... useractions,  failed !!!!!!!!!!!!!!!!!!";
     return false;
 }
 

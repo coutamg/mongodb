@@ -204,8 +204,8 @@ private:
                 //appendShardVersion(filterCommandRequestForPassthrough(cmdObj), shardVersion));
                 appendShardVersion(rq, shardVersion));
 
-			log() << "yang test .... findandmodify cmd:" << cmdObj.toString(false);
-			log() << "yang test ..333.. findandmodify cmd:" << rq.toString(false);
+			log() << "ddd test .... findandmodify cmd:" << cmdObj.toString(false);
+			log() << "ddd test ..333.. findandmodify cmd:" << rq.toString(false);
             AsyncRequestsSender ars(opCtx,
                                     Grid::get(opCtx)->getExecutorPool()->getArbitraryExecutor(),
                                     nss.db().toString(),

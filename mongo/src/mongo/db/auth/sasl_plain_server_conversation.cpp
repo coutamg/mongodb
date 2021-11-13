@@ -90,7 +90,7 @@ StatusWith<bool> SaslPLAINServerConversation::step(StringData inputData, std::st
         return Status(ErrorCodes::AuthenticationFailed,
                       mongoutils::str::stream() << "Incorrectly formatted PLAIN client message");
     }
-	log() << "yang test ........................SaslPLAINServerConversation::step";
+	log() << "ddd test ........................SaslPLAINServerConversation::step";
 
     User* userObj;
     // The authentication database is also the source database for the user.

@@ -285,7 +285,7 @@ MultiIndexBlockImpl::init(const std::vector<BSONObj>& indexSpecs) {
 
     invariant(_indexes.empty());
     _opCtx->recoveryUnit()->registerChange(new CleanupIndexesVectorOnRollback(this));
-	log() << "yang test ...MultiIndexBlockImpl::init";
+	log() << "ddd test ...MultiIndexBlockImpl::init";
 	
     const string& ns = _collection->ns().ns();
 	//获取该表对应的IndexCatalogImpl信息
@@ -301,13 +301,13 @@ MultiIndexBlockImpl::init(const std::vector<BSONObj>& indexSpecs) {
         BSONObj info = indexSpecs[i];
 
 /*db.coll.ensureIndex({"name" : 1}) 
-	yang test(MultiIndexBlockImpl::init) ... info:{ ns: "test.coll", v: 2, key: { name: 1.0 }, name: "name_1" }
+	ddd test(MultiIndexBlockImpl::init) ... info:{ ns: "test.coll", v: 2, key: { name: 1.0 }, name: "name_1" }
 db.world.ensureIndex({"geometry" : "2dsphere"}) 
-	yang test(MultiIndexBlockImpl::init) ... info:{ ns: "test.world", v: 2, key: { geometry: "2dsphere" }, name: "geometry_2dsphere" }
+	ddd test(MultiIndexBlockImpl::init) ... info:{ ns: "test.world", v: 2, key: { geometry: "2dsphere" }, name: "geometry_2dsphere" }
 db.things.ensureIndex({name:1}, {background:true}); 
-	yang test(MultiIndexBlockImpl::init) ... info:{ ns: "test.things", v: 2, key: { name: 1.0 }, name: "name_1", background: true }
+	ddd test(MultiIndexBlockImpl::init) ... info:{ ns: "test.things", v: 2, key: { name: 1.0 }, name: "name_1", background: true }
 */
-	log() << " yang test(MultiIndexBlockImpl::init) ... info:" << redact(info);
+	log() << " ddd test(MultiIndexBlockImpl::init) ... info:" << redact(info);
         string pluginName = IndexNames::findPluginName(info["key"].Obj());
         if (pluginName.size()) {
             Status s = _collection->getIndexCatalog()->_upgradeDatabaseMinorVersionIfNeeded(

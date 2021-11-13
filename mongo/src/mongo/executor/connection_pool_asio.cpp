@@ -216,8 +216,8 @@ void ASIOConnection::cancelTimeout() {
 
 //ConnectionPool::SpecificPool::spawnConnections
 void ASIOConnection::setup(Milliseconds timeout, SetupCallback cb) {
-	//2019-03-07T11:17:40.056+0800 I ASIO     [conn----yangtest1] yang test ......... ASIOConnection::setup
-	log() << "yang test ......... ASIOConnection::setup";
+	//2019-03-07T11:17:40.056+0800 I ASIO     [conn----yangtest1] ddd test ......... ASIOConnection::setup
+	log() << "ddd test ......... ASIOConnection::setup";
 
 	//这里dispatch的任务在NetworkInterfaceASIO::startup-> _io_service.run中由Network线程执行
 	//_impl类型为NetworkInterfaceASIO::AsyncOp
@@ -245,7 +245,7 @@ void ASIOConnection::setup(Milliseconds timeout, SetupCallback cb) {
 			//cb对应ConnectionPool::SpecificPool::spawnConnections中的 [this](ConnectionInterface* connPtr, Status status) {}
             cb(ptr, status);
         };
-		//log() << "yang test ....2..... ASIOConnection::setup"; //这里面实际上是由network线程执行
+		//log() << "ddd test ....2..... ASIOConnection::setup"; //这里面实际上是由network线程执行
         // Capturing the shared access pad and generation before calling setTimeout gives us enough
         // information to avoid calling the timer if we shouldn't without needing any other
         // resources that might have been cleaned up.

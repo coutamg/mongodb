@@ -52,14 +52,14 @@ namespace detail
 	//会再这里一直循环读，直到读取到buffers所需得数据，或者读完协议栈数据
     while (!tmp.empty())
     {
-      //ret = system("echo yang-test-start-mongodb1111detail::read_buffer_sequence 22  >> /asiotest.txt");
+      //ret = system("echo ddd-test-start-mongodb1111detail::read_buffer_sequence 22  >> /asiotest.txt");
       if (std::size_t max_size = detail::adapt_completion_condition_result(
             completion_condition(ec, tmp.total_consumed())))
         tmp.consume(s.read_some(tmp.prepare(max_size), ec));
       else
         break;
     }
-	//ret = system("echo yang-test-start-mongodb1111detail::read_buffer_sequence 44  >> /asiotest.txt");
+	//ret = system("echo ddd-test-start-mongodb1111detail::read_buffer_sequence 44  >> /asiotest.txt");
 	//ret = 1;
 	return tmp.total_consumed();;
   }
@@ -74,7 +74,7 @@ std::size_t read(SyncReadStream& s, const MutableBufferSequence& buffers,
       is_mutable_buffer_sequence<MutableBufferSequence>::value
     >::type*)
 {
-  //int ret =system("echo yang-test-start-mongodb1111detail::read_buffer_sequence  >> /asiotest.txt");
+  //int ret =system("echo ddd-test-start-mongodb1111detail::read_buffer_sequence  >> /asiotest.txt");
 	//ret =1;
   return detail::read_buffer_sequence(s, buffers,
       asio::buffer_sequence_begin(buffers), completion_condition, ec);
@@ -145,9 +145,9 @@ std::size_t read(SyncReadStream& s,
     bytes_available = std::min<std::size_t>(
           std::max<std::size_t>(512, b.capacity() - b.size()),
           std::min<std::size_t>(max_size, b.max_size() - b.size()));
-	//system("echo yang-test-start-mongodb1111 >> /asiotest.txt");
+	//system("echo ddd-test-start-mongodb1111 >> /asiotest.txt");
   }
-  //system("echo yang-test-start-mongodb222222 >> /asiotest.txt");
+  //system("echo ddd-test-start-mongodb222222 >> /asiotest.txt");
   return total_transferred;
 }
 
@@ -277,7 +277,7 @@ namespace detail
         std::size_t bytes_transferred, int start = 0)
     {
       std::size_t max_size;
-	  //int ret = system("echo operator-read-yang-test111-start-mongodb >> /asio.txt");
+	  //int ret = system("echo operator-read-ddd-test111-start-mongodb >> /asio.txt");
 		//  ret = 0;
       switch (start_ = start)
       {
@@ -289,13 +289,13 @@ namespace detail
               ASIO_MOVE_CAST(read_op)(*this));
           return; default:
           buffers_.consume(bytes_transferred);
-		  //ret = system("echo operator-read-yang-test2222-start-mongodb >> /asio.txt");
+		  //ret = system("echo operator-read-ddd-test2222-start-mongodb >> /asio.txt");
           if ((!ec && bytes_transferred == 0) || buffers_.empty())
             break;
-		  //ret = system("echo operator-read-yang-test3333-start-mongodb >> /asio.txt");
+		  //ret = system("echo operator-read-ddd-test3333-start-mongodb >> /asio.txt");
           max_size = this->check_for_completion(ec, buffers_.total_consumed());
         } while (max_size > 0);
-		//ret = system("echo operator-read-yang-test4444-start-mongodb >> /asio.txt");
+		//ret = system("echo operator-read-ddd-test4444-start-mongodb >> /asio.txt");
 	
         handler_(ec, buffers_.total_consumed());
       }

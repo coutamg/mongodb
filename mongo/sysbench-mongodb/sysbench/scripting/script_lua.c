@@ -1416,7 +1416,7 @@ int sb_lua_mongodb_insert1(lua_State *L)
    pthread_mutex_lock(&global_id_mutex);
    global_id++;
    id = global_id;
-   //printf("yang test ............. id:%d  pid:%lu\r\n", id, syscall(SYS_gettid));
+   //printf("ddd test ............. id:%d  pid:%lu\r\n", id, syscall(SYS_gettid));
    pthread_mutex_unlock(&global_id_mutex);
    pad = lua_tostring(L,7);
    c = lua_tostring(L,5);

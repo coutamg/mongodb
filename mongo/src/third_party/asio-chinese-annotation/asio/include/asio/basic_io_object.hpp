@@ -55,7 +55,7 @@ namespace detail
 #if !defined(ASIO_HAS_MOVE) || defined(GENERATING_DOCUMENTATION)
 template <typename IoObjectService>//对应reactive_socket_service
 #else
-//template <typename IoObjectService, bool Movable = detail::service_has_move<IoObjectService>::value> yang add
+//template <typename IoObjectService, bool Movable = detail::service_has_move<IoObjectService>::value> ddd add
 #endif
 
 class basic_io_object //basic_socket_acceptor继承该类

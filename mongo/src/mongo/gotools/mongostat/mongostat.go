@@ -277,7 +277,7 @@ func (node *NodeMonitor) Poll(discover chan string, checkShards bool) (*status.S
 
 	err = s.DB("admin").Run(bson.D{{"serverStatus", 1}, {"recordStats", 0}}, stat)
 	if err != nil {
-	        fmt.Fprintf(os.Stderr, "yang test xxx 1111111111111111111111\r\n")
+	        fmt.Fprintf(os.Stderr, "ddd test xxx 1111111111111111111111\r\n")
         	log.Logvf(log.DebugLow, "got error calling serverStatus against server %v", node.host)
 		return nil, err
 	}
@@ -297,7 +297,7 @@ func (node *NodeMonitor) Poll(discover chan string, checkShards bool) (*status.S
 		}
 	}
 
-        fmt.Fprintf(os.Stderr, "yang test xxx 1111111111111111111111\r\n")
+        fmt.Fprintf(os.Stderr, "ddd test xxx 1111111111111111111111\r\n")
 	node.alias = stat.Host
 	stat.Host = node.host
         fmt.Printf("%+v  %t\r\n", stat, checkShards)
@@ -307,7 +307,7 @@ func (node *NodeMonitor) Poll(discover chan string, checkShards bool) (*status.S
 		shard := ConfigShard{}
 		for shardCursor.Next(&shard) {
                         
-                        fmt.Fprintf(os.Stderr, "yang test xxx %s", shard.Host)
+                        fmt.Fprintf(os.Stderr, "ddd test xxx %s", shard.Host)
 			shardHosts := strings.Split(shard.Host, ",")
 			for _, shardHost := range shardHosts {
 				discover <- shardHost
@@ -383,7 +383,7 @@ func (mstat *MongoStat) Run() error {
 		go func() {
 			for {
 				newHost := <-mstat.Discovered
-                                fmt.Fprintf(os.Stderr, "yang test %s", newHost)
+                                fmt.Fprintf(os.Stderr, "ddd test %s", newHost)
 				err := mstat.AddNewNode(newHost)
 				if err != nil {
 					log.Logvf(log.Always, "can't add discovered node %v: %v", newHost, err)

@@ -243,7 +243,7 @@ StatusWith<std::vector<StorageEngine::CollectionIndexNamePair>>
     
     //把WiredTiger.wt中有，但是_mdb_catalog.wt中没有的元数据信息清除 
     for (const auto& it : engineIdents) {
-		log() << "yang test ....reconcileCatalogAndIdents...... ident: " << it;
+		log() << "ddd test ....reconcileCatalogAndIdents...... ident: " << it;
 		//找到了相同的ident数据目录文件，继续下一个
         if (catalogIdents.find(it) != catalogIdents.end()) {
             continue;

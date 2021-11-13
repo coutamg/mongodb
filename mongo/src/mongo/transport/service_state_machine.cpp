@@ -101,7 +101,7 @@ using transport::TransportLayer;
  */ 
 /*
 Breakpoint 1, mongo::ServiceStateMachine::ThreadGuard::ThreadGuard (this=0x7f60ef378e90, ssm=<optimized out>) at src/mongo/transport/service_state_machine.cpp:128
-128                             log() << "yang test ......2.....ServiceStateMachine::ThreadGuard:" << _ssm->_threadName;
+128                             log() << "ddd test ......2.....ServiceStateMachine::ThreadGuard:" << _ssm->_threadName;
 (gdb) bt
 #0  mongo::ServiceStateMachine::ThreadGuard::ThreadGuard (this=0x7f60ef378e90, ssm=<optimized out>) at src/mongo/transport/service_state_machine.cpp:128
 #1  0x00007f60fd72f791 in mongo::ServiceStateMachine::start (this=0x7f60ff8d3a90, ownershipModel=mongo::ServiceStateMachine::kOwned) at src/mongo/transport/service_state_machine.cpp:534
@@ -159,11 +159,11 @@ public:
         if (oldThreadName != _ssm->_threadName) {
 			//记录下当前线程名，即将该命了，所以是old
             _ssm->_oldThreadName = getThreadName().toString();
-			//log() << "yang test ...........ServiceStateMachine::ThreadGuard:" << _ssm->_oldThreadName;
+			//log() << "ddd test ...........ServiceStateMachine::ThreadGuard:" << _ssm->_oldThreadName;
 			//把运行本ssm状态机的线程名改为之前保存的线程名
 			setThreadName(_ssm->_threadName); //把当前线程改名为_threadName
 			//sleep(60);
-			//log() << "yang test ......2.....ServiceStateMachine::ThreadGuard:" << _ssm->_threadName;
+			//log() << "ddd test ......2.....ServiceStateMachine::ThreadGuard:" << _ssm->_threadName;
         }
 
         // Swap the current Client so calls to cc() work as expected
@@ -351,14 +351,14 @@ void ServiceStateMachine::_sourceMessage(ThreadGuard guard) {
 	//ServiceStateMachine::_sourceMessage->Session::sourceMessage->TransportLayerASIO::sourceMessage
 	//获取本session接收数据的ticket，也就是ASIOSourceTicket
     auto ticket = _session()->sourceMessage(&_inMessage);  
-	//log() << "yang test ......1.... _sourceMessage:" << getThreadName(); 
+	//log() << "ddd test ......1.... _sourceMessage:" << getThreadName(); 
 	//进入等等接收数据状态
     _state.store(State::SourceWait);  
 	//boost-asio库中的队列任务调度和底层数据收发流程都切入到worker-n线程
     guard.release();
 
 	//guard release后getTransportLayer()->asyncWait等待就进入worker-x线程,其他时候都是conn-x线程
-	//log() << "yang test .. ServiceStateMachine::_sourceMessage ";
+	//log() << "ddd test .. ServiceStateMachine::_sourceMessage ";
 	//调用boost-asio进行数据读取及其回调处理
 	//线程模型默认同步方式，也就是一个链接一个线程
     if (_transportMode == transport::Mode::kSynchronous) {
@@ -385,7 +385,7 @@ void ServiceStateMachine::_sinkMessage(ThreadGuard guard, Message toSink) {
     _state.store(State::SinkWait);
 	//boost-asio库中的队列任务调度和底层数据收发流程都切入到worker-n线程
     guard.release();
-	//log() << "yang test .. ServiceStateMachine::_sinkMessage ";
+	//log() << "ddd test .. ServiceStateMachine::_sinkMessage ";
 
 	//调用boost-asio进行数据发送及其回调处理
     if (_transportMode == transport::Mode::kSynchronous) {
@@ -410,7 +410,7 @@ void ServiceStateMachine::_sourceCallback(Status status) {
     dassert(state() == State::SourceWait);
 	//获取链接session信息
     auto remote = _session()->remote(); 
-	//log() << "yang test .. ServiceStateMachine::_sourceCallback ";
+	//log() << "ddd test .. ServiceStateMachine::_sourceCallback ";
 
     if (status.isOK()) {
 		//进入处理消息阶段  _processMessage
@@ -453,7 +453,7 @@ void ServiceStateMachine::_sinkCallback(Status status) {
     ThreadGuard guard(this);
 
     dassert(state() == State::SinkWait);
-	//log() << "yang test .. ServiceStateMachine::_sinkCallback ";
+	//log() << "ddd test .. ServiceStateMachine::_sinkCallback ";
 
     // If there was an error sinking the message to the client, then we should print an error and
     // end the session. No need to unwind the stack, so this will runNextInGuard() and return.
@@ -511,7 +511,7 @@ void ServiceStateMachine::_sinkCallback(Status status) {
 //消息处理都会走到这里  也就是dealTask
 void ServiceStateMachine::_processMessage(ThreadGuard guard) {
     invariant(!_inMessage.empty());
-	//log() << "	yang test ...........	_processMessage ";
+	//log() << "	ddd test ...........	_processMessage ";
 
 	//获取类MessageCompressorManager
 	//压缩相关得，跳过

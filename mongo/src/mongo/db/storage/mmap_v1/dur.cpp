@@ -151,7 +151,7 @@ enum { DurStatsResetIntervalMillis = 3 * 1000 };
 
 // Size sanity checks
 MONGO_STATIC_ASSERT(UncommittedBytesLimit > BSONObjMaxInternalSize * 3);
-//MONGO_STATIC_ASSERT(sizeof(void*) == 4 || UncommittedBytesLimit > BSONObjMaxInternalSize * 6);   yang add yang change todo xxxxx
+//MONGO_STATIC_ASSERT(sizeof(void*) == 4 || UncommittedBytesLimit > BSONObjMaxInternalSize * 6);   ddd add ddd change todo xxxxx
 /*
 因为编译有问题，所以把上面的assert频闭掉
 Compiling build/opt/mongo/s/grid.o

@@ -180,7 +180,7 @@ r_code, asio::ip::basic_resolver<asio::ip::tcp>::iterator)>, asio::detail::is_co
 
 //通过conn线程在ASIOConnection::setup中经过异步调用最终走到这里
 void NetworkInterfaceASIO::_connect(AsyncOp* op) {
-//	2019-03-10T18:19:58.459+0800 I ASIO 	[NetworkInterfaceASIO-TaskExecutorPool-yang-0-0] Connecting to 172.23.240.29:28018
+//	2019-03-10T18:19:58.459+0800 I ASIO 	[NetworkInterfaceASIO-TaskExecutorPool-ddd-0-0] Connecting to 172.23.240.29:28018
 
     log() << "Connecting to " << op->request().target.toString();
 

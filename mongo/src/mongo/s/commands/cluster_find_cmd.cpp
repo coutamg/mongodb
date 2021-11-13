@@ -171,8 +171,8 @@ public:
 
 		const auto& query = qr.getValue();
 		BSONObj findCmd=query->asFindCommand();
-		log() << "yang test .... find cmd:" << cmdObj.toString(false);
-		log() << "yang test ...222. find cmd:" << findCmd.toString(false);
+		log() << "ddd test .... find cmd:" << cmdObj.toString(false);
+		log() << "ddd test ...222. find cmd:" << findCmd.toString(false);
         const boost::intrusive_ptr<ExpressionContext> expCtx;
 
         auto cq = CanonicalQuery::canonicalize(opCtx,
@@ -232,8 +232,8 @@ public:
         }
         firstBatch.done(cursorId.getValue(), nss.ns());
 		//obj
-		//log() << "yang test ...222. firstBatch:" << result.done().toString(false); 结果
-		//log() << "yang test ...222. firstBatch:" << firstBatch.getBatch().obj().toString(false);
+		//log() << "ddd test ...222. firstBatch:" << result.done().toString(false); 结果
+		//log() << "ddd test ...222. firstBatch:" << firstBatch.getBatch().obj().toString(false);
         return true;
     }
 

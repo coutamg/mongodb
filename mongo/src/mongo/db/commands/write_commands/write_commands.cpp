@@ -296,7 +296,7 @@ public:
 #36 0x00007f8637b5ce25 in start_thread () from /lib64/libpthread.so.0
 #37 0x00007f863788a34d in clone () from /lib64/libc.so.6
 */
-//class CmdInsert final : public WriteCommand {yang add change
+//class CmdInsert final : public WriteCommand {ddd add change
 class CmdInsert : public WriteCommand { //
 public:
     CmdInsert() : WriteCommand("insert") {}
@@ -330,7 +330,7 @@ public:
     }
 } cmdInsert;
 //生效见CmdInsert::runImpl CmdUpdate::runImpl CmdDelete::runImpl
-//class CmdUpdate final : public WriteCommand {yang add change
+//class CmdUpdate final : public WriteCommand {ddd add change
 class CmdUpdate : public WriteCommand {
 public:
     CmdUpdate() : WriteCommand("update") {}
@@ -400,7 +400,7 @@ public:
     }
 } cmdUpdate;
 
-//class CmdDelete final : public WriteCommand { //yang add change
+//class CmdDelete final : public WriteCommand { //ddd add change
 class CmdDelete : public WriteCommand { //db.xx.remove操作也是转换为delete执行的
 public:
     CmdDelete() : WriteCommand("delete") {}

@@ -798,7 +798,7 @@ public:
 
 
   
-  //ASIO_INITFN_RESULT_TYPE(WriteHandler, void (asio::error_code, std::size_t)) yang change
+  //ASIO_INITFN_RESULT_TYPE(WriteHandler, void (asio::error_code, std::size_t)) ddd change
   //write发送数据流程:
   //mongodb中通过opportunisticWrite->asio::async_write->start_write_buffer_sequence_op->detail::write_op()->basic_stream_socket::async_write_some->reactive_socket_service_base::async_send
   async_write_some(const ConstBufferSequence& buffers,
@@ -926,8 +926,8 @@ public:
    * buffers in one go, and how to use it with arrays, boost::array or
    * std::vector.
    */
-  //template <typename MutableBufferSequence, typename ReadHandler> yang change
-  //ASIO_INITFN_RESULT_TYPE(ReadHandler,  void (asio::error_code, std::size_t)) yang change
+  //template <typename MutableBufferSequence, typename ReadHandler> ddd change
+  //ASIO_INITFN_RESULT_TYPE(ReadHandler,  void (asio::error_code, std::size_t)) ddd change
 
 
   //reactive_socket_service_base::start_accept_op 

@@ -1,8 +1,8 @@
 [root@bogon mongo]# !rm
 rm -rf /data/logs/mongod.log  && rm -rf /data/db/* && ./mongod -f mongo.conf -vv
-yang test .ss..111... mongoDbMain 2
-yang test .... storeMongodOptions engineSetByUser
-yang test .... fork server or die
+ddd test .ss..111... mongoDbMain 2
+ddd test .... storeMongodOptions engineSetByUser
+ddd test .... fork server or die
 about to fork child process, waiting until server is ready for connections.
 forked process: 22420
 child process started successfully, parent exiting

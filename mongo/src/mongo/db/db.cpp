@@ -690,7 +690,7 @@ MONGO_FP_DECLARE(shutdownAtStartup);
 //ExitCode initAndListen(int listenPort)调用该函数
 ExitCode _initAndListen(int listenPort) {
 	//初始化一个名称“initandlisten”线程用于侦听客户端传来的操作信息
-	log() << "yang test .... _initAndListen 111111111";
+	log() << "ddd test .... _initAndListen 111111111";
 	//listen对应的监听TransportLayerManager::setup   accept回调在TransportLayerASIO::start
 	//消息处理见ServiceEntryPointMongod::handleRequest  ServiceEntryPointMongos::handleRequest
 	// BSON格式可以参考https://www.jianshu.com/p/bd245529164a
@@ -1096,7 +1096,7 @@ ExitCode initAndListen(int listenPort) {
 
 #if defined(_WIN32)
 ExitCode initService() {
-	LOG(1) << "yang test ... initService"
+	LOG(1) << "ddd test ... initService"
     return initAndListen(serverGlobalParams.port);
 }
 #endif
@@ -1104,8 +1104,8 @@ ExitCode initService() {
 //全局的类，在进入main前就会执行
 MONGO_INITIALIZER_GENERAL(ForkServer, ("EndStartupOptionHandling"), ("default"))
 (InitializerContext* context) {
-	//LOG(1) << "yang test ..2. fork server or die";
-	printf("yang test .... fork server or die\r\n");
+	//LOG(1) << "ddd test ..2. fork server or die";
+	printf("ddd test .... fork server or die\r\n");
     mongo::forkServerOrDie();
     return Status::OK();
 }
@@ -1153,7 +1153,7 @@ void startupConfigActions(const std::vector<std::string>& args) {
         moe::startupOptionsParsed["shutdown"].as<bool>() == true) {
         bool failed = false;
 
-		printf("yang test ...222222. startupConfigActions \r\n");
+		printf("ddd test ...222222. startupConfigActions \r\n");
         std::string name =
             (boost::filesystem::path(storageGlobalParams.dbpath) / "mongod.lock").string();
         if (!boost::filesystem::exists(name) || boost::filesystem::file_size(name) == 0)
@@ -1500,7 +1500,7 @@ A debugging session is active.
 //log() << " --maxConns too high, can only handle " << want;
 */ //mongos对应mongoSMain
 int mongoDbMain(int argc, char* argv[], char** envp) {
-	printf("yang test .ss..111... mongoDbMain 2\r\n");
+	printf("ddd test .ss..111... mongoDbMain 2\r\n");
 	
     registerShutdownTask(shutdownTask);
     setupSignalHandlers();
@@ -1532,7 +1532,7 @@ int mongoDbMain(int argc, char* argv[], char** envp) {
 
 	DEV log(LogComponent::kControl) << "mongodb start" << endl;
 
-	int ret = system("echo yang-test-start-mongodb >> /coutamg/reading-and-annotate-mongodb-3.6.1/mongo/test-mongodb");
+	int ret = system("echo ddd-test-start-mongodb >> /coutamg/reading-and-annotate-mongodb-3.6.1/mongo/test-mongodb");
 	ret = 0;
 
     StartupTest::runTests();

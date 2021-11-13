@@ -138,7 +138,7 @@ public:
 /// Helper template to deduce the handler type from a CompletionToken, capture
 /// a local copy of the handler, and then create an async_result for the
 /// handler.
-//template <typename CompletionToken, typename Signature>  //yang change
+//template <typename CompletionToken, typename Signature>  //ddd change
 //执行后的结果放这里面记录
 struct async_completion
 {
