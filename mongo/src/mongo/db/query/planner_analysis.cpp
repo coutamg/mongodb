@@ -774,7 +774,7 @@ QuerySolution* QueryPlannerAnalysis::analyzeDataAccess(
     // Project the results.
     //在solnRoot tree中增加ProjectionNode
     if (NULL != query.getProj()) {
-        LOG(5) << "PROJECTION: Current plan is:\n" << redact(solnRoot->toString());
+        LOG(2) << "PROJECTION: Current plan is:\n" << redact(solnRoot->toString());
 
         ProjectionNode::ProjectionType projType = ProjectionNode::DEFAULT;
         BSONObj coveredKeyObj;

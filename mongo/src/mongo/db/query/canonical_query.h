@@ -41,7 +41,7 @@
 namespace mongo {
 
 class OperationContext;
-/*²éÑ¯¼Æ»®Ïà¹Ø²Î¿¼
+/*æŸ¥è¯¢è®¡åˆ’ç›¸å…³å‚è€ƒ
 https://blog.csdn.net/baijiwei/article/details/78170387
 https://blog.csdn.net/baijiwei/article/details/78128632
 https://blog.csdn.net/baijiwei/article/details/78195766
@@ -51,8 +51,8 @@ https://yq.aliyun.com/articles/647563?spm=a2c4e.11155435.0.0.7cb74df3gUVck4
 https://blog.csdn.net/baijiwei/article/details/78127191
 https://blog.csdn.net/baijiwei/article/category/7189912
 */
-//Ö´ĞĞ¼Æ»® ÓÅ»¯Æ÷¿ÉÒÔ²Î¿¼https://yq.aliyun.com/articles/647563?spm=a2c4e.11155435.0.0.7cb74df3gUVck4
-//¹æ·¶²éÑ¯£¬¼ûFindCmd::run  
+//æ‰§è¡Œè®¡åˆ’ ä¼˜åŒ–å™¨å¯ä»¥å‚è€ƒhttps://yq.aliyun.com/articles/647563?spm=a2c4e.11155435.0.0.7cb74df3gUVck4
+//è§„èŒƒæŸ¥è¯¢ï¼Œè§FindCmd::run  
 class CanonicalQuery { 
 public:
     /**
@@ -117,7 +117,7 @@ public:
 
     //
     // Accessors for the query
-    //query.root()->toString()Êä³ö´òÓ¡£¬²Î¿¼QueryPlanner::plan
+    //query.root()->toString()è¾“å‡ºæ‰“å°ï¼Œå‚è€ƒQueryPlanner::plan
     MatchExpression* root() const {
         return _root.get();
     }
@@ -200,32 +200,32 @@ private:
                 std::unique_ptr<MatchExpression> root,
                 std::unique_ptr<CollatorInterface> collator);
 
-    std::unique_ptr<QueryRequest> _qr; //²éÑ¯ÖĞµÄÏà¹ØÏêÏ¸ĞÅÏ¢¼°²Ù×÷·ûµÈ¶¼¼ÇÂ¼ÔÚÕâÀïÃæ
+    std::unique_ptr<QueryRequest> _qr; //æŸ¥è¯¢ä¸­çš„ç›¸å…³è¯¦ç»†ä¿¡æ¯åŠæ“ä½œç¬¦ç­‰éƒ½è®°å½•åœ¨è¿™é‡Œé¢
 
-    //CanonicalQuery._root  QuerySolutionNode.filter  Ò»¸öfilter¶ÔÓ¦Ò»¸öMatchExpression
-    //ËùÓĞµÄQuerySolutionNode(´ú±íCanonicalQuery._rootÊ÷ÖĞµÄÒ»¸ö½Úµã£¬¶ÔÓ¦Ò»¸öMatchExpression)×é³ÉÒ»¿ÅÊ÷
-    //²Î¿¼https://blog.csdn.net/baijiwei/article/details/78170387
+    //CanonicalQuery._root  QuerySolutionNode.filter  ä¸€ä¸ªfilterå¯¹åº”ä¸€ä¸ªMatchExpression
+    //æ‰€æœ‰çš„QuerySolutionNode(ä»£è¡¨CanonicalQuery._rootæ ‘ä¸­çš„ä¸€ä¸ªèŠ‚ç‚¹ï¼Œå¯¹åº”ä¸€ä¸ªMatchExpression)ç»„æˆä¸€é¢—æ ‘
+    //å‚è€ƒhttps://blog.csdn.net/baijiwei/article/details/78170387
 
     // _root points into _qr->getFilter()
-    //²Î¿¼https://blog.csdn.net/baijiwei/article/details/78170387
-    //MatchExpressionÊÇ½«filterËã×ÓÀïÃ¿¸öÂß¼­ÔËËã×ª»»³É¸÷¸öÀàĞÍµÄ±í´ïÊ½(GT,ET,LT,AND,OR...)£¬¹¹³ÉÒ»¸ö±í´ïÊ½tree½á¹¹£¬¶¥²ãrootÊÇÒ»¸öAndMatchExpression£¬Èç¹ûº¬ÓĞAND¡¢OR¡¢NOR£¬treeµÄÉî¶È¾Í+1. Õâ¸ö±í´ïÊ½tree»áÓÃ×öÒÔºó¹ıÂË¼ÇÂ¼¡£
-    //¸³Öµ²Î¿¼CanonicalQuery::canonicalize->CanonicalQuery::init£¬¸Ãroot treeÍ¨¹ıMatchExpressionParser::parseÉú³É
+    //å‚è€ƒhttps://blog.csdn.net/baijiwei/article/details/78170387
+    //MatchExpressionæ˜¯å°†filterç®—å­é‡Œæ¯ä¸ªé€»è¾‘è¿ç®—è½¬æ¢æˆå„ä¸ªç±»å‹çš„è¡¨è¾¾å¼(GT,ET,LT,AND,OR...)ï¼Œæ„æˆä¸€ä¸ªè¡¨è¾¾å¼treeç»“æ„ï¼Œé¡¶å±‚rootæ˜¯ä¸€ä¸ªAndMatchExpressionï¼Œå¦‚æœå«æœ‰ANDã€ORã€NORï¼Œtreeçš„æ·±åº¦å°±+1. è¿™ä¸ªè¡¨è¾¾å¼treeä¼šç”¨åšä»¥åè¿‡æ»¤è®°å½•ã€‚
+    //èµ‹å€¼å‚è€ƒCanonicalQuery::canonicalize->CanonicalQuery::initï¼Œè¯¥root treeé€šè¿‡MatchExpressionParser::parseç”Ÿæˆ
     std::unique_ptr<MatchExpression> _root;   //CanonicalQuery._root
     
 
-    //projection : Ñ¡ÔñÊä³öÖ¸¶¨µÄfields£¬Àà±ÈSQLµÄselect  ÀıÈçdb.news.find( {}, { id: 1, title: 1 } )Ö»Êä³öidºÍtitle×Ö¶Î£¬µÚÒ»¸ö²ÎÊıÎª²éÑ¯Ìõ¼ş£¬¿Õ´ú±í²éÑ¯ËùÓĞ
-    //projection¸³Öµ¼ûParsedProjection::make
+    //projection : é€‰æ‹©è¾“å‡ºæŒ‡å®šçš„fieldsï¼Œç±»æ¯”SQLçš„select  ä¾‹å¦‚db.news.find( {}, { id: 1, title: 1 } )åªè¾“å‡ºidå’Œtitleå­—æ®µï¼Œç¬¬ä¸€ä¸ªå‚æ•°ä¸ºæŸ¥è¯¢æ¡ä»¶ï¼Œç©ºä»£è¡¨æŸ¥è¯¢æ‰€æœ‰
+    //projectionèµ‹å€¼è§ParsedProjection::make
     std::unique_ptr<ParsedProjection> _proj; 
 
-    //collatorÊÇÓÃ»§¿ÉÒÔ×Ô¶¨ÒåµÄ³ıÁËByteComparator(Öğ×Ö½Ú±È½ÏÅÅĞò)Ö®ÍâµÄ±È½Ï·½·¨£¬±ÈÈçÄÚÖÃµÄÖĞÎÄ±È½Ï¡£collatorĞèÒªºÍfilterÀïµÄÂß¼­±í´ïÊ½Ïà¹ØÁª(±ÈÈç$gt´óÓÚÔËËã)¡£
-    //_collator¸³Öµ¼ûParsedProjection::make
+    //collatoræ˜¯ç”¨æˆ·å¯ä»¥è‡ªå®šä¹‰çš„é™¤äº†ByteComparator(é€å­—èŠ‚æ¯”è¾ƒæ’åº)ä¹‹å¤–çš„æ¯”è¾ƒæ–¹æ³•ï¼Œæ¯”å¦‚å†…ç½®çš„ä¸­æ–‡æ¯”è¾ƒã€‚collatoréœ€è¦å’Œfilteré‡Œçš„é€»è¾‘è¡¨è¾¾å¼ç›¸å…³è”(æ¯”å¦‚$gtå¤§äºè¿ç®—)ã€‚
+    //_collatorèµ‹å€¼è§ParsedProjection::make
     std::unique_ptr<CollatorInterface> _collator;
 
     bool _canHaveNoopMatchNodes = false;
 
-    //Õë¶ÔÆäËûÏß³ÌµÄ²¢·¢Ğ´²Ù×÷£¬$isolate±£Ö¤ÁËÌá½»Ç°ÆäËûÏß³ÌÎŞ·¨ĞŞ¸Ä¶ÔÓ¦µÄÎÄµµ¡£
-    //Õë¶ÔÆäËûÏß³ÌµÄ¶Á²Ù×÷£¬$isolate±£Ö¤ÁËÆäËûÏß³Ì¶ÁÈ¡²»µ½Î´Ìá½»µÄÊı¾İ¡£
-    //µ«ÊÇ$isolateÓĞÑéÖ¤µÄĞÔÄÜÎÊÌâ£¬ÒòÎªÕâÖÖÇé¿öÏÂÏß³Ì³ÖÓĞËøµÄÊ±¼ä½Ï³¤£¬ÑÏÖØµÄÓ°ÏìmongoµÄ²¢·¢ĞÔ¡
+    //é’ˆå¯¹å…¶ä»–çº¿ç¨‹çš„å¹¶å‘å†™æ“ä½œï¼Œ$isolateä¿è¯äº†æäº¤å‰å…¶ä»–çº¿ç¨‹æ— æ³•ä¿®æ”¹å¯¹åº”çš„æ–‡æ¡£ã€‚
+    //é’ˆå¯¹å…¶ä»–çº¿ç¨‹çš„è¯»æ“ä½œï¼Œ$isolateä¿è¯äº†å…¶ä»–çº¿ç¨‹è¯»å–ä¸åˆ°æœªæäº¤çš„æ•°æ®ã€‚
+    //ä½†æ˜¯$isolateæœ‰éªŒè¯çš„æ€§èƒ½é—®é¢˜ï¼Œå› ä¸ºè¿™ç§æƒ…å†µä¸‹çº¿ç¨‹æŒæœ‰é”çš„æ—¶é—´è¾ƒé•¿ï¼Œä¸¥é‡çš„å½±å“mongoçš„å¹¶å‘æ€§ï¿½
     bool _isIsolated;
 };
 

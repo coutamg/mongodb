@@ -137,7 +137,18 @@ void fillOutPlannerParams(OperationContext* opCtx,
         const IndexDescriptor* desc = ii.next();
 		//IndexDescriptor::catalogEntry
         IndexCatalogEntry* ice = ii.catalogEntry(desc);
-        plannerParams->indices.push_back(IndexEntry(desc->keyPattern(),
+		IndexEntry tmp (desc->keyPattern(),
+									desc->getAccessMethodName(),
+									desc->isMultikey(opCtx),
+									ice->getMultikeyPaths(opCtx),
+									desc->isSparse(),
+									desc->unique(),
+									desc->indexName(),
+									ice->getFilterExpression(),
+									desc->infoObj(),
+									ice->getCollator());
+		plannerParams->indices.push_back(tmp);
+        /*plannerParams->indices.push_back(IndexEntry(desc->keyPattern(),
                                                     desc->getAccessMethodName(),
                                                     desc->isMultikey(opCtx),
                                                     ice->getMultikeyPaths(opCtx),
@@ -147,6 +158,17 @@ void fillOutPlannerParams(OperationContext* opCtx,
                                                     ice->getFilterExpression(),
                                                     desc->infoObj(),
                                                     ice->getCollator()));
+		*/
+		LOG(2) << "ddd test IndexEntry: " << tmp.toString();
+		/*
+		 ddd test IndexEntry: kp: { _id: 1 } unique name: '_id_' io: { v: 2, key: { _id: 1 }, name: "_id_", ns: "test.test1" }
+
+		 ddd test IndexEntry: kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "test.test1" }
+
+		 ddd test IndexEntry: kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "test.test1" }
+
+		 ddd test IndexEntry: kp: { age: 1.0 } name: 'age_1' io: { v: 2, key: { age: 1.0 }, name: "age_1", ns: "test.test1" }
+		*/
     }
 
     // If query supports index filters, filter params.indices by indices in query settings.
@@ -298,6 +320,12 @@ StatusWith<PrepareExecutionResult> prepareExecution(OperationContext* opCtx,
     unique_ptr<QuerySolution> querySolution;
 
     // This can happen as we're called by internal clients as well.
+	LOG(2) << "ddd test prepareExecution::CanonicalQuery: " << redact(canonicalQuery->toStringShort());
+	/*
+	db.test1.find({"name":"coutamg1", "age":12}).sort({"name":1})
+
+	ddd test prepareExecution::CanonicalQuery: query: { name: "coutamg1", age: 12.0 } sort: { name: 1.0 } projection: {}
+	*/
     if (NULL == collection) {
         const string& ns = canonicalQuery->ns();
         LOG(2) << "Collection " << ns << " does not exist."
@@ -437,7 +465,12 @@ StatusWith<PrepareExecutionResult> prepareExecution(OperationContext* opCtx,
 	//OR树走这里
     if (internalQueryPlanOrChildrenIndependently.load() &&
 		//如果root为OR类型，则返回true
-		//例如下面的查询，就会满足这个条件:db.tescoutamg : [ { name : "yangyazhou2" }, { "agccoutamg{ $or : [ {  name : "yangyazhou" }, { "xx" : 3} ] } ]} ).sort({"name":1}).limit(7)
+		/* 例如下面的查询，就会满足这个条件:
+		db.tescoutamg.find({[ { name : "coutamg" }, 
+							{ "agccoutamg : { $or : [ {  name : "coutamg" }, 
+											{ "xx" : 3} ] } ]} )
+					.sort({"name":1}).limit(7)
+		*/
         SubplanStage::canUseSubplanning(*canonicalQuery)) { //SubplanStage, 主要是针对$or 的处理
         LOG(2) << "Running query as sub-queries: " << redact(canonicalQuery->toStringShort());
 		
@@ -454,13 +487,115 @@ StatusWith<PrepareExecutionResult> prepareExecution(OperationContext* opCtx,
     vector<QuerySolution*> solutions;
 	//调用QueryPlanner::plan生成查询计划,这将会生成一个或者多个查询计划QuerySolution.
 	//根据已有索引选择合适的索引生成QuerySolution数组
+	/*
+	db.test1.find({"name":"coutamg1", "age":12}).sort({"name":1})
+
+	ddd test prepareExecution::CanonicalQuery: query: { name: "coutamg1", age: 12.0 } sort: { name: 1.0 } projection: {}
+	*/
     Status status = QueryPlanner::plan(*canonicalQuery, plannerParams, &solutions); //获取满足条件的plan存入solutions
     if (!status.isOK()) {
         return Status(ErrorCodes::BadValue,
                       "error processing query: " + canonicalQuery->toString() +
                           " planner returned error: " + status.reason());
     }
+	/*
+	db.test1.find({"name":"coutamg1", "age":12}).sort({"name":1})
 
+	ddd test prepareExecution::QuerySolution :0, FETCH
+	---filter:
+			age == 12.0
+	---fetched = 1
+	---sortedByDiskLoc = 1
+	---getSort = [{ name: 1 }, ]
+	---Child:
+	------IXSCAN
+	---------indexName = name_1
+	keyPattern = { name: 1.0 }
+	---------direction = 1
+	---------bounds = field #0['name']: ["coutamg1", "coutamg1"]
+	---------fetched = 0
+	---------sortedByDiskLoc = 1
+	---------getSort = [{ name: 1 }, ]
+	
+	
+	ddd test prepareExecution::QuerySolution :1, SORT
+	---pattern = { name: 1.0 }
+	---limit = 0
+	---fetched = 1
+	---sortedByDiskLoc = 0
+	---getSort = []
+	---Child:
+	------SORT_KEY_GENERATOR
+	---------sortSpec = { name: 1.0 }
+	---------fetched = 1
+	---------sortedByDiskLoc = 1
+	---------getSort = [{ age: 1 }, ]
+	---------Child:
+	------------FETCH
+	---------------filter:
+							name == "coutamg1"
+	---------------fetched = 1
+	---------------sortedByDiskLoc = 1
+	---------------getSort = [{ age: 1 }, ]
+	---------------Child:
+	------------------IXSCAN
+	---------------------indexName = age_1
+	keyPattern = { age: 1.0 }
+	---------------------direction = 1
+	---------------------bounds = field #0['age']: [12.0, 12.0]
+	---------------------fetched = 0
+	---------------------sortedByDiskLoc = 1
+	---------------------getSort = [{ age: 1 }, ]
+	
+
+	ddd test prepareExecution::QuerySolution :2, SORT
+	---pattern = { name: 1.0 }
+	---limit = 0
+	---fetched = 1
+	---sortedByDiskLoc = 0
+	---getSort = []
+	---Child:
+	------SORT_KEY_GENERATOR
+	---------sortSpec = { name: 1.0 }
+	---------fetched = 1
+	---------sortedByDiskLoc = 1
+	---------getSort = []
+	---------Child:
+	------------FETCH
+	---------------filter:
+							$and
+								name == "coutamg1"  || Selected Index #0 pos 0 combine 1
+								age == 12.0  || Selected Index #1 pos 0 combine 1
+	---------------fetched = 1
+	---------------sortedByDiskLoc = 1
+	---------------getSort = []
+	---------------Child:
+	------------------AND_SORTED
+	---------------------fetched = 0
+	---------------------sortedByDiskLoc = 1
+	---------------------getSort = []
+	---------------------Child 0:
+	---------------------IXSCAN
+	------------------------indexName = name_1
+	keyPattern = { name: 1.0 }
+	------------------------direction = 1
+	------------------------bounds = field #0['name']: ["coutamg1", "coutamg1"]
+	------------------------fetched = 0
+	------------------------sortedByDiskLoc = 1
+	------------------------getSort = [{ name: 1 }, ]
+	---------------------Child 1:
+	---------------------IXSCAN
+	------------------------indexName = age_1
+	keyPattern = { age: 1.0 }
+	------------------------direction = 1
+	------------------------bounds = field #0['age']: [12.0, 12.0]
+	------------------------fetched = 0
+	------------------------sortedByDiskLoc = 1
+	------------------------getSort = [{ age: 1 }, ]
+	*/
+	for (size_t i = 0; i < solutions.size(); ++i) {
+		LOG(2) << "ddd test prepareExecution::QuerySolution :" << i << ", " << solutions[i]->toString();
+	}
     // We cannot figure out how to answer the query.  Perhaps it requires an index
     // we do not have?
     //一般不会走到这里面来，因为QueryPlanner::plan中如果没有合适的QuerySolution，则会生成一个collectionScan
@@ -562,6 +697,7 @@ StatusWith<unique_ptr<PlanExecutor, PlanExecutor::Deleter>>
 	getExecutor(
     OperationContext* opCtx,
     Collection* collection,
+	// 这里保存的是find 查询的条件生成的表达式树，叶子节点就是各种条件
     unique_ptr<CanonicalQuery> canonicalQuery,
     PlanExecutor::YieldPolicy yieldPolicy,
     size_t plannerOptions) {
@@ -586,7 +722,8 @@ StatusWith<unique_ptr<PlanExecutor, PlanExecutor::Deleter>>
     //调用PlanExecutor::make选择最终的PlanExecutor
     //它初始化PlanExecutor类型,并且调用pickBestPlan选取最优的Plan.里面包含了很多不同类型的PlanStage
 
-	//选择最优querySolution
+	//选择最优querySolution, 生成 PlanExecutor, 最后通过 PlanExecutor
+	// 的 work 来执行各个 stages 拿到最终结果
 	return PlanExecutor::make(opCtx,
                               std::move(ws),
                               std::move(executionResult.getValue().root),
@@ -777,7 +914,7 @@ StatusWith<unique_ptr<PlanExecutor, PlanExecutor::Deleter>>
     const NamespaceString& nss,
     unique_ptr<CanonicalQuery> canonicalQuery,
     PlanExecutor::YieldPolicy yieldPolicy,
-    size_t plannerOptions) {
+    size_t plannerOptions/*默认为0*/) {
     if (NULL != collection && canonicalQuery->getQueryRequest().isOplogReplay()) {
         return getOplogStartHack(opCtx, collection, std::move(canonicalQuery), plannerOptions);
     }

@@ -49,6 +49,18 @@ class BackgroundSync;
 class ReplicationCoordinator;
 class OpTime;
 
+
+/*
+	处理oplog流程
+	ReplicationCoordinatorImpl::_startDataReplication -> InitialSyncer::startup 
+	-> InitialSyncer::_scheduleWorkAndSaveHandle_inlock -> _exec->scheduleWork(work) 
+	-> InitialSyncer::_getNextApplierBatchCallback
+	-> DataReplicatorExternalStateImpl::_multiApply 
+	-> syncTail.multiApply(_applyFunc = repl::multiInitialSyncApply) 
+	-> SyncTail::syncApply
+
+*/
+
 /**
  * "Normal" replica set syncing
  */

@@ -63,6 +63,12 @@ access_example(void)
 	cursor->set_key(cursor, "key1");	/* Insert a record. */
 	cursor->set_value(cursor, "value1");
 	error_check(cursor->insert(cursor));
+	cursor->set_key(cursor, "key2");	/* Insert a record. */
+	cursor->set_value(cursor, "value2");
+	error_check(cursor->insert(cursor));
+	cursor->set_key(cursor, "key3");	/* Insert a record. */
+	cursor->set_value(cursor, "value3");
+	error_check(cursor->insert(cursor));
 	/*! [access example cursor insert] */
 
 	/*! [access example cursor list] */
@@ -77,6 +83,7 @@ access_example(void)
 	/*! [access example cursor list] */
 
 	/*! [access example close] */
+	error_check(session->checkpoint(session, NULL));
 	error_check(conn->close(conn, NULL));	/* Close all handles. */
 	/*! [access example close] */
 }

@@ -67,6 +67,7 @@ using std::unique_ptr;
 using stdx::make_unique;
 //prepareExecution->StageBuilder::build调用  配合prepareExecution阅读
 //注意buildStages中有递归调用，这样就可以把整个QuerySolution及其child QuerySolution一起关联起来
+// 把QuerySolutionNode变成一个一个 stage
 PlanStage* buildStages(OperationContext* opCtx,     //该函数存在递归调用
                        Collection* collection,
                        const CanonicalQuery& cq,

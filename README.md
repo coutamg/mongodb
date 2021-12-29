@@ -22,7 +22,7 @@
 |:-|:-|:-|
 |1|infoq专栏|[《MongoDB内核源码设计、性能优化、最佳运维实践》](https://www.infoq.cn/profile/8D2D4D588D3D8A/publish)|
 |2|oschina专栏|[《mongodb内核源码中文注释详细分析及性能优化实践系列》](https://my.oschina.net/u/4087916)|
-|3|知乎专栏|[《MongoDB内核源码设计、性能优化、最佳运维实践》](https://www.zhihu.com/people/yang-ya-zhou-42/columns)|
+|3|知乎专栏|[《MongoDB内核源码设计、性能优化、最佳运维实践》](https://www.zhihu.com/people/ddd-ya-zhou-42/columns)|
 |4|itpub专栏|[《mongodb内核源码设计实现、性能优化、最佳运维实践》](http://blog.itpub.net/column/150)|
 
 ### 《mongodb内核源码设计与实现》源码模块化分析  
@@ -32,11 +32,11 @@
 |:-|:-|:-|:-|:-|
 |1|[网络收发处理(含工作线程模型)](https://github.com/y123456yz/reading-and-annotate-mongodb-3.6/blob/master/mongo/README.md#L8)|网络处理模块核心代码实现(100%注释分析)|完成ASIO库、网络数据收发、同步线程模型、动态线程池模型等功能|[详见infoq专栏：《MongoDB内核源码设计、性能优化、最佳运维实践》](https://www.infoq.cn/profile/8D2D4D588D3D8A/publish)|
 |2|[command命令处理模块](https://github.com/y123456yz/reading-and-annotate-mongodb-3.6/blob/master/mongo/README.md#L85)|命令处理相关模块源码分析(100%注释分析)|完成命令注册、命令执行、命令分析、命令统计等功能|[详见oschina专栏:《mongodb内核源码中文注释详细分析及性能优化实践系列》](https://www.infoq.cn/profile/8D2D4D588D3D8A/publish)|
-|3|[write写(增删改操作)模块](https://github.com/y123456yz/reading-and-annotate-mongodb-3.6/blob/master/mongo/README.md#L115))|增删改写模块(100%注释分析)|完成增删改对应命令解析回调处理、事务封装、storage存储模块对接等功能|[详见知乎专栏：《MongoDB内核源码设计、性能优化、最佳运维实践》](https://www.zhihu.com/people/yang-ya-zhou-42/columns)|
-|4|[query查询引擎模块](https://github.com/y123456yz/reading-and-annotate-mongodb-3.6/blob/master/mongo/README.md#L131))|query查询引擎模块(核心代码注释)|完成expression tree解析优化处理、querySolution生成、最优索引选择等功能|[详见知乎专栏：《MongoDB内核源码设计、性能优化、最佳运维实践》](https://www.zhihu.com/people/yang-ya-zhou-42/columns)|
+|3|[write写(增删改操作)模块](https://github.com/y123456yz/reading-and-annotate-mongodb-3.6/blob/master/mongo/README.md#L115))|增删改写模块(100%注释分析)|完成增删改对应命令解析回调处理、事务封装、storage存储模块对接等功能|[详见知乎专栏：《MongoDB内核源码设计、性能优化、最佳运维实践》](https://www.zhihu.com/people/ddd-ya-zhou-42/columns)|
+|4|[query查询引擎模块](https://github.com/y123456yz/reading-and-annotate-mongodb-3.6/blob/master/mongo/README.md#L131))|query查询引擎模块(核心代码注释)|完成expression tree解析优化处理、querySolution生成、最优索引选择等功能|[详见知乎专栏：《MongoDB内核源码设计、性能优化、最佳运维实践》](https://www.zhihu.com/people/ddd-ya-zhou-42/columns)|
 |5|[concurrency并发控制模块](https://github.com/y123456yz/reading-and-annotate-mongodb-3.6/tree/master/mongo/src/mongo/db/concurrency)|并发控制模块(核心代码注释)|完成信号量、读写锁、读写意向锁相关实现及封装|[详见infoq专栏：《MongoDB内核源码设计、性能优化、最佳运维实践》](https://www.infoq.cn/profile/8D2D4D588D3D8A/publish)|
 |6|[index索引模块](https://github.com/y123456yz/reading-and-annotate-mongodb-3.6/blob/master/mongo/README.md#L240)|index索引模块(100%注释分析)|完成索引解析、索引管理、索引创建、文件排序等功能|[详见oschina专栏:《mongodb内核源码中文注释详细分析及性能优化实践系列》](https://www.infoq.cn/profile/8D2D4D588D3D8A/publish)|
-|7|[storage存储模块](https://github.com/y123456yz/reading-and-annotate-mongodb-3.6/blob/master/mongo/README.md#L115))|storage存储模块(100%注释分析)|完成存储引擎注册、引擎选择、中间层实现、KV实现、wiredtiger接口实现等功能|[详见知乎专栏：《MongoDB内核源码设计、性能优化、最佳运维实践》](https://www.zhihu.com/people/yang-ya-zhou-42/columns)|
+|7|[storage存储模块](https://github.com/y123456yz/reading-and-annotate-mongodb-3.6/blob/master/mongo/README.md#L115))|storage存储模块(100%注释分析)|完成存储引擎注册、引擎选择、中间层实现、KV实现、wiredtiger接口实现等功能|[详见知乎专栏：《MongoDB内核源码设计、性能优化、最佳运维实践》](https://www.zhihu.com/people/ddd-ya-zhou-42/columns)|
 |8|[wiredtiger存储引擎](https://github.com/y123456yz/reading-and-annotate-wiredtiger-3.0.0)) |wiredtiger存储引擎设计与实现专栏分析(已分析部分)|完成KV读写、存储结构、checkpoint择等主功能，待完善|[详见知乎专栏：《MongoDB内核源码设计、性能优化、最佳运维实践》](https://github.com/y123456yz/reading-and-annotate-wiredtiger-3.0.0)|
   
   

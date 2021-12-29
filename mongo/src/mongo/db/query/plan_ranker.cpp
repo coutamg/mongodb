@@ -64,6 +64,10 @@ namespace mongo {
 using std::endl;
 using std::vector;
 
+/*
+	参考
+	https://mongoing.com/archives/5624?spm=a2c4e.11153940.blogcont647563.13.6ee0730cDKb7RN
+*/
 //选择适合的索引  MultiPlanStage::pickBestPlan(PlanYieldPolicy* yieldPolicy)中调用PlanRanker::pickBestPlan(const vector<CandidatePlan>& candidates, PlanRankingDecision* why)
 // static   MultiPlanStage::pickBestPlan中执行，配合MultiPlanStage::workAllPlans阅读
 //多个候选solution的计分机器索引信息保存到why中返回
@@ -99,6 +103,13 @@ size_t PlanRanker::pickBestPlan(const vector<CandidatePlan>& candidates, PlanRan
         LOG(5) << "Scoring plan " << i << ":" << endl
                << redact(candidates[i].solution->toString()) << "Stats:\n"
                << redact(Explain::statsToBSON(*statTrees[i]).jsonString(Strict, true));
+		/*
+		Scoring query plan: IXSCAN { name: 1 } planHitEOF=1
+
+		Scoring query plan: IXSCAN { age: 1 } planHitEOF=0
+
+		Scoring query plan: IXSCAN { name: 1 }, IXSCAN { age: 1 } planHitEOF=0
+		*/
         LOG(2) << "Scoring query plan: " << redact(Explain::getPlanSummary(candidates[i].root))
                << " planHitEOF=" << statTrees[i]->common.isEOF;
 		/*
@@ -207,6 +218,7 @@ bool hasStage(const StageType type, const PlanStageStats* stats) {
 }
 
 /*
+参考：https://mongoing.com/archives/5624?spm=a2c4e.11153940.blogcont647563.13.6ee0730cDKb7RN
 Mongodb是如何为查询选取认为合适的索引的呢？
 
 粗略来说，会先选几个候选的查询计划，然后会为这些查询计划按照某个规则来打分，分数最高的
@@ -227,6 +239,7 @@ double PlanRanker::scoreTree(const PlanStageStats* stats) {
 
     // How many "units of work" did the plan perform. Each call to work(...)
     // counts as one unit.
+	// 总共扫描的次数
     size_t workUnits = stats->common.works;
     invariant(workUnits != 0);
 
@@ -295,6 +308,13 @@ double PlanRanker::scoreTree(const PlanStageStats* stats) {
        << " noSortBonus + " << noIxisectBonus << " noIxisectBonus = " << tieBreakers << ")";
     std::string scoreStr = ss;
     LOG(2) << scoreStr;
+	/*
+	score(1.5003) = baseScore(1) + productivity((1 advanced)/(2 works) = 0.5) + tieBreakers(0.0001 noFetchBonus + 0.0001 noSortBonus + 0.0001 noIxisectBonus = 0.0003)
+
+	core(1.0002) = baseScore(1) + productivity((0 advanced)/(2 works) = 0) + tieBreakers(0.0001 noFetchBonus + 0 noSortBonus + 0.0001 noIxisectBonus = 0.0002)
+
+	score(1.0001) = baseScore(1) + productivity((0 advanced)/(2 works) = 0) + tieBreakers(0.0001 noFetchBonus + 0 noSortBonus + 0 noIxisectBonus = 0.0001)
+	*/
 
     if (internalQueryForceIntersectionPlans.load()) {
         if (hasStage(STAGE_AND_HASH, stats) || hasStage(STAGE_AND_SORTED, stats)) {

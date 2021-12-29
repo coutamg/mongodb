@@ -190,6 +190,9 @@ StatusWith<std::unique_ptr<CanonicalQuery>>
 	MatchExpressionParser的作用就是把Bson对象转换为一个树形的MatchExpression对象
 	参考https://blog.csdn.net/baijiwei/article/details/78127191
 	*/
+	/* 这里解析的是带上各种查询条件的 find，
+		db.collection.find() 会什么都没有
+	*/
     StatusWithMatchExpression statusWithMatcher = MatchExpressionParser::parse(
         qr->getFilter(), newExpCtx, extensionsCallback, allowedFeatures);
     if (!statusWithMatcher.isOK()) {
@@ -199,7 +202,7 @@ StatusWith<std::unique_ptr<CanonicalQuery>>
 	//树型的expression结构，该原始树形结构中的节点是有一个个的查询操作符
 	//最终存入CanonicalQuery._root
     std::unique_ptr<MatchExpression> me = std::move(statusWithMatcher.getValue());
-	LOG(1) << "ddd test expression: " << me->toString();
+	LOG(2) << "ddd test canonicalize::expression: " << me->toString();
 	/*
 		db.inventory.find( {$and : [{ $and : [ { price : 0.99 }, { count : 99 } ] },
 									{ $and : [ { sale : true }, { qty : 20}]}] } )
@@ -211,6 +214,11 @@ StatusWith<std::unique_ptr<CanonicalQuery>>
 		$and
 			sale == true
 			qty == 20.0
+
+	db.test1.find({"name":"coutamg1", "age":12}).sort({"name":1})
+	ddd test canonicalize::expression: $and
+		name == "coutamg1"
+		age == 12.0
 	*/
     // Make the CQ we'll hopefully return.
     //构造CanonicalQuery
@@ -228,7 +236,7 @@ StatusWith<std::unique_ptr<CanonicalQuery>>
     if (!initStatus.isOK()) {
         return initStatus;
     }
-	LOG(1) << "ddd test cq: " << cq->toString();
+	LOG(2) << "ddd test canonicalize::CanonicalQuery: " << cq->toString();
 	/*
 		ddd test cq: ns=test.inventoryTree: 
 	
@@ -237,6 +245,14 @@ StatusWith<std::unique_ptr<CanonicalQuery>>
 		price == 0.99
 		qty == 20.0
 		sale == true
+
+
+	db.test1.find({"name":"coutamg1", "age":12}).sort({"name":1})
+	ddd test canonicalize::CanonicalQuery: ns=test.test1Tree: $and
+		age == 12.0
+		name == "coutamg1"
+	Sort: { name: 1.0 }
+	Proj: {}
 	*/
     return std::move(cq);
 }

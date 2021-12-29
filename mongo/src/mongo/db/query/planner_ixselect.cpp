@@ -202,6 +202,7 @@ void QueryPlannerIXSelect::findRelevantIndices(const unordered_set<string>& fiel
         BSONObjIterator it(allIndices[i].keyPattern);
         verify(it.more());
         BSONElement elt = it.next();
+		// 只要满足条件的 field 在索引中有，就加入
         if (fields.end() != fields.find(elt.fieldName())) {
             out->push_back(allIndices[i]);
         }
@@ -431,6 +432,19 @@ void QueryPlannerIXSelect::rateIndices(MatchExpression* node,
                                        const vector<IndexEntry>& indices,
                                        const CollatorInterface* collator) {
     // Do not traverse tree beyond logical NOR node
+	LOG(2) << "ddd test rateIndices node: " << node->toString();
+	/*
+	第一次调用
+	ddd test rateIndices node: $and
+		age == 12.0
+		name == "coutamg1"
+
+		第二次调用
+		ddd test rateIndices node: age == 12.0
+
+		第三次调用
+		ddd test rateIndices node: name == "coutamg1"
+	*/
     MatchExpression::MatchType exprtype = node->matchType();
     if (exprtype == MatchExpression::NOR) {
         return;
@@ -439,6 +453,14 @@ void QueryPlannerIXSelect::rateIndices(MatchExpression* node,
     // Every indexable node is tagged even when no compatible index is
     // available.
     if (Indexability::isBoundsGenerating(node)) { //绝大部分情况走这里，如果有对应索引
+		LOG(2) << "ddd test rateIndices isBoundsGenerating node: " << node->toString();
+		/*
+			第二次调用
+			ddd test rateIndices isBoundsGenerating node: age == 12.0
+
+			第三次调用
+			ddd test rateIndices isBoundsGenerating node: name == "coutamg1"
+		*/
         string fullPath;
         if (MatchExpression::NOT == node->matchType()) {
             fullPath = prefix + node->getChild(0)->path().toString();
@@ -455,12 +477,15 @@ void QueryPlannerIXSelect::rateIndices(MatchExpression* node,
 
         // TODO: This is slow, with all the string compares.
         //下面对RelevantTag rt赋值
+		// indices 是该查询语句涉及到的所有的 index
         for (size_t i = 0; i < indices.size(); ++i) {
             BSONObjIterator it(indices[i].keyPattern);
+			LOG(2) << "ddd indices keyPattern:" << i << " "<< indices[i].keyPattern.toString() << ", fullPath:" << fullPath;
             BSONElement elt = it.next();
             if (elt.fieldName() == fullPath && compatible(elt, indices[i], node, collator)) {
                 if (node->matchType() != MatchExpression::ELEM_MATCH_VALUE ||
                     elemMatchValueCompatible(elt, indices[i], node, collator)) {
+					// indices 中对应的索引的下标
                     rt->first.push_back(i);
                 }
             }
@@ -486,6 +511,7 @@ void QueryPlannerIXSelect::rateIndices(MatchExpression* node,
     } else if (Indexability::arrayUsesIndexOnChildren(node)) {
 		//Example: a: {$elemMatch: {b:1, c:1}}.
 		// See comment in getFields about all/elemMatch and paths.
+		LOG(2) << "ddd test rateIndices arrayUsesIndexOnChildren node";
         if (!node->path().empty()) {
             prefix += node->path().toString() + ".";
         }
@@ -493,6 +519,14 @@ void QueryPlannerIXSelect::rateIndices(MatchExpression* node,
             rateIndices(node->getChild(i), prefix, indices, collator);
         }
     } else if (node->getCategory() == MatchExpression::MatchCategory::kLogical) {
+		LOG(2) << "ddd test rateIndices kLogical getCategory node";
+		/*
+		ddd test rateIndices node: $and
+			age == 12.0
+			name == "coutamg1"
+		
+		第一次调用来这里
+		*/
         for (size_t i = 0; i < node->numChildren(); ++i) {
             rateIndices(node->getChild(i), prefix, indices, collator);
         }

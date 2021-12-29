@@ -102,12 +102,13 @@ FETCH
 //MultiPlanStage::workAllPlans(选最优索引)  PlanExecutor::getNextImpl(获取真实数据)中执行
 PlanStage::StageState PlanStage::work(WorkingSetID* out) {   //存在根据StageState递归调用的情况
     invariant(_opCtx);
+	// 这里的统计实际上是记载到每一个 stage 中的
     ScopedTimer timer(getClock(), &_commonStats.executionTimeMillis);
     ++_commonStats.works;
 
 	//StageType type = this->stageType();
 	//log() << "ddd test PlanStage::work stageType:" << (int)type;  
-    StageState workResult = doWork(out); 
+    StageState workResult = doWork(out);// 调用 FetchStage::doWork
 //有哪些类的doWork需要执行，参考buildStages 如MultiPlanStage::doWork CollectionScan::doWork  
 //IndexScan::doWork  FetchStage::doWork
 

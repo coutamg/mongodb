@@ -651,12 +651,25 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
 	/* db.test.find({"name":"coutamg", "age":22}).sort({"name":1})对应输出
 	Options = INDEX_INTERSECTION SPLIT_LIMITED_SORT CANNOT_TRIM_IXISECT 
 	Canonical query:
-	ns=testxx.testTree: $and  //-------> and是因为查询条件是"coutamggyazhou" 同时(and) "age":22
+	ns=testxx.testTree: $and  //-------> and是因为查询条件是"coutamg" 同时(and) "age":22
 		age == 22.0
 		name == "coutamg"
 	Sort: { name: 1.0 }
 	Proj: {}
 	=============================
+	*/
+	/*
+	 db.test1.find({"name":"coutamg1", "age":12}).sort({"name":1})
+
+	Beginning planning...
+	=============================
+	Options = INDEX_INTERSECTION SPLIT_LIMITED_SORT CANNOT_TRIM_IXISECT
+	Canonical query:
+	ns=test.test1Tree: $and
+		age == 12.0
+		name == "coutamg1"
+	Sort: { name: 1.0 }
+	Proj: {}
 	*/
 	LOG(2) << "Beginning planning..." << endl
            << "=============================" << endl
@@ -664,14 +677,17 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
            << "Canonical query:" << endl
            << redact(query.toString()) << "============================="; //CanonicalQuery::toString
 
-	//打印出所有索引信息  db.coutamgame":"yangyazhou"}).sort({"name":1})
-	//2019-01-03T17:24:40.440+0800 D QUERY    [conn1] Index 0 is kp: { _id: 1 } unique name: '_id_' io: { v: 2, key: { _id: 1 }, name: "_id_", ns: "testxx.test" }
-	//2019-01-03T17:24:40.440+0800 D QUERY    [conn1] Index 1 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "testxx.test" }
-	//2019-01-03T17:24:40.440+0800 D QUERY    [conn1] Index 2 is kp: { age: 1.0 } name: 'age_1' io: { v: 2, key: { age: 1.0 }, name: "age_1", ns: "testxx.test" }
-	//2019-01-03T17:24:40.440+0800 D QUERY    [conn1] Index 3 is kp: { name: 1.0, age: 1.0 } name: 'name_1_age_1' io: { v: 2, key: { name: 1.0, age: 1.0 }, name: "name_1_age_1", ns: "testxx.test" }for (size_t i = 0; i < params.indices.size(); ++i) {
+	/*打印出所有索引信息  
+		db.test1.find({"name":"coutamg1", "age":12}).sort({"name":1})
+
+		Index 0 is kp: { _id: 1 } unique name: '_id_' io: { v: 2, key: { _id: 1 }, name: "_id_", ns: "test.test1" }
+
+		Index 1 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "test.test1" }
+
+		Index 2 is kp: { age: 1.0 } name: 'age_1' io: { v: 2, key: { age: 1.0 }, name: "age_1", ns: "test.test1" }
+	*/
     for (size_t i = 0; i < params.indices.size(); ++i) {
         LOG(2) << "Index " << i << " is " << params.indices[i].toString();
-		LOG(2) << "Index " << i << " is kp:" << params.indices[i].toString(); //便于搜索" is kp:"
     }
 
 	//是否支持全部扫描
@@ -733,13 +749,12 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
 	//获取所有的查询条件，填充到fields数组 
     QueryPlannerIXSelect::getFields(query.root(), "", &fields);
 
-	/* 如果是db.test.find({"coutamggyazhou", "age":22}).sort({"name":1})
-	2019-01-03T16:58:51.444+0800 D QUERY	[conn1] Predicate over field 'name'
-	2019-01-03T16:58:51.444+0800 D QUERY	[conn1] Predicate over field 'age'
 
-	如果是db.test.find({"coutamggyazhou"}).sort({"name":1})
-	2019-01-03T17:24:40.440+0800 D QUERY    [conn1] Predicate over field 'name'
 	//这里把查询条件中得字段一个一个打印出来
+	/*
+		db.test1.find({"name":"coutamg1", "age":12}).sort({"name":1})
+		 Predicate over field 'name'
+		 Predicate over field 'age'
 	*/
     for (unordered_set<string>::const_iterator it = fields.begin(); it != fields.end(); ++it) {
         LOG(2) << "Predicate over field '" << *it << "'"; 
@@ -797,15 +812,11 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
     boost::optional<size_t> hintIndexNumber;
 
     if (hintIndex.isEmpty()) { //如果没有强制指定索引
-    /*
-	db.test.find({"name":"coutamg", "age":1, "male":1})
+   /* db.test1.find({"name":"coutamg1", "age":12}).sort({"name":1})
+	
+		Relevant index 0 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "test.test1" }
 
-	外层选举出的out索引打印如下:
-	2021-01-12T17:57:31.001+0800 D QUERY    [conn1] Relevant index 0 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "test.test", background: true }
-	2021-01-12T17:57:31.001+0800 D QUERY    [conn1] Relevant index 1 is kp: { age: 1.0 } name: 'age_1' io: { v: 2, key: { age: 1.0 }, name: "age_1", ns: "test.test", background: true }
-	2021-01-12T17:57:31.001+0800 D QUERY    [conn1] Relevant index 2 is kp: { male: 1.0 } name: 'male_1' io: { v: 2, key: { male: 1.0 }, name: "male_1", ns: "test.test", background: true }
-	2021-01-12T17:57:31.001+0800 D QUERY    [conn1] Relevant index 3 is kp: { male: 1.0, name: 1.0 } name: 'male_1_name_1' io: { v: 2, key: { male: 1.0, name: 1.0 }, name: "male_1_name_1", ns: "test.test", background: true }
-	2021-01-12T17:57:31.001+0800 D QUERY    [conn1] Relevant index 4 is kp: { name: 1.0, male: 1.0 } name: 'name_1_male_1' io: { v: 2, key: { name: 1.0, male: 1.0 }, name: "name_1_male_1", ns: "test.test", background: true }
+		Relevant index 1 is kp: { age: 1.0 } name: 'age_1' io: { v: 2, key: { age: 1.0 }, name: "age_1", ns: "test.test1" }
 	*/
 		//获取满足条件的索引存储到relevantIndices  把和fields匹配的索引找出来,最左的合理索引，都会选出来
         QueryPlannerIXSelect::findRelevantIndices(fields, params.indices, &relevantIndices);
@@ -948,20 +959,25 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
 
 	//打印出选择出的索引
     for (size_t i = 0; i < relevantIndices.size(); ++i) {
-	/* db.test.find({"name":"coutamg", "age":22}).sort({"name":1})
-	2019-01-03T17:57:20.793+0800 D QUERY	[conn1] Relevant index 0 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "testxx.test" }
-	2019-01-03T17:57:20.793+0800 D QUERY	[conn1] Relevant index 1 is kp: { age: 1.0 } name: 'age_1' io: { v: 2, key: { age: 1.0 }, name: "age_1", ns: "testxx.test" }
-	2019-01-03T17:57:20.793+0800 D QUERY	[conn1] Relevant index 2 is kp: { name: 1.0, age: 1.0 } name: 'name_1_age_1' io: { v: 2, key: { name: 1.0, age: 1.0 }, name: "name_1_age_1", ns: "testxx.test" }
+	/* db.test1.find({"name":"coutamg1", "age":12}).sort({"name":1})
 
-    db.test.find({"name":"coutamg"}).sort({"name":1})
-	2019-01-03T17:24:40.440+0800 D QUERY	[conn1] Relevant index 0 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "testxx.test" }
-	2019-01-03T17:24:40.440+0800 D QUERY	[conn1] Relevant index 1 is kp: { name: 1.0, age: 1.0 } name: 'name_1_age_1' io: { v: 2, key: { name: 1.0, age: 1.0 }, name: "name_1_age_1", ns: "testxx.test" }
+		Relevant index 0 is kp: { name: 1.0 } name: 'name_1' io: { v: 2, key: { name: 1.0 }, name: "name_1", ns: "test.test1" }
+
+		Relevant index 1 is kp: { age: 1.0 } name: 'age_1' io: { v: 2, key: { age: 1.0 }, name: "age_1", ns: "test.test1" }
 	*/
 		LOG(2) << "Relevant index " << i << " is " << relevantIndices[i].toString();
     }
 
     // Figure out how useful each index is to each predicate.
     //给query.root()._tagData赋值，给node tree上面的节点增加RelevantTag信息，也就是相关候选索引信息和MatchExpression tree节点关联
+	/* db.test.find({"name":"coutamg", "age":22}).sort({"name":1})对应输出
+	Canonical query:
+	ns=testxx.testTree: $and  //-------> and是因为查询条件是"coutamg" 同时(and) "age":22
+		age == 22.0
+		name == "coutamg"
+	Sort: { name: 1.0 }
+	Proj: {}
+	*/
     QueryPlannerIXSelect::rateIndices(query.root(), "", relevantIndices, query.getCollator());
     QueryPlannerIXSelect::stripInvalidAssignments(query.root(), relevantIndices);
 
@@ -988,6 +1004,12 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
 		$and
 	    age == 22.0  || First: 1 notFirst: 2 full path: age            //First: 1 这里的1代表第1个候选索引
 	    name == "coutamg"  || First: 0 2 notFirst: full path: name  //First: 0 2 这里的0 2代表第0和第2个候选索引
+	*/
+	/* db.test1.find({"name":"coutamg1", "age":12}).sort({"name":1})
+		Rated tree:
+		$and
+			age == 12.0  || First: 1 notFirst: full path: age
+			name == "coutamg1"  || First: 0 notFirst: full path: name
 	*/
     LOG(2) << "Rated tree:" << endl << redact(query.root()->toString()); 
 
@@ -1062,13 +1084,25 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
 		//PlanEnumerator::getNext    这里的理解配合querysolution.txt阅读,枚举每个查询对应的索引信息，最终生成solution
         while ((rawTree = isp.getNext()) && (out->size() < params.maxIndexedSolutions)) {
 		/* 
-	    db.test.find({"name":"coutamg"}).sort({"name":1}):
-			name == "coutamg"  || Selected Index #1 pos 0 combine 1
-
-		db.test.find({"name":"coutamg", "age":22}).sort({"name":1}):
+	    db.test1.find({"name":"coutamg1", "age":12}).sort({"name":1})
+		一条查询语句生成三个 QuerySolution
+		QuerySolution 一:
+			About to build solntree(QuerySolution tree) from tagged tree:
 			$and
-				age == 22.0  || Selected Index #2 pos 1 combine 1
-				name == "coutamg"  || Selected Index #2 pos 0 combine 1
+				age == 12.0
+				name == "coutamg1"  || Selected Index #0 pos 0 combine 1
+
+		QuerySolution 二:
+			About to build solntree(QuerySolution tree) from tagged tree:
+			$and
+				age == 12.0  || Selected Index #1 pos 0 combine 1
+				name == "coutamg1"
+
+		QuerySolution 三:
+			About to build solntree(QuerySolution tree) from tagged tree:
+			$and
+				age == 12.0  || Selected Index #1 pos 0 combine 1
+				name == "coutamg1"  || Selected Index #0 pos 0 combine 1
 		*/
             LOG(2) << "About to build solntree(QuerySolution tree) from tagged tree:" << endl
                    << redact(rawTree.get()->toString()); //tag 由前面的PlanEnumeratorParams中添加
@@ -1091,6 +1125,22 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
             // access planning.
             //prepareForAccessPlanning调用执行,从新对tree排序
             prepareForAccessPlanning(rawTree.get());
+			/*
+			About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:
+			$and
+				name == "coutamg1"  || Selected Index #0 pos 0 combine 1
+				age == 12.0
+
+			About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:
+			$and
+				age == 12.0  || Selected Index #1 pos 0 combine 1
+				name == "coutamg1"
+
+			About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:
+			$and
+				name == "coutamg1"  || Selected Index #0 pos 0 combine 1
+				age == 12.0  || Selected Index #1 pos 0 combine 1
+			*/
 			LOG(2) << "About to build solntree(QuerySolution tree) from tagged tree, after prepareForAccessPlanning:" << endl
                    << redact(rawTree.get()->toString());
 
@@ -1104,6 +1154,110 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
             if (!solnRoot) {
                 continue;
             }
+			/*
+			Planner: adding QuerySolutionNode:
+			FETCH
+			---filter:
+				age == 12.0
+			---fetched = 1
+			---sortedByDiskLoc = 1
+			---getSort = []
+			---Child:
+			------IXSCAN
+			---------indexName = name_1
+			keyPattern = { name: 1.0 }
+			---------direction = 1
+			---------bounds = field #0['name']: ["coutamg1", "coutamg1"]
+			---------fetched = 0
+			---------sortedByDiskLoc = 1
+			---------getSort = []
+
+
+			Planner: adding QuerySolutionNode:
+			FETCH
+			---filter:
+					name == "coutamg1"
+			---fetched = 1
+			---sortedByDiskLoc = 1
+			---getSort = []
+			---Child:
+			------IXSCAN
+			---------indexName = age_1
+			keyPattern = { age: 1.0 }
+			---------direction = 1
+			---------bounds = field #0['age']: [12.0, 12.0]
+			---------fetched = 0
+			---------sortedByDiskLoc = 1
+			---------getSort = []
+
+
+			Planner: adding QuerySolutionNode:
+			FETCH
+			---filter:
+					$and
+						name == "coutamg1"  || Selected Index #0 pos 0 combine 1
+						age == 12.0  || Selected Index #1 pos 0 combine 1
+			---fetched = 1
+			---sortedByDiskLoc = 1
+			---getSort = []
+			---Child:
+			------AND_SORTED
+			---------fetched = 0
+			---------sortedByDiskLoc = 1
+			---------getSort = []
+			---------Child 0:
+			---------IXSCAN
+			------------indexName = name_1
+			keyPattern = { name: 1.0 }
+			------------direction = 1
+			------------bounds = field #0['name']: ["coutamg1", "coutamg1"]
+			------------fetched = 0
+			------------sortedByDiskLoc = 1
+			------------getSort = []
+			---------Child 1:
+			---------IXSCAN
+			------------indexName = age_1
+			keyPattern = { age: 1.0 }
+			------------direction = 1
+			------------bounds = field #0['age']: [12.0, 12.0]
+			------------fetched = 0
+			------------sortedByDiskLoc = 1
+			------------getSort = []
+
+
+			Planner: adding QuerySolutionNode:
+			FETCH
+			---filter:
+					$and
+						name == "coutamg1"  || Selected Index #0 pos 0 combine 1
+						age == 12.0  || Selected Index #1 pos 0 combine 1
+			---fetched = 1
+			---sortedByDiskLoc = 1
+			---getSort = []
+			---Child:
+			------AND_SORTED
+			---------fetched = 0
+			---------sortedByDiskLoc = 1
+			---------getSort = []
+			---------Child 0:
+			---------IXSCAN
+			------------indexName = name_1
+			keyPattern = { name: 1.0 }
+			------------direction = 1
+			------------bounds = field #0['name']: ["coutamg1", "coutamg1"]
+			------------fetched = 0
+			------------sortedByDiskLoc = 1
+			------------getSort = []
+			---------Child 1:
+			---------IXSCAN
+			------------indexName = age_1
+			keyPattern = { age: 1.0 }
+			------------direction = 1
+			------------bounds = field #0['age']: [12.0, 12.0]
+			------------fetched = 0
+			------------sortedByDiskLoc = 1
+			------------getSort = []
+			*/
 			LOG(2) << "Planner: adding QuerySolutionNode:" << endl << redact(solnRoot->toString());
 
 			//根据请求完善QuerySolutionNode tree，包括增加LimitNode  SkipNode ProjectionNode ShardingFilterNode
@@ -1112,6 +1266,100 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
             QuerySolution* soln =
                 QueryPlannerAnalysis::analyzeDataAccess(query, params, std::move(solnRoot));
             if (NULL != soln) {
+				/*
+					Planner: adding solution:
+					FETCH
+					---filter:
+							age == 12.0
+					---fetched = 1
+					---sortedByDiskLoc = 1
+					---getSort = [{ name: 1 }, ]
+					---Child:
+					------IXSCAN
+					---------indexName = name_1
+					keyPattern = { name: 1.0 }
+					---------direction = 1
+					---------bounds = field #0['name']: ["coutamg1", "coutamg1"]
+					---------fetched = 0
+					---------sortedByDiskLoc = 1
+					---------getSort = [{ name: 1 }, ]
+
+					SORT
+					---pattern = { name: 1.0 }
+					---limit = 0
+					---fetched = 1
+					---sortedByDiskLoc = 0
+					---getSort = []
+					---Child:
+					------SORT_KEY_GENERATOR
+					---------sortSpec = { name: 1.0 }
+					---------fetched = 1
+					---------sortedByDiskLoc = 1
+					---------getSort = [{ age: 1 }, ]
+					---------Child:
+					------------FETCH
+					---------------filter:
+											name == "coutamg1"
+					---------------fetched = 1
+					---------------sortedByDiskLoc = 1
+					---------------getSort = [{ age: 1 }, ]
+					---------------Child:
+					------------------IXSCAN
+					---------------------indexName = age_1
+					keyPattern = { age: 1.0 }
+					---------------------direction = 1
+					---------------------bounds = field #0['age']: [12.0, 12.0]
+					---------------------fetched = 0
+					---------------------sortedByDiskLoc = 1
+					---------------------getSort = [{ age: 1 }, ]
+
+
+					Planner: adding solution:
+					SORT
+					---pattern = { name: 1.0 }
+					---limit = 0
+					---fetched = 1
+					---sortedByDiskLoc = 0
+					---getSort = []
+					---Child:
+					------SORT_KEY_GENERATOR
+					---------sortSpec = { name: 1.0 }
+					---------fetched = 1
+					---------sortedByDiskLoc = 1
+					---------getSort = []
+					---------Child:
+					------------FETCH
+					---------------filter:
+											$and
+												name == "coutamg1"  || Selected Index #0 pos 0 combine 1
+												age == 12.0  || Selected Index #1 pos 0 combine 1
+					---------------fetched = 1
+					---------------sortedByDiskLoc = 1
+					---------------getSort = []
+					---------------Child:
+					------------------AND_SORTED
+					---------------------fetched = 0
+					---------------------sortedByDiskLoc = 1
+					---------------------getSort = []
+					---------------------Child 0:
+					---------------------IXSCAN
+					------------------------indexName = name_1
+					keyPattern = { name: 1.0 }
+					------------------------direction = 1
+					------------------------bounds = field #0['name']: ["coutamg1", "coutamg1"]
+					------------------------fetched = 0
+					------------------------sortedByDiskLoc = 1
+					------------------------getSort = [{ name: 1 }, ]
+					---------------------Child 1:
+					---------------------IXSCAN
+					------------------------indexName = age_1
+					keyPattern = { age: 1.0 }
+					------------------------direction = 1
+					------------------------bounds = field #0['age']: [12.0, 12.0]
+					------------------------fetched = 0
+					------------------------sortedByDiskLoc = 1
+					------------------------getSort = [{ age: 1 }, ]
+				*/
                 LOG(2) << "Planner: adding solution:" << endl << redact(soln->toString());//QuerySolutionNode::toString
                 if (indexTreeStatus.isOK()) {
 					//该solution对应的 
@@ -1129,6 +1377,7 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
     query.root()->resetTag();
 
 	//满足条件的索引个数
+	//  Planner: outputted 3 indexed solutions.
     LOG(2) << "Planner: outputted " << out->size() << " indexed solutions."; 
 
     // Produce legible error message for failed OR planning with a TEXT child.
@@ -1322,6 +1571,14 @@ Status QueryPlanner::plan(const CanonicalQuery& query,
             collscan->cacheData.reset(scd);
             out->push_back(collscan);
             LOG(2) << "Planner: outputting a collscan:" << endl << redact(collscan->toString());
+			/* db.test1.find()
+				COLLSCAN
+				---ns = test.test1
+				---filter = $and
+				---fetched = 1
+				---sortedByDiskLoc = 0
+				---getSort = []
+			*/
         }
     }
 

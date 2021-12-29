@@ -243,6 +243,7 @@ Mongodb是如何为查询选取认为合适的索引的呢？
 的查询计划就是合适的查询计划，这个查询计划里面使用的索引就是认为合适的索引。
 */ //https://yq.aliyun.com/articles/74635
 //从PlanExecutor::pickBestPlan调用该函数
+// 参考 https://mongoing.com/archives/5624?spm=a2c4e.11153940.blogcont647563.13.6ee0730cDKb7RN
 Status MultiPlanStage::pickBestPlan(PlanYieldPolicy* yieldPolicy) {
     // Adds the amount of time taken by pickBestPlan() to executionTimeMillis. There's lots of
     // execution work that happens here, so this is needed for the time accounting to
@@ -291,7 +292,28 @@ Status MultiPlanStage::pickBestPlan(PlanYieldPolicy* yieldPolicy) {
     std::list<WorkingSetID>& alreadyProduced = bestCandidate.results;
     const auto& bestSolution = bestCandidate.solution;
 
+	/*
+	Winning solution:
+	FETCH
+	---filter:
+			age == 12.0
+	---fetched = 1
+	---sortedByDiskLoc = 1
+	---getSort = [{ name: 1 }, ]
+	---Child:
+	------IXSCAN
+	---------indexName = name_1
+	keyPattern = { name: 1.0 }
+	---------direction = 1
+	---------bounds = field #0['name']: ["coutamg1", "coutamg1"]
+	---------fetched = 0
+	---------sortedByDiskLoc = 1
+	---------getSort = [{ name: 1 }, ]
+	*/
     LOG(2) << "Winning solution:\n" << redact(bestSolution->toString());
+	/*
+	Winning plan: IXSCAN { name: 1 }
+	*/
     LOG(2) << "Winning plan: " << redact(Explain::getPlanSummary(bestCandidate.root));
 
     _backupPlanIdx = kNoSuchPlan;
@@ -398,6 +420,7 @@ Status MultiPlanStage::pickBestPlan(PlanYieldPolicy* yieldPolicy) {
 
 //MultiPlanStage::pickBestPlan   https://segmentfault.com/a/1190000015236644  https://yq.aliyun.com/articles/74635
 //workAllPlans执行所有的查询计划，MultiPlanStage::pickBestPlan最多会调用numWorks次，PlanRanker::pickBestPlan中根据这里的work选择最优的
+// numResults: 返回的数据数目
 bool MultiPlanStage::workAllPlans(size_t numResults, PlanYieldPolicy* yieldPolicy) {
     bool doneWorking = false;
 
@@ -417,6 +440,7 @@ bool MultiPlanStage::workAllPlans(size_t numResults, PlanYieldPolicy* yieldPolic
         WorkingSetID id = WorkingSet::INVALID_ID;
 		//执行对应PlanStage::work， 不同类型PlanStage可以参考buildStages，
 		//包括CollectionScan、IndexScan等，CollectionScan::work  IndexScan::work
+		// 这里只执行一次
         PlanStage::StageState state = candidate.root->work(&id); //PlanStage::work
 
 		//

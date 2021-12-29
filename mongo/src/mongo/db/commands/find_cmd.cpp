@@ -344,6 +344,11 @@ at src/mongo/db/commands/find_cmd.cpp:311
             return status.isOK();
         }
 
+		LOG(2) << "ddd test find::expression: " << redact(cq->toStringShort());
+		/*
+		ddd test find::expression: query: { name: "coutamg1", age: 12.0 } sort: { name: 1.0 } projection: {}
+		*/
+	
         // Get the execution plan for the query.
         //StatusWith<unique_ptr<PlanExecutor, PlanExecutor::Deleter>> getExecutorFind,这里面会调用QueryPlanner::plan，获取对应的PlanExecutor
         ////根据CanonicalQuery得到的表达式树,调用getExecutor得到最终的PlanExecutor

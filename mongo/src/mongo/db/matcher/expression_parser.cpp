@@ -260,6 +260,11 @@ StatusWithMatchExpression parseComparison(
 	/*
 		db.inventory.find( {aa : {$eq : "111"}} )
 		ddd test name: aa, ele: $eq: "111"
+
+		db.test1.find({"name":"coutamg1", "age":12}).sort({"name":1})
+		$cmd { find: "test1", filter: { name: "coutamg1", age: 12.0 }, sort: { name: 1.0 }, $db: "test" }
+
+		name: name, ele: name: "coutamg1"
 	*/
 	LOG(1) << "ddd test name: " << name << ", ele: " << e.toString();
     auto s = temp->init(name, e);
@@ -481,6 +486,12 @@ StatusWithMatchExpression parse(const BSONObj& obj,
         root->add(eq.getValue().release());
     }
 
+	LOG(2) << "ddd test root expression:" << root->toString();
+	/*
+	ddd test root expression:$and
+		name == "coutamg1"
+		age == 12.0
+	*/
     if (root->numChildren() == 1) {
         std::unique_ptr<MatchExpression> real(root->getChild(0));
         root->clearAndRelease();

@@ -396,6 +396,7 @@ protected:
     ////MultiPlanStage::addPlan中赋值
     Children _children;
     //赋值见PlanStage::work
+	// 统计 plan stage 的执行时间
     CommonStats _commonStats;
 
 private:

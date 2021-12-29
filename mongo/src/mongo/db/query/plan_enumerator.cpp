@@ -352,7 +352,7 @@ unique_ptr<MatchExpression> PlanEnumerator::getNext() {
     tagForSort(tree.get());
 
     _root->resetTag();
-    LOG(5) << "Enumerator: memo just before moving:" << endl << dumpMemo();
+    LOG(2) << "PlanEnumerator::Enumerator: memo just before moving:" << endl << dumpMemo();
     _done = nextMemo(memoIDForNode(_root));
     return tree;
 }
